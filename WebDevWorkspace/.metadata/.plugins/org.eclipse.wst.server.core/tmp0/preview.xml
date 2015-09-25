@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<server port="8080">
+  <module context="Assignment1" name="Assignment1" path="C:/Users/Mayank Shah/webdev/test2/cs5610/WebDevWorkspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/Assignment1" type="static"/>
+</server>
