@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Post new blog article</title>
+</head>
+<body>
+
+	<header>
+		<h1>New Blog Post</h1>
+
+	</header>
+	<main>
+	<form>
+		<div>
+			<label for="email">Email</label>
+			<div>
+				<input value="me@gmail.com" id="email" placeholder="someone@someone.com"
+					title="please enter your email" name="email" type="email" />
+			</div>
+		</div>
+
+		<div>
+			<label for="date">Date Posted</label>
+			<div>
+				<input id="date" title="Please enter date posted" name="date"
+					type="datetime-local" />
+			</div>
+		</div>
+
+
+
+		<div>
+			<label for="week">Week Posted</label>
+			<div>
+				<input id="week" title="Please enter Week posted" name="week"
+					type="week" />
+			</div>
+		</div>
+
+		<div>
+			subscribe: <br /> 
+			<label><input type="radio" name="subscribe" value="yes"/> Yes </label> 
+			<label><input type="radio" name="subscribe" value="no"/>No</label>
+		</div>
+
+		<div>
+			<button type="submit">Post</button>
+		</div>
+
+		<div>
+			Categories: <br /> 
+			<input type="checkbox" name="Categories" value="comedy"/> Yes
+			<input type="checkbox" name="Categories" value="drama"/> Yes
+			<input type="checkbox" name="Categories" value="Horror"/> Yes 
+			
+		</div>
+
+	</form>
+	</main>
+	<Footer> </Footer>
+</body>
+</html>

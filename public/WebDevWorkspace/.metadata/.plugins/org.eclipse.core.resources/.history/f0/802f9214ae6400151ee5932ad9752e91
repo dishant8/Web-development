@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Blog Post</title>
+</head>
+<body>
+    <header>
+	<h1>Blog Post</h1>
+	<nav> 
+		<a href = "blog"> </a>  
+	</nav>
+    </header>
+	
+   <footer>
+	
+   </footer>
+</body>
+</html>
