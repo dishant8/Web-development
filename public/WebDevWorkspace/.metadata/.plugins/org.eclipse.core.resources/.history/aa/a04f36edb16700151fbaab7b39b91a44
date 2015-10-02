@@ -1,0 +1,20 @@
+.col-md-2{
+	border-left: black solid medium;
+	border-right: black solid;
+	border-top: black solid;
+	border-bottom: black solid;
+	font-size :20px;
+	
+}
+
+.contain{
+	border-bottom: black solid medium;
+	border-top: black solid medium;
+	border-right: black solid medium;
+	border-left: black solid medium;
+}
+
+#navigate{
+	float= right;
+	font-size: 20px;
+}

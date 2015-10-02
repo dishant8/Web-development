@@ -1,0 +1,18 @@
+.container{
+	border-left: black solid;
+	border-right: black solid;
+	font-size :20px;
+	
+}
+
+.contain{
+	border-bottom: black solid medium;
+	border-top: black solid medium;
+	border-right: black solid medium;
+	border-left: black solid medium;
+}
+
+#navigae{
+	float= right;
+	
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Form Maker</title>
+<!--   <link href="Css/bootstrap.min.css" rel="stylesheet" />-->
+<link href="app/vendor/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet" />
+
+<link rel="stylesheet" href="style.css" />
+
+
+</head>
+<body>
+	<div>
+		<header id="form">
+			<h1>Form Maker</h1>
+			<ul class="nav nav-pills">
+				<li id="logout" role="presentation"><a href="login.html">Logout</a></li>
+				<li id="username" role="presentation"><a href="profile.html">Username</a></li>
+			</ul>
+		</header>
+
+	</div>
+
+	<div class="row">
+
+		<div class="col-xs-1">
+
+			<ul class="nav nav-pills nav-stacked">
+				<li role="presentation"><a href="home.html">Home</a></li>
+				<li role="presentation"><a href="profile.html">Profile</a></li>
+				<li role="presentation"><a href="admin.html">Admin</a></li>
+				<li role="presentation" class="active"><a href="forms.html">Forms</a></li>
+			</ul>
+		</div>
+
+		<div class="col-xs-11">
+			<h1>Admin</h1>
+			<h2>Users</h2>
+			
+		</div>
+	</div>
+</body>
+</html>

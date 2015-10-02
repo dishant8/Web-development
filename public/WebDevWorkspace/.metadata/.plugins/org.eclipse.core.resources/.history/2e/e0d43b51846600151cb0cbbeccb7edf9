@@ -1,0 +1,32 @@
+
+body{
+margin="0px";
+padding="0px";
+	
+}
+
+h1,h2,h3,h4{
+	margin: 0px;
+	padding: 0px;
+}
+
+
+.header{
+	color:blue
+}
+
+#north, #south{
+	background-color: beige;
+}
+
+
+#west, #center, #east{
+	float: left;;
+	
+}
+
+#west, #east{
+	width:100px;
+	
+	
+}

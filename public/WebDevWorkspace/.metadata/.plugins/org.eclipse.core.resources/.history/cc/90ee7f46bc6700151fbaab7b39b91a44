@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+<!--   <link href="css/bootstrap.min.css" rel="stylesheet" />-->
+<link href="app/vendor/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet" />
+
+<link rel="stylesheet" href="style.css" />
+
+
+</head>
+<body>
+	<div class="contain">
+		Form maker
+
+		<ul class="nav nav-pills">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="#">Messages</a></li>
+</ul>
+
+		<div>
+			<a id="navigate" href="register.html">Register</a>| <a id="navigate"
+				href="login.html">Login |</a> <a id="navigate" href="home.html">Username|</a>
+			<a id="navigate" href="login.html">Register</a>
+		</div>
+
+	</div>
+
+	<div class="row">
+		<div class="col-xs-1">
+
+			<ul class="nav nav-pills nav-stacked">
+				<li role="presentation" class="active"><a href="home.html">Home</a></li>
+				<li role="presentation"><a href="profile.html">Profile</a></li>
+				<li role="presentation"><a href="admin.html">Admin</a></li>
+				<li role="presentation"><a href="forms.html">Forms</a></li>
+			</ul>
+		</div>
+		
+		<div class="col-xs-9">
+		<h1>Welcome !</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur
+			adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis
+			ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt
+			id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris
+			molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit
+			amet elit iaculis pretium sit amet quis magna. Aenean velit odio,
+			elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus
+			aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate
+			justo hendrerit. Vivamus varius pretium ligula, a aliquam odio
+			euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at
+			ultricies metus viverra. Pellentesque arcu mauris, malesuada quis
+			ornare accumsan, blandit sed diam.</p>
+		
+		</div>
+	</div>
+</body>
+</html>

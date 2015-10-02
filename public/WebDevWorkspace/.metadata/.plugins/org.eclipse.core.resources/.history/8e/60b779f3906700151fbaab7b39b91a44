@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<style>
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Hello from Bootstrap</h1>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-6">Lorem ipsum dolor sit amet, consectetur
+			adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis
+			ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt
+			id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris
+			molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit
+			amet elit iaculis pretium sit amet quis magna. Aenean velit odio,
+			elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus
+			aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate
+			justo hendrerit. Vivamus varius pretium ligula, a aliquam odio
+			euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at
+			ultricies metus viverra. Pellentesque arcu mauris, malesuada quis
+			ornare accumsan, blandit sed diam.</div>
+		<div class="col-lg-6">Lorem ipsum dolor sit amet, consectetur
+			adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis
+			ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt
+			id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris
+			molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit
+			amet elit iaculis pretium sit amet quis magna. Aenean velit odio,
+			elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus
+			aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate
+			justo hendrerit. Vivamus varius pretium ligula, a aliquam odio
+			euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at
+			ultricies metus viverra. Pellentesque arcu mauris, malesuada quis
+			ornare accumsan, blandit sed diam.</div>
+
+	</div>
+	
+	
+	<div class="row">
+		<div class="col-xs-6">Lorem ipsum dolor sit amet, consectetur
+			adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis
+			ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt
+			id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris
+			molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit
+			amet elit iaculis pretium sit amet quis magna. Aenean velit odio,
+			elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus
+			aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate
+			justo hendrerit. Vivamus varius pretium ligula, a aliquam odio
+			euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at
+			ultricies metus viverra. Pellentesque arcu mauris, malesuada quis
+			ornare accumsan, blandit sed diam.</div>
+		<div class="col-xs-6">Lorem ipsum dolor sit amet, consectetur
+			adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis
+			ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt
+			id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris
+			molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit
+			amet elit iaculis pretium sit amet quis magna. Aenean velit odio,
+			elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus
+			aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate
+			justo hendrerit. Vivamus varius pretium ligula, a aliquam odio
+			euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at
+			ultricies metus viverra. Pellentesque arcu mauris, malesuada quis
+			ornare accumsan, blandit sed diam.</div>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+.container{
+	border-left: black solid;
+	border-right: black solid;
+	font-size :20px;
+	
+}
+
+.contain{
+	border-bottom: black solid small;
+
+}
