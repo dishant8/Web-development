@@ -36,107 +36,140 @@
 
 			<div class="col-xs-11">
 				<h1>Forms</h1>
-				
-					<ul id="tab" class="nav nav-pills nav-stacked">
 
-						<li role="presentation"><a href="form-fields.html">Fields</a></li>
-						<li role="presentation"><a href="forms.html">Forms</a></li>
-					</ul>
-				
-				
-					<form>
+				<ul id="tab" class="nav nav-pills nav-stacked">
+
+					<li role="presentation"><a href="form-fields.html">Fields</a></li>
+					<li role="presentation"><a href="forms.html">Forms</a></li>
+				</ul>
+
+				<form>
+					<div class="selected fields">
 						<div>
-							<label for="first name">First Name</label>
-							<div>
-								<input value="me@gmail.com" id="email" placeholder="First Name"
-									title="please enter your First Name" name="first name"
-									type="email" />
-							</div>
-
-							<div>
-								<a href="#" class="btn btn-danger"> <scan
-										class="glyphicon glyphicon-remove"></scan>
-								</a> <a href="#" class="btn btn-warning"> <scan
-										class="glyphicon glyphicon-pencil"></scan>
-								</a>
-							</div>
-						</div>
-
-						<div>
-							<label for="date">Date Posted</label>
-							<div>
-								<input id="date" title="Please enter date posted" name="date"
-									type="datetime-local" />
-							</div>
-						</div>
-
-
-
-						<div>
-							<label for="week">Week Posted</label>
-							<div>
-								<input id="week" title="Please enter Week posted" name="week"
-									type="week" />
-							</div>
-						</div>
-
-						<div>
-							subscribe: <br /> <label><input type="radio"
-								name="subscribe" value="yes" /> Yes </label> <label><input
-								type="radio" name="subscribe" value="no" />No</label>
-						</div>
-
-						<div>
-							<button type="submit">Post</button>
-						</div>
-
-						<div>
-							Categories: <br /> <label><input type="checkbox"
-								name="Categories" value="comedy" /> Comedy</label> <label><input
-								type="checkbox" name="Categories" value="drama" /> Drama</label> <label><input
-								type="checkbox" name="Categories" value="Horror" /> Horror</label>
+							<label for="first name" class="col-sm-2">First Name:</label> <input
+								id="firstname" placeholder="First Name"
+								title="please enter your First Name" name="first name"
+								type="text" /> <a href="#" class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-plus"></scan>
+							</a> <a href="#" class="btn btn-warning"> <scan
+									class="glyphicon glyphicon-pencil"></scan>
+							</a> <a href="#" class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-remove"></scan>
+							</a> <a href="#" class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-menu-hamburger"></scan>
+							</a>
 
 						</div>
 
 						<div>
-							Rate:<br /> <input type="range" max="5" value="0">
-
-
-						</div>
-
-						<div>
-							Rate:<br /> <input type="number" min="0" max="5" value="0" />
-						</div>
-
-						<div>
-							Progress:<br />
-							<progress max="100" value="30" />
-						</div>
-
-						<div>
-
-							Genre <select name="genre">
-								<option value="ROCK">Rock</option>
-								<option value="CLASSICAL">Classical</option>
-								<option value="COUNTRY">Country</option>
-								<option value="NEW AGE">New Age</option>
-							</select>
+							<label for="last name" class="col-sm-2">Last Name:</label> <input
+								id="firstName" placeholder="Last Name"
+								title="please enter your Last Name" name="last name" type="text" />
+							<a href="#" class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-plus"></scan>
+							</a> <a href="#" class="btn btn-warning"> <scan
+									class="glyphicon glyphicon-pencil"></scan>
+							</a> <a href="#" class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-remove"></scan>
+							</a> <a href="#" class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-menu-hamburger"></scan>
+							</a>
 
 						</div>
 
 						<div>
-
-							Genre <input list="genre2">
-							<datalist id="genre2" />
-							<option value="ROCK">Rock</option>
-							<option value="CLASSICAL">Classical</option>
-							<option value="COUNTRY">Country</option>
-							<option value="NEW AGE">New Age</option>
-							</select>
+							<label for="dob" class="col-sm-2 ">Date of birth:</label> <input
+								id="dob" title="please enter your First Name" name="first name"
+								type="date" placeholder="Select Date" /> <a href="#"
+								class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-plus"></scan>
+							</a> <a href="#" class="btn btn-warning"> <scan
+									class="glyphicon glyphicon-pencil"></scan>
+							</a> <a href="#" class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-remove"></scan>
+							</a> <a href="#" class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-menu-hamburger"></scan>
+							</a>
 
 						</div>
-					</form>
-				
+
+						<div>
+							<label for="gender" class="col-sm-2 ">Gender:</label> <select
+								name="genre" id="gender">
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+							</select> <a href="#" class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-plus"></scan>
+							</a> <a href="#" class="btn btn-warning"> <scan
+									class="glyphicon glyphicon-pencil"></scan>
+							</a> <a href="#" class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-remove"></scan>
+							</a> <a href="#" class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-menu-hamburger"></scan>
+							</a>
+
+						</div>
+
+						<div>
+							<label for="checkbox" class="col-sm-2 ">Liscence
+								Aggrement</label> <label> <input type="radio" name="subscribe"
+								value="yes" id="checkbox" /> Yes
+							</label> <label> <input type="radio" name="subscribe" value="no" />No
+							</label> <a href="#" class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-plus"></scan>
+							</a> <a href="#" class="btn btn-warning"> <scan
+									class="glyphicon glyphicon-pencil"></scan>
+							</a> <a href="#" class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-remove"></scan>
+							</a> <a href="#" class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-menu-hamburger"></scan>
+							</a>
+
+
+						</div>
+
+
+						<div>
+							<label for="role" class="col-sm-2">Role:</label> <label>
+								<input type="checkbox" name="Categories" value="Admin" id="role" />
+								Admin
+							</label> <label> <input type="checkbox" name="Categories"
+								value="Student" /> Student
+							</label> <label> <input type="checkbox" name="Categories"
+								value="User" /> User
+							</label> <a href="#" class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-plus"></scan>
+							</a> <a href="#" class="btn btn-warning"> <scan
+									class="glyphicon glyphicon-pencil"></scan>
+							</a> <a href="#" class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-remove"></scan>
+							</a> <a href="#" class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-menu-hamburger"></scan>
+							</a>
+
+						</div>
+					</div>
+					<div class="selected fields">
+
+
+						<label for="new field" class="col-sm-2">Add New Field:</label> <input
+							placeholder="Select new field"> <select name="new field"
+							id="new fields">
+
+						</select> <a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-plus"></scan>
+						</a> <a href="#" class="btn btn-warning"> <scan
+								class="glyphicon glyphicon-pencil"></scan>
+						</a> <a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-remove"></scan>
+						</a> <a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-menu-hamburger"></scan>
+						</a>
+
+
+					</div>
+
+				</form>
 
 			</div>
 

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Form Maker</title>
+<!--   <link href="Css/bootstrap.min.css" rel="stylesheet" />-->
+<link href="app/vendor/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet" />
+
+<link rel="stylesheet" href="style.css" />
+
+
+</head>
+<body>
+	<div>
+		<div id="upper-header">
+			<span class="header-width">Form Maker</span>
+			<ul class="nav nav-pills navigate">
+				<li id="logout" role="presentation"><a href="login.html">Logout</a></li>
+				<li id="username" role="presentation"><a href="profile.html">Username</a></li>
+			</ul>
+
+		</div>
+
+		<div class="row">
+
+			<div class="col-xs-1 length">
+
+				<ul class="nav nav-pills nav-stacked">
+					<li role="presentation"><a href="home.html">Home</a></li>
+					<li role="presentation"><a href="profile.html">Profile</a></li>
+					<li role="presentation"><a href="admin.html">Admin</a></li>
+					<li role="presentation" class="active"><a href="forms.html">Forms</a></li>
+				</ul>
+			</div>
+
+			<div class="col-xs-11">
+				<h1>Forms</h1>
+				
+					<ul id="tab" class="nav nav-pills nav-stacked">
+
+						<li role="presentation"><a href="form-fields.html">Fields</a></li>
+						<li role="presentation"><a href="forms.html">Forms</a></li>
+					</ul>
+				
+
+						<div>
+							<label for="first name">First Name:</label> <input id="firstname"
+								placeholder="First Name" title="please enter your First Name"
+								name="first name" type="text" /> 
+								
+							<a href="#" class="btn btn-warning"> <scan
+									class="glyphicon glyphicon-pencil"></scan>
+							</a>
+							<a href="#"
+								class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-remove"></scan>
+							</a> 
+
+						</div>
+
+						<div>
+							<label for="last name">Last Name:</label> <input id="firstName"
+								placeholder="Last Name" title="please enter your Last Name"
+								name="last name" type="text" /> 
+							<a href="#" class="btn btn-warning"> <scan
+									class="glyphicon glyphicon-pencil"></scan>
+							</a>
+							<a href="#"
+								class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-remove"></scan>
+							</a> 
+
+						</div>
+
+						<div>
+							<label for="dob">Date of Birth:</label> <input id="dob" 
+								title="please enter your First Name" name="first name"
+								type="date"/>
+							<a href="#" class="btn btn-warning"> <scan
+									class="glyphicon glyphicon-pencil"></scan>
+							</a>
+							<a href="#"
+								class="btn btn-danger"> <scan
+									class="glyphicon glyphicon-remove"></scan>
+							</a> 								
+						</div>
+						
+						<div>
+					 		<label for="gender">Gender:</label>
+							<select name="genre" id="gender">
+
+								<option value="Male"> Male</option>
+								<option value="Female">Female</option>
+							</select>
+
+						</div>
+		
+
+		
+		
+						
+						
+						<div>
+							<label for="date">Date Posted</label>
+							<div>
+								<input id="date" title="Please enter date posted" name="date"
+									type="datetime-local" />
+							</div>
+						</div>
+
+
+
+						<div>
+							<label for="week">Week Posted</label>
+							<div>
+								<input id="week" title="Please enter Week posted" name="week"
+									type="week" />
+							</div>
+						</div>
+
+						<div>
+							subscribe: <br /> <label><input type="radio"
+								name="subscribe" value="yes" /> Yes </label> <label><input
+								type="radio" name="subscribe" value="no" />No</label>
+						</div>
+
+						<div>
+							<button type="submit">Post</button>
+						</div>
+
+						<div>
+							Categories: <br /> <label><input type="checkbox"
+								name="Categories" value="comedy" /> Comedy</label> <label><input
+								type="checkbox" name="Categories" value="drama" /> Drama</label> <label><input
+								type="checkbox" name="Categories" value="Horror" /> Horror</label>
+
+						</div>
+					</form>
+
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>
