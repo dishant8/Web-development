@@ -1,0 +1,53 @@
+body {margin ="10px";padding ="10px";
+	
+}
+
+.col-md-1 {
+	border-right: black solid medium;
+	border-top: black solid medium;
+	border-bottom: black solid medium;
+	border-left: black solid medium;
+	font-size: 15px;
+}
+
+.contain {
+	border-bottom: black solid medium;
+	border-top: black solid medium;
+	border-right: black solid medium;
+	border-left: black solid medium;
+	margin-top: 30 px;
+	margin-bottom: 30 px;
+	margin-left: 30 px;
+	margin-right: 30 px;
+}
+
+#navigate {float = right;
+	font-size: 20px;
+}
+
+.nav-pills>li {
+	float: right;
+	font-size: 20px;
+}
+
+#upper-header {
+	border-bottom: black solid;
+	border-right: black solid;
+	border-left: black solid;
+	border-top: black solid;
+}
+
+#tab {
+	float: left;
+	font-size: 20px;
+}
+
+.navigate {
+	width: 30%;
+	float: right;
+}
+
+.header-width {
+	width: 70%;
+	font-size: 40px;
+}
