@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Form Maker</title>
+<!--   <link href="Css/bootstrap.min.css" rel="stylesheet" />-->
+<link href="app/vendor/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet" />
+
+<link rel="stylesheet" href="style.css" />
+
+
+</head>
+<body>
+	<div>
+		<div id="upper-header">
+			<span class="header-width">Form Maker</span>
+			<ul class="nav nav-pills navigate">
+				<li id="logout" role="presentation"><a href="login.html">Logout</a></li>
+				<li id="username" role="presentation"><a href="profile.html">Username</a></li>
+			</ul>
+
+		</div>
+
+		<div class="row">
+
+			<div class="col-sm-1 length">
+
+				<ul class="nav nav-pills nav-stacked">
+					<li role="presentation"><a href="home.html">Home</a></li>
+					<li role="presentation"><a href="profile.html">Profile</a></li>
+					<li role="presentation"><a href="admin.html">Admin</a></li>
+					<li role="presentation" class="active"><a href="forms.html">Forms</a></li>
+				</ul>
+			</div>
+
+			<div class="col-sm-11">
+				<h1>Forms</h1>
+				<nav>
+					<ul id="tab" class="nav nav-tabs">
+						<li role="presentation"><a href="forms.html">Forms</a></li>
+						<li role="presentation"><a href="form-fields.html">Fields</a></li>
+					</ul>
+				</nav>
+
+				<form>
+					<div>
+						<label for="first name" class="col-sm-2">First Name:</label> <input
+							id="firstname" placeholder="First Name"
+							title="please enter your First Name" name="first name"
+							type="text" /> <a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-plus"></scan>
+						</a> <a href="#" class="btn btn-warning"> <scan
+								class="glyphicon glyphicon-pencil"></scan>
+						</a> <a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-remove"></scan>
+						</a> <a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-menu-hamburger"></scan>
+						</a>
+
+					</div>
+
+					<div>
+						<label for="last name" class="col-sm-2">Last Name:</label> <input
+							id="firstName" placeholder="Last Name"
+							title="please enter your Last Name" name="last name" type="text" />
+						<a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-plus"></scan>
+						</a> <a href="#" class="btn btn-warning"> <scan
+								class="glyphicon glyphicon-pencil"></scan>
+						</a> <a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-remove"></scan>
+						</a> <a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-menu-hamburger"></scan>
+						</a>
+
+					</div>
+
+					<div>
+						<label for="dob" class="col-sm-2 ">Date of birth:</label> <input
+							id="dob" title="please enter your First Name" name="first name"
+							type="date" placeholder="Select Date" /> <a href="#"
+							class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-plus"></scan>
+						</a> <a href="#" class="btn btn-warning"> <scan
+								class="glyphicon glyphicon-pencil"></scan>
+						</a> <a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-remove"></scan>
+						</a> <a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-menu-hamburger"></scan>
+						</a>
+
+					</div>
+
+					<div>
+						<label for="gender" class="col-sm-2 ">Gender:</label> <select
+							name="genre" id="gender">
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+						</select> <a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-plus"></scan>
+						</a> <a href="#" class="btn btn-warning"> <scan
+								class="glyphicon glyphicon-pencil"></scan>
+						</a> <a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-remove"></scan>
+						</a> <a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-menu-hamburger"></scan>
+						</a>
+
+					</div>
+
+					<div>
+						<label for="checkbox" class="col-sm-2 ">Liscence Aggrement</label>
+						<label> 
+						
+						<input type="radio" name="subscribe" value="yes"
+							id="checkbox" class="form-control" /> Yes
+						</label> 
+						
+						<label> 
+						
+							<input type="radio" name="subscribe" value="no"
+							id="checkbox" class="form-control" />No
+						</label> 
+						
+						
+						<a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-plus"></scan>
+						</a> <a href="#" class="btn btn-warning"> <scan
+								class="glyphicon glyphicon-pencil"></scan>
+						</a> <a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-remove"></scan>
+						</a> <a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-menu-hamburger"></scan>
+						</a>
+
+
+					</div>
+
+
+					<div class="form-group">
+						<label for="role" class="col-sm-2 control-label">Role:</label> 
+						
+						<div class="col-sm-4">
+						<label>
+							<input type="checkbox" class="form-control"  name="Categories" 
+							value="Admin" id="role" /> Admin
+						</label> 
+						
+						<label> 
+							<input type="checkbox" name="Categories"
+							value="Student" class="form-control" /> Student
+						</label> 
+						
+						<label> 
+							<input type="checkbox" name="Categories"
+							value="User" class="form-control" /> User
+						</label>
+						</div> 
+						
+						<a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-plus"></scan>
+						</a> 
+						
+						<a href="#" class="btn btn-warning"> <scan
+								class="glyphicon glyphicon-pencil"></scan>
+						</a> 
+						
+						<a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-remove"></scan>
+						</a> 
+						
+						<a href="#" class="btn btn-danger"> <scan
+								class="glyphicon glyphicon-menu-hamburger"></scan>
+						</a>
+
+					</div>
+
+
+
+					<label for="new field" class="col-sm-2">Add New Field:</label> <select
+						name="new field" id="new fields">
+						<option value="Single Line Text">Single Line Text</option>
+						<option value="Date">Date</option>
+						<option value="Dropdown">Dropdown</option>
+						<option value="Checkboxes">Checkboxes</option>
+						<option value="RAdio Buttons">Radio Buttons</option>
+						<option value="Paragraph Text Field">Paragraph Text Field</option>
+
+
+					</select> <a href="#" class="btn btn-danger"> <scan
+							class="glyphicon glyphicon-plus cpl-sm-2"></scan>
+					</a>
+
+				</form>
+
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

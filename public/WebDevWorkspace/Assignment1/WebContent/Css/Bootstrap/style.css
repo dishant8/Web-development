@@ -53,7 +53,6 @@ body {margin ="10px";padding ="10px";
 }
 
 .length {
-	height: 50%;
 	border-right: black solid;
 	border-bottom: black solid;
 	border-top: black solid;
@@ -62,4 +61,14 @@ body {margin ="10px";padding ="10px";
 
 .selected fields{
 	border-top: black solid thick; 
+}
+
+.adjust{
+	
+	
+}
+
+.add-border{
+	border-bottom: black solid;
+	
 }
