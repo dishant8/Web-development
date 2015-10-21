@@ -1,57 +1,48 @@
 <!DOCTYPE html>
-<html>
+
+<html ng-app="WhiteBoardApp">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Form Maker</title>
-<!--   <link href="Css/bootstrap.min.css" rel="stylesheet" />-->
-<link href="app/vendor/bootstrap/dist/css/bootstrap.min.css"
-	rel="stylesheet" />
-
-<link rel="stylesheet" href="css/style.css" />
-
-
+    
+    <title></title>
+    
+    
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    
+    <script src="app.js"></script>
+    
 </head>
+
 <body>
-	<div id="upper-header">
-		<span class="header-width">Form Maker</span>
-		<ul class="nav nav-pills navigate">
-			<li id="logout" role="presentation"><a href="login.html">Logout</a></li>
-			<li id="username" role="presentation"><a href="profile.html">Username</a></li>
-			<li id="login" role="presentation"><a href="login.html">Login</a></li>
-			<li id="register" role="presentation"><a href="register.html">Register</a></li>
-		</ul>
+        <div class="container" ng-controller="HelloWorldController">
+                <h1>Hello from angularJS</h1>
+                {{hello}}
+        
+                <input ng-model="courseName" placeholder="Course Name" class="form-control" />
+        
+                {{courses}}
+                asdf
+                <h2>{{courseName}}</h2>
+                <p>
+                        {{user}}
+            
+        </p>
+        
+                <ul>
+            
+            <li>FirstName: {{user.fname}}</li>
+           
+            <li>LastName: {{user.lname}}</li>
+            
+            
+        </ul>
+        
+        
+    </div>
+    </body>
 
-	</div>
-
-
-	<div class="row">
-
-		<div class="col-sm-1 length">
-
-			<ul class="nav nav-pills nav-stacked ">
-				<li role="presentation" class="active"><a href="home.html">Home</a></li>
-				<li role="presentation"><a href="profile.html">Profile</a></li>
-				<li role="presentation"><a href="admin.html">Admin</a></li>
-				<li role="presentation"><a href="forms.html">Forms</a></li>
-			</ul>
-		</div>
-
-		<div class="col-sm-11">
-			<h1>Welcome !</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-				quam velit, vulputate eu pharetra nec, mattis ac neque. Duis
-				vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus,
-				tortor sed eleifend tristique, tortor mauris molestie elit, et
-				lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis
-				pretium sit amet quis magna. Aenean velit odio, elementum in tempus
-				ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut
-				vulputate eros sed felis sodales nec vulputate justo hendrerit.
-				Vivamus varius pretium ligula, a aliquam odio euismod sit amet.
-				Quisque laoreet sem sit amet orci ullamcorper at ultricies metus
-				viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan,
-				blandit sed diam.</p>
-
-		</div>
-	</div>
-</body>
 </html>
