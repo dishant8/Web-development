@@ -15,19 +15,19 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.min.js"></script>
 
 
     <script src="app.js"></script>
 
     <script scr="MainController.js"></script>
 
-    <script src="configure.js"></script>
+    <script src="config.js"></script>
 
 
 </head>
 
-<body>
+<body >
     <div class="container-fluid">
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-header">
@@ -54,8 +54,13 @@
                     <li><a href="#/forms">Forms</a></li>
                 </ul>
             </div>
-        </div>
+            <div class="col-md-offset-1" ng-view>
 
+
+            </div>
+        </div>
     </div>
+
+
 </body>
 </html>
