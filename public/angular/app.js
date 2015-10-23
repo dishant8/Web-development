@@ -6,7 +6,13 @@
     .controller("HelloWorldController", HelloWorldController);
 
     function HelloWorldController($scope) {
-        $scope.hello = "Hello World!!!";
+        $scope.removeCourse = function (courseInstance) {
+            var index = $scope.courses.indexOf(courseInstance);
+
+            $scope.courses.splice(index, 1);
+
+        }
+        $scope.hello = "Hello World";
         $scope.courseName = "Java101";
 
         $scope.user = {
