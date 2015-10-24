@@ -1,7 +1,7 @@
 ﻿(function () {
 
     angular
-    .module("WhiteBoardApp")
+    .module("FormBuilderApp")
     .config(Configure);
 
     function Configure($routeProvider) {
