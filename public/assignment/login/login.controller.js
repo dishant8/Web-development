@@ -4,7 +4,7 @@
         .controller("LoginController", LoginController);
 
 
-    function LoginController($scope, $location, UserService, $rootScope) {
+    function LoginController($scope, $location, UserService, $rootScope, FormService) {
 
 
         $scope.login = function () {

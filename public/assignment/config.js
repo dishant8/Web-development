@@ -14,7 +14,7 @@
 		})
 		.when("/login", {
 		    templateUrl: "login/login.view.html",
-            controller: "LoginController"
+		    controller: "LoginController"
 		})
 		.when("/register", {
 		    templateUrl: "register/register.view.html",
@@ -25,8 +25,14 @@
 		    controller: "ProfileController"
 		})
 		.when("/form", {
-		    templateUrl: "form.html"
+		    templateUrl: "form/form.view.html",
+		    controller: "FormController"
 		})
+            .when("/form-fields", {
+                templateUrl: "form-fields.html",
+                controller: "FormController"
+            })
+
 		.when("/admin", {
 		    templateUrl: "admin.html"
 		})
