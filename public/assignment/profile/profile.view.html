@@ -1,9 +1,10 @@
 			<h1>Profile</h1>
-			<form class="form-horizontal">
+			<form class="form-horizontal" ng-controller="ProfileController">
+    
 				<div class="form-group">
 					<label for="username" class="col-sm-1 control-label">Username</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="username"
+						<input type="text" ng-model="userName" class="form-control" id="username"
 							placeholder="Username">
 					</div>
 				</div>
@@ -11,7 +12,7 @@
 				<div class="form-group">
 					<label for="password" class="col-sm-1 control-label">Password</label>
 					<div class="col-sm-8">
-						<input type="password" class="form-control" id="password"
+						<input type="password" ng-model="password" class="form-control" id="password"
 							placeholder="Password">
 					</div>
 				</div>
@@ -21,7 +22,7 @@
 					<label for="first name" class="col-sm-1 control-label">First
 						Name</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="first name"
+						<input type="text" ng-model="firstName" class="form-control" id="first name"
 							placeholder="First Name">
 					</div>
 				</div>
@@ -30,7 +31,7 @@
 					<label for="last name" class="col-sm-1 control-label">Last
 						Name</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="last name"
+						<input ng-model="lastName" type="text" class="form-control" id="last name"
 							placeholder="Last Name">
 					</div>
 				</div>
@@ -38,7 +39,7 @@
 				<div class="form-group">
 					<label for="email" class="col-sm-1 control-label">Email</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="email"
+						<input type="text" ng-model="email" class="form-control" id="email"
 							placeholder="Email">
 					</div>
 				</div>
@@ -47,7 +48,8 @@
 				<div class="form-group">
 				<div class="col-sm-1"></div>
 					<div class="col-sm-8">
-						<button type="submit" class="btn btn-default form-control">Update</button>
+						<button type="submit" ng-click="update()" class="btn btn-default form-control">Update</button>
 					</div>
 				</div>
+
 			</form>

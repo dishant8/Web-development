@@ -4,9 +4,24 @@
         .factory("UserService", UserService);
 
     function UserService() {
-        var currentUsers = [];
+        var currentUsers = [{
+            id: "123",
+            userName: "asdf",
+            password: "asdf",
+            firstName: "dishant",
+            lastName: "shah",
+            email: "dishant@sh.com"
+        }
+        ];
+        var courses = [
+            { title: "java", seats: 25 },
+            { title: "web", seats: 2 },
+            { title: "c", seats: 223 }
+
+        ]
 
         var service = {
+            getAllCourses: getAllCourses,
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
             findAllUsers: findAllUsers,
             createUser: createUser,
@@ -18,17 +33,23 @@
 
         return service;
 
+        function getAllCourses() {
+            return courses;
+        }
+
         function findUserByUsernameAndPassword(p1, p2, callback) {
+            console.log("passed");
 
             for (i = 0; i < currentUsers.length; i++) {
+                /*console.log(currentUsers[i].userName);*/
+                
                 user = null;
                 if ((currentUsers[i].userName == p1) && (currentUsers[i].password == p2)) {
                     user = currentUsers[i];
-                    return callback(null, user);
+                    console.log(user);
                 }
-                else {
-                    return callback("No user Found", null);
-                }
+                return callback(user);
+
             }
         }
 
@@ -36,9 +57,11 @@
             callback(currentUsers);
         }
 
-        function createUsers(userObject, callback) {
+        function createUser(userObject, callback) {
+            console.log(userObject);
             userObject.id = guid();
             currentUsers.push(userObject);
+            console.log(currentUsers);
             callback(userObject);
         }
 
@@ -51,16 +74,19 @@
             callback(currentUsers);
         }
 
-
         function updateUser(userId, userObject, callback) {
             user = null;
+            console.log(userObject.userName);
             for (i = 0; i < currentUsers.length; i++) {
                 if (currentUsers[i].userName == userId) {
-                    currentUsers[i].password == userObject.password;
-                    currentUsers[i].firstName == userObject.firstName;
-                    currentUsers[i].lastName == userObject.lastName;
+                    console.log("aya");
+                    currentUsers[i].userName = userObject.userName;
+                    currentUsers[i].password = userObject.password;
+                    currentUsers[i].firstName = userObject.firstName;
+                    currentUsers[i].lastName = userObject.lastName;
                     currentUsers[i].email == userObject.email;
                     user = currentUsers[i];
+                    console.log(user);
                 }
             }
             callback(user);
@@ -78,4 +104,4 @@
 
     }
 
-})
+})()

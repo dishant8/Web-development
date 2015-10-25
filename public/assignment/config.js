@@ -21,7 +21,8 @@
 		    controller: "RegisterController"
 		})
 		.when("/profile", {
-		    templateUrl: "profile.html"
+		    templateUrl: "profile/profile.view.html",
+		    controller: "ProfileController"
 		})
 		.when("/form", {
 		    templateUrl: "form.html"
