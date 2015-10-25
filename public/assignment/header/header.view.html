@@ -1,0 +1,14 @@
+﻿<nav ng-controller ="HeaderController" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+        <a class="navbar-brand">Form Maker</a>
+    </div>
+    <div class="nav nav-pills ">
+        <ul class="nav navbar-right navbar-nav">
+            <li ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="#/register">Register</a></li>
+            <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
+            <li><a href="#/profile">Username</a></li>
+            <li><a href="#/login">Logout</a></li>
+        </ul>
+    </div>
+    
+</nav>

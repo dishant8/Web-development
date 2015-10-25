@@ -1,32 +1,36 @@
 ﻿(function () {
-
     angular
-    .module("FormBuilderApp")
-    .config(Configure);
+	.module("FormBuilderApp")
+	.config(MyAppFunction)
 
-    function Configure($routeProvider) {
+    function MyAppFunction($routeProvider) {
         $routeProvider
-            .when("/home", {
-                templateUrl : "home.html"
-            })
-            .when("/profile",{
-                templateUrl: "profile.html"
-            }).when("/admin", {
-                templateUrl: "admin.html"
-            }).when("/register", {
-                templateUrl: "register.html"
-            }).when("/login", {
-                templateUrl: "login.html"
-            }).when("/forms", {
-                templateUrl: "forms.html"
-            }).when("/form-fields", {
-                templateUrl: "form-fields.html"
-            }).otherwise({
-                redirectTo: "/home"
-
-            })
-
-    }
-
-
+		.when("/", {
+		    /*templateUrl : "/assignment/home/home.view.html" */
+		    redirectTo: "/home"
+		})
+		.when("/home", {
+		    templateUrl: "home.html"
+		})
+		.when("/login", {
+		    templateUrl: "login/login.view.html",
+            controller: "LoginController"
+		})
+		.when("/register", {
+		    templateUrl: "register/register.view.html",
+		    controller: "RegisterController"
+		})
+		.when("/profile", {
+		    templateUrl: "profile.html"
+		})
+		.when("/form", {
+		    templateUrl: "form.html"
+		})
+		.when("/admin", {
+		    templateUrl: "admin.html"
+		})
+		.otherwise({
+		    redirectTo: "/"
+		})
+    };
 })();
