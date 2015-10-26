@@ -52,8 +52,6 @@
             }
 
             $scope.selectForm = function (index) {
-                
-                    console.log(findForms.indexOf(index));
                 console.log(index);
 
                 alert("Index of Form Selected " + index);
