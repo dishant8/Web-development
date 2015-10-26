@@ -7,8 +7,7 @@
 
 
     function ProfileController($scope, $location, UserService, $rootScope) {
-
-            $scope.user = $rootScope.user;
+        if ($rootScope.user != null) {
 
             var currentUser = $rootScope.user;
 
@@ -41,5 +40,6 @@
                 $scope.lastName = currentUser.lastName;
             }
         }
+    }
 
 })();
