@@ -80,8 +80,7 @@ body {
     position: fixed;
     top: 51px;
     bottom: 0;
-    background-color: beige;
- 
+    background-color: beige; 
 }
 
 .sidebar > .active > a:focus {
@@ -91,4 +90,9 @@ body {
 
 body {
     padding-top: 50px;
+}
+
+
+.button{
+    color:black;
 }

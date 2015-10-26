@@ -38,7 +38,6 @@
         }
 
         function findUserByUsernameAndPassword(p1, p2, callback) {
-            console.log("passed");
 
             for (i = 0; i < currentUsers.length; i++) {
                 /*console.log(currentUsers[i].userName);*/
@@ -46,7 +45,6 @@
                 user = null;
                 if ((currentUsers[i].userName == p1) && (currentUsers[i].password == p2)) {
                     user = currentUsers[i];
-                    console.log(user);
                 }
                 return callback(user);
 
@@ -58,7 +56,7 @@
         }
 
         function createUser(userObject, callback) {
-            console.log(userObject);
+         
             userObject.id = guid();
             currentUsers.push(userObject);
             console.log(currentUsers);
@@ -76,17 +74,16 @@
 
         function updateUser(userId, userObject, callback) {
             user = null;
-            console.log(userObject.userName);
+           
             for (i = 0; i < currentUsers.length; i++) {
                 if (currentUsers[i].userName == userId) {
-                    console.log("aya");
+                   
                     currentUsers[i].userName = userObject.userName;
                     currentUsers[i].password = userObject.password;
                     currentUsers[i].firstName = userObject.firstName;
                     currentUsers[i].lastName = userObject.lastName;
                     currentUsers[i].email == userObject.email;
                     user = currentUsers[i];
-                    console.log(user);
                 }
             }
             callback(user);

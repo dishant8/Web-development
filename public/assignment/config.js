@@ -6,7 +6,6 @@
     function MyAppFunction($routeProvider) {
         $routeProvider
 		.when("/", {
-		    /*templateUrl : "/assignment/home/home.view.html" */
 		    redirectTo: "/home"
 		})
 		.when("/home", {
@@ -36,7 +35,7 @@
 		.when("/admin", {
 		    templateUrl: "admin.html"
 		})
-		.otherwise({
+        .otherwise({
 		    redirectTo: "/"
 		})
     };

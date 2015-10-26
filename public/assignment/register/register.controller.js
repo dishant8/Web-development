@@ -15,6 +15,7 @@
                 password: $scope.password,
                 email: $scope.email
             }
+            console.log(userObject);
             UserService.createUser(userObject, function (user) {
 
                 $rootScope.user = user;
