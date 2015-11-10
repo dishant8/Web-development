@@ -12,8 +12,8 @@
 		    templateUrl: "home/home.view.html"
 		})
          .when("/home2", {
-            templateUrl: "home/home2.view.html"
-        })
+             templateUrl: "home/home2.view.html"
+         })
 		.when("/login", {
 		    templateUrl: "login/login.view.html",
 
@@ -22,34 +22,33 @@
 		    templateUrl: "register/register.view.html",
 
 		})
-            		.when("/orderHistory", {
-            		    templateUrl: "orderHistory/orderHistory.view.html",
+        .when("/orderHistory", {
+            templateUrl: "orderHistory/orderHistory.view.html",
 
-            		})
-            .when("/userHome", {
-                templateUrl: "userHome/userHome.view.html",
+        })
+        .when("/userHome", {
+            templateUrl: "userHome/userHome.view.html",
 
-            })
-                        .when("/supplier1", {
-                            templateUrl: "supplier/supplier1.view.html",
+        })
+        .when("/supplier1", {
+            templateUrl: "supplier/supplier1.view.html",
+        })
+        .when("/supplier2", {
+            templateUrl: "supplier/supplier2.view.html",
+        })
+        .when("/cook", {
+            templateUrl: "userCook/userCook.view.html",
+        })
+        .when("/menu", {
+            templateUrl: "menu/menu.view.html",
+        })
+        .when("/menu.prof", {
+            templateUrl: "menu/menu.view.profile.html",
+        })
+        .when("/reciepe", {
+            templateUrl: "reciepe/reciepe.view.html",
 
-                        })
-                        .when("/supplier2", {
-                            templateUrl: "supplier/supplier2.html",
-
-                        })
-             .when("/cook", {
-                 templateUrl: "userCook/userCook.view.html",
-
-             })
-            		.when("/menu", {
-            		    templateUrl: "menu/menu.view.html",
-
-            		})
-                        		.when("/reciepe", {
-                        		    templateUrl: "reciepe/reciepe.view.html",
-
-                        		})
+        })
 		.when("/foodCart", {
 		    templateUrl: "foodCart/foodCart.view.html",
 		})
