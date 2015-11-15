@@ -24,5 +24,29 @@
         </div>
     </div>
 
+    <input ng-model="test" />
+    <button ng-click="check()">BUTTON</button>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    USERNAME
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in users">
+                <td>
+                    {{user.id}}
+                </td>
+                <td>
+                    <a ng-click="deleteUserById(user)" class="btn btn-danger">
+                        <scan class="glyphicon glyphicon-remove"></scan>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
 
+    </table>
 </form>

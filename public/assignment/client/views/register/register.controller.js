@@ -17,12 +17,14 @@
                 email: $scope.email
             }
             console.log(userObject);
-            UserService.createUser(userObject, function (user) {
 
-                $rootScope.user = user;
-                console.log(UserService.currentUsers);
-                $location.path("/profile");
-            });
+            UserService.createUser(userObject)
+                .then(function (user) {
+                    $rootScope.user = user;
+                    $location.path("/profile");
+                });
+
+            
 
         }
     }

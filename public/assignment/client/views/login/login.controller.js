@@ -19,6 +19,33 @@
                     }
                 })
         }
+
+        var findAllUsers = function () {
+
+            UserService.findAllUsers()
+                .then(function (users) {
+
+                    $scope.users = users;
+                })
+        }
+        //findAllUsers();
+
+        $scope.check = function () {
+            var id = $scope.test;
+            UserService.findUserByUsername(id)
+            .then(function (user) {
+                $scope.data = user;
+            })
+        }
+
+        $scope.deleteUserById = function (user) {
+            var userId = user.id;
+            console.log(userId);
+            UserService.deleteUserById(userId)
+            .then(function (users) {
+                $scope.users = users;
+            })
+        }
     }
 
 })();

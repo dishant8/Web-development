@@ -10,11 +10,13 @@
         if ($rootScope.user != null) {
 
             var currentUser = $rootScope.user;
-
-            console.log(currentUser.userName);
+            console.log(currentUser.email);
             $scope.userName = currentUser.userName;
             $scope.password = currentUser.password;
+            $scope.firstName = currentUser.firstName;
+            $scope.lastName = currentUser.lastName;
             $scope.email = currentUser.email;
+
             $scope.update = function () {
 
                 var newDataOfUser = {
@@ -25,19 +27,19 @@
                     email: $scope.email
 
                 }
-                var newUser = null;
-                UserService.updateUser(currentUser.userName, newDataOfUser, function (user) {
 
-                    if (user != null) {
-                        $location.path("/home");
+                UserService.updateUser(currentUser.id, newDataOfUser)
+                    .then(function (userAfterUpdate) {
+
+                        //                        $location.path("/home");
+                        $scope.userName = newDataOfUser.userName;
+                        $scope.password = newDataOfUser.password;
+                        $scope.email = newDataOfUser.email;
+                        $scope.firstName = newDataOfUser.firstName;
+                        $scope.lastName = newDataOfUser.lastName;
                         alert("Profile Updated");
-                    }
-                });
-                $scope.userName = currentUser.userName;
-                $scope.password = currentUser.password;
-                $scope.email = currentUser.email;
-                $scope.firstName = currentUser.firstName;
-                $scope.lastName = currentUser.lastName;
+
+                    })
             }
         }
     }

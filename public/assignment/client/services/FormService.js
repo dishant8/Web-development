@@ -39,7 +39,7 @@
         function findAllFormsForUser(userId, callback) {
             console.log("entered")
             var formsFound = [];
-            for (i = 0; i < forms.length; i++) {
+            for (var i = 0; i < forms.length; i++) {
                 if (forms[i].userName == userId) {
                     formsFound.push(forms[i]);
                 }
