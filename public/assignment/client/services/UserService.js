@@ -3,7 +3,7 @@
         .module("FormBuilderApp")
         .factory("UserService", UserService);
 
-    function UserService() {
+    function UserService($http, $q) {
         var currentUsers = [{
             id: "123",
             userName: "asdf",
@@ -37,18 +37,15 @@
             return courses;
         }
 
-        function findUserByUsernameAndPassword(p1, p2, callback) {
+        function findUserByUsernameAndPassword(p1, p2) {
+            var deferred = $q.defer();
 
-            for (i = 0; i < currentUsers.length; i++) {
-                /*console.log(currentUsers[i].userName);*/
-                
-                user = null;
-                if ((currentUsers[i].userName == p1) && (currentUsers[i].password == p2)) {
-                    user = currentUsers[i];
-                }
-                return callback(user);
+            $http.get("/api/assignment/user/"+p1+"/"+p2)
+                .success(function (user) {
+                    deferred.resolve(user);
+                });
 
-            }
+            return deferred.promise;
         }
 
         function findAllUsers(callback) {
@@ -56,7 +53,7 @@
         }
 
         function createUser(userObject, callback) {
-         
+
             userObject.id = guid();
             currentUsers.push(userObject);
             console.log(currentUsers);
@@ -74,10 +71,10 @@
 
         function updateUser(userId, userObject, callback) {
             user = null;
-           
+
             for (i = 0; i < currentUsers.length; i++) {
                 if (currentUsers[i].userName == userId) {
-                   
+
                     currentUsers[i].userName = userObject.userName;
                     currentUsers[i].password = userObject.password;
                     currentUsers[i].firstName = userObject.firstName;
