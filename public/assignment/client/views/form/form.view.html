@@ -34,7 +34,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="form in forms">
-                    <td>{{form.title}}</td>
+                    <td><a href="#user/{{form.userId}}/form/{{form.id}}/fields">{{form.title}}</a></td>
                     <td>
                         <a ng-click="deleteForm(form)" class="btn btn-danger">
                             <scan class="glyphicon glyphicon-remove"></scan>

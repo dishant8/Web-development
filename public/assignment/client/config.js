@@ -28,15 +28,19 @@
 		    controller: "FormController"
 		})
             .when("/form-fields", {
-                templateUrl: "views/form-fields/form-fields.view.html",
+                templateUrl: "views/field/field.view.html",
                 controller: "FormController"
             })
 
 		.when("/admin", {
 		    templateUrl: "admin.html"
 		})
+
+        .when("/user/:userId/form/:formId/fields", {
+            templateUrl: "/views/field/field.view.html",
+        })
         .otherwise({
-		    redirectTo: "/"
-		})
+            redirectTo: "/"
+        })
     };
 })();

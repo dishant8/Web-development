@@ -9,6 +9,10 @@ module.exports = function (app) {
         deleteFormById: deleteFormById,
         selectUser: selectUser,
         updateFormById: updateFormById,
+        findField: findField,
+        deleteField: deleteField,
+        createField: createField,
+        updateField: updateField,
         guid: guid
 
     }
@@ -96,13 +100,48 @@ module.exports = function (app) {
         }
     }
 
+    function findField(fieldId, form) {
+        for (var i = 0; i < form.fields.length; i++) {
+            if (form.fields[i].id == fieldId) {
+                return form.fields[i];
+            }
+        }
+        return null;
+    }
+
+    function deleteField(fieldId, form) {
+        for (var i = 0; i < form.fields.length; i++) {
+            if (form.fields[i].id == fieldId) {
+                form.fields.splice(i, 1);
+            }
+        }
+        return form.fields;
+    }
+
+    function createField(newField, form) {
+        newField.id = guid();
+        form.fields.push(newField);
+        return form.fields;
+    }
+
+    function updateField(fieldId, formFields, form) {
+        for (var i = 0; i < form.fields.length; i++) {
+            if (form.fields[i].id == fieldId) {
+                form.fields[i] = formFields;
+            }
+        }
+        return form.fields;
+    }
+
     function guid() {
         function s4() {
             return Math.floor((1 + Math.random()) * 0x10000)
-              .toString(16)
-              .substring(1);
+                .toString(16)
+                .substring(1);
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-          s4() + '-' + s4() + s4() + s4();
+            s4() + '-' + s4() + s4() + s4();
     }
+
+
 }
