@@ -5,7 +5,7 @@
         <ul id="tab" class="nav nav-pills nav-stacked">
 
             <li role="presentation"><a href="#/form-fields">Fields</a></li>
-            <li role="presentation"><a href="#/forms">Forms</a></li>
+            <li role="presentation"><a href="#/form">Forms</a></li>
         </ul>
         <table class="table table-striped">
             <thead>
@@ -34,7 +34,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="form in forms">
-                    <td><a href="#user/{{form.userId}}/form/{{form.id}}/fields">{{form.title}}</a></td>
+                    <td><a href="#/user/{{form.userId}}/form/{{form.id}}/fields">{{form.title}}</a></td>
                     <td>
                         <a ng-click="deleteForm(form)" class="btn btn-danger">
                             <scan class="glyphicon glyphicon-remove"></scan>

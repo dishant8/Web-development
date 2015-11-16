@@ -1,25 +1,23 @@
-﻿'use strict';
-(function () {
+﻿(function () {
+    'use strict';
     angular
         .module("FormBuilderApp")
         .controller("FieldController", FieldController);
-    function FieldController(FieldService, $routeParams) {
-        var model = this;
-        model.addField = addField;
-        model.removeField = removeField;
-        model.fields = [];
-        function init() {
-            var fid = $routeParams.formId;
-            FieldService.getFieldsForForm(fid)
-                .then(function (fieldsForForm) {
-                    model.fields = fieldsForForm;
+
+    function FieldController($scope, $routeParams, FieldService) {
+        var fields = [];
+        function findFields() {
+            console.log("idhar aya");
+            var formid = $routeParams.formId;
+            FieldService.getFieldsForForm(formid)
+                .then(function (fields) {
+                    $scope.fields = fields;
                 });
         }
-        init();
-        function addField(fieldType) {
-            console.log("aya");
+        findFields();
+
+        $scope.addField = function (fieldType) {
             var fid = $routeParams.formId;
-            //var uid = $routeParams.userId;
             var newField;
             if (fieldType == "Single Line Text Field") {
                 newField = { "id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field" };
@@ -58,19 +56,21 @@
                 };
             }
             var allFields = [];
+
             if (newField != undefined) {
                 allFields.push(newField);
             }
             FieldService.createFieldForForm(fid, newField)
                 .then(function (formFields) {
-                    model.fields = formFields;
+                    $scope.fields = formFields;
                 });
         }
-        function removeField(fieldId) {
-            var fid = $routeParams.formId;
-            FieldService.deleteFieldFromForm(fid, fieldId)
-                .then(function (restFields) {
-                    model.fields = restFields;
+
+        $scope.removeField = function (fieldId) {
+            var formid = $routeParams.formId;
+            FieldService.deleteFieldFromForm(formid, fieldId)
+                .then(function (fields) {
+                    $scope.fields = fields;
                 });
         }
     };

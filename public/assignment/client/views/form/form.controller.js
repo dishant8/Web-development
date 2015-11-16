@@ -5,7 +5,8 @@
     .module("FormBuilderApp")
     .controller("FormController", FormController);
 
-    function FormController($scope, FormService, $rootScope) {
+    function FormController($scope, FormService, $rootScope, $location) {
+        $scope.$location = $location;
         $scope.user = $rootScope.user;
 
         //        var formForUpdate = $scope.selectedformOfUser;

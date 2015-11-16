@@ -1,101 +1,179 @@
-﻿<h1 class="page-header">Forms-Fields</h1>
-<nav class="navbar">
-    <div class="container-fluid">
-        <div>
-            <ul class="nav nav-tabs">
-                <li role="presentation"><a href="#/form">Forms</a></li>
-                <li role="presentation" ng-class="{'active':$location.url().indexOf('form-fields') != -1}"><a href="#/form-fields">Fields</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+﻿<h1>Forms</h1>
 
-<div class="col-sm-9 col-md-10" ng-init="init()">
-    <form class="form-horizontal">
-        <div ng-repeat="field in model.fields">
-            <ng-switch on="field.type" ng-model="field.type">
-                <div class="form-group" ng-switch-when="TEXT">
-                    <label for="text">{{field.label}}</label>
-                    <input class="form-control" id="text" type="text" placeholder="{{field.placeholder}}" />
-                    <div class="container-fluid pull-right">
-                        <a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                        <a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-                        <a ng-click="model.removeField(field.id)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+<div ng-controller="FieldController">
+    <div>
+        <nav>
+            <ul id="tab" class="nav nav-tabs">
+                <li role="presentation"><a href="#/form">Forms</a></li>
+                <li role="presentation"><a href="#/form-fields">Fields</a></li>
+            </ul>
+        </nav>
+    </div>
+    <br><br><br>
+    <div class="adjust" ng-init="findFields()">
+        <form class="form-horizontal">
+            <div ng-repeat="field in fields">
+                <ng-switch on="field.type" ng-model="field.type">
+
+                    <div class="form-group" ng-switch-when="FNAME">
+                        <label for="first name" class="col-sm-2">{{field.label}}</label>
+                        <div>
+                            <input class="col-sm-3"
+                                   id="firstname" placeholder={{field.placeholder}}
+                                   title="please enter your First Name" name="first name"
+                                   type="text" />
+
+                            <div class="col-sm-1"></div>
+                            <a href="#" class="btn btn-danger">
+                                <scan class="glyphicon glyphicon-plus"></scan>
+                            </a>
+                            <a href="#" class="btn btn-warning">
+                                <scan class="glyphicon glyphicon-pencil"></scan>
+                            </a>
+                            <a ng-click="removeField(field.id)" class="btn btn-danger">
+                                <scan class="glyphicon glyphicon-remove"></scan>
+                            </a>
+                            <a href="#" class="btn btn-danger">
+                                <scan class="glyphicon glyphicon-menu-hamburger"></scan>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group" ng-switch-when="TEXTAREA">
-                    <label for="textarea">{{field.label}}</label>
-                    <input class="form-control" id="textarea" type="text" placeholder="{{field.placeholder}}" />
-                    <div class="container-fluid pull-right">
-                        <a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                        <a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-                        <a ng-click="model.removeField(field.id)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+
+                    <div class="form-group" ng-switch-when="LNAME">
+                        <label for="last name" class="col-sm-2">{{field.label}}</label>
+
+                        <input class="col-sm-3"
+                               id="firstName" placeholder="{{field.placeholder}}"
+                               title="please enter your Last Name" name="last name" type="text" />
+
+                        <div class=col-sm-1></div>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-plus"></scan>
+                        </a>
+                        <a href="#" class="btn btn-warning">
+                            <scan class="glyphicon glyphicon-pencil"></scan>
+                        </a>
+                        <a ng-click="removeField(field.id)" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-remove"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-menu-hamburger"></scan>
+                        </a>
+
                     </div>
-                </div>
-                <div class="form-group" ng-switch-when="DATE">
-                    <label for="date">Date:</label>
-                    <input class="form-control" id="date" type="date" placeholder="mm/dd/yyyy" />
-                    <div class="container-fluid pull-right">
-                        <a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                        <a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-                        <a ng-click="model.removeField(field.id)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+
+                    <div class="form-group" ng-switch-when="DOB">
+                        <label for="dob" class="col-sm-2 ">Date of birth:</label>
+
+                        <input class="col-sm-3"
+                               id="dob" title="please enter your First Name" name="first name"
+                               type="date" placeholder="Select Date" />
+
+                        <div class=col-sm-1></div>
+                        <a href="#"
+                           class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-plus"></scan>
+                        </a> <a href="#" class="btn btn-warning">
+                            <scan class="glyphicon glyphicon-pencil"></scan>
+                        </a> <a ng-click="removeField(field.id)" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-remove"></scan>
+                        </a> <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-menu-hamburger"></scan>
+                        </a>
                     </div>
-                </div>
-                <div class="form-group" ng-switch-when="OPTIONS">
-                    <label for="date">{{field.label}}</label>
-                    <select class="form-control">
-                        <option value="{{option.value}}" ng-repeat="option in field.options">{{option.label}}</option>
-                    </select>
-                    <div class="container-fluid pull-right">
-                        <a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                        <a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-                        <a ng-click="model.removeField(field.id)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+
+                    <div class="form-group" ng-switch-when="OPTIONS">
+                        <label for="gender" class="col-sm-2 ">{{field.label}}</label>
+                        <select class="col-sm-3"
+                                name="genre" id="gender">
+                            <option value="{{option.value}}" ng-repeat="option in field.options">{{option.label}}</option>
+                        </select>
+                        <div class="col-sm-1"></div>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-plus"></scan>
+                        </a> <a href="#" class="btn btn-warning">
+                            <scan class="glyphicon glyphicon-pencil"></scan>
+                        </a> <a ng-click="removeField(field.id)" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-remove"></scan>
+                        </a> <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-menu-hamburger"></scan>
+                        </a>
+
                     </div>
-                </div>
-                <div class="form-group" ng-switch-when="CHECKBOXES">
-                    <label for="check">{{field.label}}</label>
-                    <div ng-repeat="option in field.options">
-                        <input class="form-control" id="check" type="checkbox" name="{{field.label}}+{{field.id}}" />{{option.label}}
+
+                    <div class="form-group" ng-switch-when="RADIOS">
+                        <label for="radio" class="col-sm-2 ">{{field.label}}</label>
+                        <label>
+                            <input type="radio" name="{{field.label}}+{{field.id}}" value="yes"
+                                   id="radio" /> Yes
+                        </label>
+
+
+                        <div class="col-sm-1"></div>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-plus"></scan>
+                        </a>
+                        <a href="#" class="btn btn-warning">
+                            <scan class="glyphicon glyphicon-pencil"></scan>
+                        </a>
+                        <a ng-click="removeField(field.id)" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-remove"></scan>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-menu-hamburger"></scan>
+                        </a>
                     </div>
-                    <div class="container-fluid pull-right">
-                        <a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                        <a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-                        <a ng-click="model.removeField(field.id)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+
+                    <div class="form-group  add-border" ng-click="CHECKBOXES">
+                        <label for="checkboxes" class="col-sm-2">{{field.label}}</label>
+
+                        <div class="col-sm-3" ng-repeat="option in field.options">
+                            <div ng-repeat="option in field.options">
+                                <input class="form-control" id="check" type="checkbox" name="{{field.label}}+{{field.id}}" />{{option.label}}
+                            </div>
+                        </div>
+
+                        <div class="col-sm-1"></div>
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-plus"></scan>
+                        </a>
+
+                        <a href="#" class="btn btn-warning">
+                            <scan class="glyphicon glyphicon-pencil"></scan>
+                        </a>
+
+                        <a ng-click="removeField(field.id)" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-remove"></scan>
+                        </a>
+
+                        <a href="#" class="btn btn-danger">
+                            <scan class="glyphicon glyphicon-menu-hamburger"></scan>
+                        </a>
+
                     </div>
-                </div>
-                <div class="form-group" ng-switch-when="RADIOS">
-                    <label for="radio">{{field.label}}</label>
-                    <div ng-repeat="option in field.options">
-                        <input class="form-control" id="radio" type="radio" name="{{field.label}}+{{field.id}}" />{{option.label}}
-                    </div>
-                    <div class="container-fluid pull-right">
-                        <a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                        <a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-                        <a ng-click="model.removeField(field.id)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
-                    </div>
-                </div>
-                <hr />
-            </ng-switch>
-        </div>
-        <div class="form-group">
-            <label for="add">Add New Field:</label>
-            <div class="container-fluid pull-right">
-                <a ng-click="model.addField(model.fieldType)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-            </div><br>
-            <select id="add" class="form-control" ng-model="model.fieldType">
-                <option value="Single Line Text Field">Single Line Text</option>
-                <option value="Multi Line Text Field">Multi Line Text</option>
-                <option value="Date Field">Date</option>
-                <option value="Dropdown Field">Dropdown</option>
-                <option value="Checkboxes Field">Checkboxes</option>
-                <option value="Radio Buttons Field">Radio Buttons</option>
-            </select>
-        </div>
-    </form>
+                </ng-switch>
+            </div>
+            <div>
+                <label for="new field" class="col-sm-2">Add New Field:</label>
+
+                <select class="col-sm-3 form-control"
+                        name="new field" id="new field" ng-model="field.type">
+                    <option value="Single Line Text">Single Line Text</option>
+                    <option value="Date">Date</option>
+                    <option value="Dropdown">Dropdown</option>
+                    <option value="Checkboxes">Checkboxes</option>
+                    <option value="RAdio Buttons">Radio Buttons</option>
+                    <option value="Paragraph Text Field">Paragraph Text Field</option>
+
+                </select>
+
+                <div class="col-sm-1"></div>
+                <a ng-click="addField(fieldType)" class="btn btn-danger">
+                    <scan class="glyphicon glyphicon-plus cpl-sm-2"></scan>
+                </a>
+
+            </div>
+
+        </form>
+    </div>
 </div>

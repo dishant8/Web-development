@@ -7,6 +7,7 @@ module.exports = function (app) {
         findAllFormsForUser: findAllFormsForUser,
         createFormForUser: createFormForUser,
         deleteFormById: deleteFormById,
+        findFormByTitle: findFormByTitle,
         selectUser: selectUser,
         updateFormById: updateFormById,
         findField: findField,
@@ -63,6 +64,13 @@ module.exports = function (app) {
         return forms;
     }
 
+    function findFormByTitle(title) {
+        for (i = 0; i < mock.length; i++) {
+            if (mock[i].title == title) {
+                return mock[i];
+            }
+        }
+    }
 
     function deleteFormById(formId) {
         for (i = 0; i < mock.length; i++) {
@@ -78,7 +86,6 @@ module.exports = function (app) {
                 return forms;
             }
         }
-
     }
 
     function updateFormById(formId, form) {
