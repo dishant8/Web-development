@@ -1,12 +1,16 @@
 
 <div ng-if="user">
+    <h1>Forms</h1>
     <div ng-controller="FormController">
-        <h1>Forms</h1>
-        <ul id="tab" class="nav nav-pills nav-stacked">
-
-            <li role="presentation"><a href="#/form-fields">Fields</a></li>
-            <li role="presentation"><a href="#/form">Forms</a></li>
-        </ul>
+      
+        <nav class="navbar">
+            <div>
+                <ul class="nav nav-tabs">
+                    <li role="presentation" ng-class="{'active':$location.url().indexOf('form') != -1}"><a href="#/form">Forms</a></li>
+                    <li role="presentation" ng-class="{'active':$location.url().indexOf('form-fields') != -1}"><a href="#/form-fields">Fields</a></li>
+                </ul>
+            </div>
+        </nav>
         <table class="table table-striped">
             <thead>
                 <tr>

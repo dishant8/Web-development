@@ -6,21 +6,12 @@
 
     function FormService($http, $q) {
 
-        var forms = [
-            {
-                userName: "asdf",
-                name: "myForm",
-                id: "1234"
-            }
-        ];
-
         var service = {
             createFormForUser: createFormForUser,
             findAllFormsForUser: findAllFormsForUser,
             deleteFormById: deleteFormById,
             updateFormById: updateFormById,
             selectForm: selectForm,
-            //findAllForms: findAllForms,
             guid: guid
         };
 
@@ -33,24 +24,17 @@
                     deferred.resolve(forms);
                 })
             return deferred.promise;
-
         }
-
-        //        function findAllForms(callback) {
-        //            callback(forms);
-        //        }
 
         function findAllFormsForUser(userId) {
             var deferred = $q.defer();
-            console.log("YOU ARE IN FORMSERVICE--" + userId);
+
 
             $http.get("/api/assignment/form/user/" + userId)
                 .success(function (forms) {
                     deferred.resolve(forms);
                 })
-
             return deferred.promise;
-
         }
 
         function deleteFormById(formId) {
@@ -64,7 +48,6 @@
 
         function selectForm(formId) {
             var deferred = $q.defer();
-            console.log("FORMID-----" + formId)
             $http.get("/api/assignment/form/" + formId)
                 .success(function (forms) {
                     deferred.resolve(forms);

@@ -6,13 +6,14 @@ module.exports = function (app) {
     var api = {
         findAllFormsForUser: findAllFormsForUser,
         createFormForUser: createFormForUser,
-        deleteFormById: deleteFormById,
-        findFormByTitle: findFormByTitle,
+        findFormByFormId: findFormByFormId,
         selectUser: selectUser,
+        findFormByTitle: findFormByTitle,
+        deleteFormById: deleteFormById,
         updateFormById: updateFormById,
-        findField: findField,
-        deleteField: deleteField,
+        findFieldById: findFieldById,
         createField: createField,
+        deleteFieldById: deleteFieldById,
         updateField: updateField,
         guid: guid
 
@@ -21,7 +22,6 @@ module.exports = function (app) {
     return api;
 
     function findAllFormsForUser(id) {
-
         var forms = [];
         for (i = 0; i < mock.length; i++) {
             if (mock[i].userId == id) {
@@ -34,6 +34,7 @@ module.exports = function (app) {
     function createFormForUser(id, form) {
         form.id = guid();
         form.userId = id;
+        form.fields = [];
         mock.push(form);
         var forms = [];
         for (i = 0; i < mock.length; i++) {
@@ -44,6 +45,14 @@ module.exports = function (app) {
         return forms;
     }
 
+    function findFormByFormId(formid) {
+        for (var i = 0; i < mock.length; i++) {
+            if (mock[i].id == formid) {
+                return mock[i];
+            }
+        }
+        return null;
+    }
 
     function selectUser(formId) {
         var userId;
@@ -101,13 +110,12 @@ module.exports = function (app) {
                         forms.push(mock[i]);
                     }
                 }
-
                 return forms;
             }
         }
     }
 
-    function findField(fieldId, form) {
+    function findFieldById(fieldId, form) {
         for (var i = 0; i < form.fields.length; i++) {
             if (form.fields[i].id == fieldId) {
                 return form.fields[i];
@@ -116,12 +124,13 @@ module.exports = function (app) {
         return null;
     }
 
-    function deleteField(fieldId, form) {
+    function deleteFieldById(fieldId, form) {
         for (var i = 0; i < form.fields.length; i++) {
             if (form.fields[i].id == fieldId) {
                 form.fields.splice(i, 1);
             }
         }
+        console.log(form.fields);
         return form.fields;
     }
 
@@ -139,6 +148,7 @@ module.exports = function (app) {
         }
         return form.fields;
     }
+
 
     function guid() {
         function s4() {
