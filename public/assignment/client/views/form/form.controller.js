@@ -41,44 +41,44 @@
             }
 
             $scope.updateForm = function () {
-
+  
                 var formId = formForUpdate.id;
                 var newForm = {
                     title: $scope.formName
                 }
-                if (formForUpdate) {
+                if ($scope.formName) {
                     FormService.updateFormById(formId, newForm)
-                        .then(function (forms) {
-                            $scope.forms = forms;
-                            $scope.formName = "";
-                        })
-                } else {
-                    alert("Select Form to update")
-                }
-
+                            .then(function (forms) {
+                                $scope.forms = forms;
+                                $scope.formName = "";
+                            })
+            } else {
+                alert("Select Form to update")
             }
 
-            $scope.deleteForm = function (form) {
-                var formId = form.id;
-
-                FormService.deleteFormById(formId)
-                    .then(function (forms) {
-                        $scope.forms = forms;
-                    })
-            }
-
-            $scope.selectForm = function (form) {
-                $scope.selectedformOfUser = form;
-                formForUpdate = form;
-             
-                $scope.formName = form.title;
-                var index = $scope.forms.indexOf(form);
-                FormService.selectForm(form.id)
-                    .then(function (forms) {
-                        $scope.forms = forms;
-                    })
-            }
         }
+    
+    $scope.deleteForm = function (form) {
+        var formId = form.id;
+
+        FormService.deleteFormById(formId)
+            .then(function (forms) {
+                $scope.forms = forms;
+            })
     }
+
+    $scope.selectForm = function (form) {
+        $scope.selectedformOfUser = form;
+        formForUpdate = form;
+
+        $scope.formName = form.title;
+        var index = $scope.forms.indexOf(form);
+        FormService.selectForm(form.id)
+            .then(function (forms) {
+                $scope.forms = forms;
+            })
+    }
+}
+}
 
 })();

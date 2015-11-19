@@ -1,6 +1,6 @@
 ﻿(function () {
     angular
-	.module("FormBuilderApp")
+	.module("SearchEngine")
 	.config(MyAppFunction)
 
     function MyAppFunction($routeProvider) {
@@ -23,22 +23,6 @@
 		    templateUrl: "views/profile/profile.view.html",
 		    controller: "ProfileController"
 		})
-		.when("/form", {
-		    templateUrl: "views/form/form.view.html",
-		    controller: "FormController"
-		})
-         .when("/form-fields", {
-             templateUrl: "views/field/field.view.html",
-             controller: "FormController"
-         })
-         .when("/admin", {
-             templateUrl: "admin.html"
-         })
-
-        .when("/user/:userId/form/:formId/fields", {
-            templateUrl: "views/field/field.view.html",
-            controller: "FieldController"
-        })
         .otherwise({
             redirectTo: "/"
         })

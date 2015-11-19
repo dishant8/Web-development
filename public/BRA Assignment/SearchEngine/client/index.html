@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+
+<html ng-app="SearchEngine">
+
+<head>
+    <title>SearchEngine</title>
+
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.min.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="views/sidebar/sidebar.controller.js"></script>
+    <script src="views/header/header.controller.js"></script>
+    <script src="views/miniHeader/miniHeader.controller.js"></script>
+    <script src="views/login/login.controller.js"></script>
+    <script src="views/register/register.controller.js"></script>
+    <script src="views/profile/profile.controller.js"></script>
+    <script src="views/home/home.controller.js"></script>
+    <script src="services/UserService.js"></script>
+</head>
+
+<body>
+    <!--This is the body of my Web page which will dynamically change on navigation i.e. my
+        application will never navigate from index.html provided someone makes an external
+        web service call to an external API-->
+
+    <div id="body-image">
+        <img src="views/images/5-Blurred-Backgrounds-Vol.jpg" alt="Event">
+    </div>
+
+    <!--Header will be included on all the HTML pages, so no need to include it on every HTML page.-->
+
+    <div class="container">
+        <header ng-include="'views/header/header.view.html'"></header>
+    </div>
+
+    <div class="container">
+        <header ng-include="'views/miniHeader/miniHeader.view.html'"></header>
+    </div>
+
+    <!--Sidebar will be included on all the HTML pages, so no need to include it on every HTML page.-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 ">
+                <section ng-include="'views/sidebar/sidebar.view.html'"></section>
+            </div>
+            <!--All the HTML will be dynamically rendered in ng-view based on navigation-->
+            <div class="col-sm-10" ng-view>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
