@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
-app.use(express.static(__dirname + '/SearchEngine'));
+app.use(express.static(__dirname + '/Boston Redevelopment Authority/BRA Assignment/SearchEngine'));
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
