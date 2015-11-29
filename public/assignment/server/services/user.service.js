@@ -1,7 +1,6 @@
 ﻿
-module.exports = function (app) {
+module.exports = function (app, userModel) {
 
-    var obj = require("../models/user.model.js")(app);
 
     app.get("/api/assignment/user/:username/:password", findUser);
     app.get("/api/assignment/user", findAllUsers);
@@ -15,47 +14,60 @@ module.exports = function (app) {
         var username = req.params.username;
         var password = req.params.password;
 
-        var credentials = { "username": username, "password": password }
+        var credentials = { "userName": username, "password": password }
 
-        var user = obj.findUserByCredentials(credentials)
+        userModel.findUserByCredentials(credentials).then(function (user) {
+            res.json(user);
+        })
 
-        res.json(user);
     }
 
     function findAllUsers(req, res) {
-        var users = obj.findAllUsers();
-        res.json(users);
+        userModel.findAllUsers()
+            .then(function (users) {
+                res.json(users);
+            });
     }
 
     function findUserByUsername(req, res) {
-        var username = req.params.username;
-        var user = obj.findUserByUsername(username);
-        res.json(user);
+        var userName = req.params.username;
+        userModel.findUserByUsername(userName)
+         .then(function (users) {
+             res.json(users);
+         });
     }
 
     function findUserById(req, res) {
         var id = req.params.id;
-        var user = obj.findUserById(id);
-        res.json(user);
+        userModel.findUserById(id)
+         .then(function (users) {
+             res.json(users);
+         });
     }
 
     function createUser(req, res) {
         var userObject = req.body;
-        var user = obj.createUser(userObject);
-        res.json(user);
+        userModel.createUser(userObject)
+            .then(function (user) {
+                res.json(user);
+            });
     }
 
     function updateUser(req, res) {
         var id = req.params.id;
         var userObject = req.body;
-        console.log(id);
-        var user = obj.updateUser(id, userObject);
-        res.json(user);
+        userModel.updateUser(id, userObject)
+            .then(function (user) {
+                res.json(user);
+            });
     }
 
     function deleteUserById(req, res) {
         var id = req.params.id;
-        var users = obj.deleteUserById(id);
-        res.json(users);
+        userModel.deleteUserById(id)
+              .then(function (users) {
+                  res.json(users);
+              });
     }
+
 }

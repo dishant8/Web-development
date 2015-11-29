@@ -1,0 +1,38 @@
+﻿
+<h1>Page Details</h1>
+
+<h3>{{model.page.label}}</h3>
+
+<table class="table table-striped">
+    <tr ng-repeat="content in model.page.content" class="table">
+        <td>
+            <h1 ng-if="content.contentType=='HEADING'">
+                {{content.heading.content}}
+            </h1>
+        </td>
+
+        <td>
+            <button ng-click="removeContent(content)" class="btn btn-primary">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <select ng-model="model.contentType" class="form-control">
+                <option ng-value="HEADING">HEADING</option>
+                <option ng-value="LABEL">LABEL</option>
+                <option ng-value="PARAGRAPH">PARAGRAPH</option>
+                <option ng-value="LIST">LIST</option>
+                <option ng-value="FORM">FORM</option>
+            </select>
+        </td>
+        <td>
+            <button ng-click="model.addContent(model.contentType)" class="btn btn-primary">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </td>
+    </tr>
+</table>
+
+{{model.page}};

@@ -17,10 +17,11 @@
 
         return service;
 
-        function createFormForUser(id, form) {
+        function createFormForUser(userId, form) {
             var deferred = $q.defer();
-            $http.post("/api/assignment/user/" + id + "/form", form)
+            $http.post("/api/assignment/user/" + userId + "/form", form)
                 .success(function (forms) {
+                    console.log("FORMS RET AFTER CREATION" + forms);
                     deferred.resolve(forms);
                 })
             return deferred.promise;
@@ -29,9 +30,11 @@
         function findAllFormsForUser(userId) {
             var deferred = $q.defer();
 
+            console.log("USERID" + userId)
 
             $http.get("/api/assignment/form/user/" + userId)
                 .success(function (forms) {
+                    console.log("FORMS IN CLIENT SERVICE" + forms)
                     deferred.resolve(forms);
                 })
             return deferred.promise;

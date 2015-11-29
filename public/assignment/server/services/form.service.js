@@ -1,26 +1,33 @@
-﻿module.exports = function (app) {
+﻿module.exports = function (app, formModel) {
 
-    var formModel = require("../models/form.model.js")(app);
+    //    var formModel = require("../models/form.model.js")(app);
     //    var obj = require("../models/user.model.js")(app);
 
     app.get("/api/assignment/form/user/:id", findAllFormsForUser);
     app.get("/api/assignment/form/:formId", selectUser);
-    app.post("/api/assignment/user/:id/form", createFormForUser);
+    app.post("/api/assignment/user/:userId/form", createFormForUser);
     app.delete("/api/assignment/form/:formId", deleteFormById);
     app.put("/api/assignment/form/:formId", updateFormById);
 
     function findAllFormsForUser(req, res) {
-        var id = req.params.id;
-        var forms = formModel.findAllFormsForUser(id);
-        res.json(forms);
+        var userId = req.params.id;
+        console.log("USERID SERVICE------" + userId)
+        formModel.findAllFormsForUser(userId)
+            .then(function (forms) {
+                console.log("findFORMS SERVICE" + forms);
+                res.json(forms);
+            });
     }
 
     function createFormForUser(req, res) {
-        var id = req.params.id;
+        var userId = req.params.userId;
         var form = req.body;
-
-        var forms = formModel.createFormForUser(id, form);
-        res.json(forms);
+        console.log("ID IN SERVICE" + userId);
+        formModel.createFormForUser(userId, form)
+            .then(function (forms) {
+                console.log("FORMS IN SERVER SERVICE" + forms);
+                res.json(forms);
+            });
     }
 
     function selectUser(req, res) {

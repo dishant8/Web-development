@@ -1,7 +1,9 @@
-﻿var mock = require("./form.mock.json");
+﻿var q = require('q');
+var mongoose = require('mongoose');
 
-module.exports = function (app) {
-
+module.exports = function (db) {
+    var FormSchema = require("./form.schema.js");
+    var FormModel = mongoose.model("FormModel", FormSchema)
 
     var api = {
         findAllFormsForUser: findAllFormsForUser,
@@ -21,37 +23,32 @@ module.exports = function (app) {
 
     return api;
 
-    function findAllFormsForUser(id) {
-        var forms = [];
-        for (i = 0; i < mock.length; i++) {
-            if (mock[i].userId == id) {
-                forms.push(mock[i]);
-            }
-        }
-        return forms;
+    function findAllFormsForUser(userId) {
+        var deferred = q.defer();
+        FormModel.find({ "idForUser": userId }, function (err, forms) {
+            deferred.resolve(forms);
+        })
+        return deferred.promise;
     }
 
-    function createFormForUser(id, form) {
-        form.id = guid();
-        form.userId = id;
-        form.fields = [];
-        mock.push(form);
-        var forms = [];
-        for (i = 0; i < mock.length; i++) {
-            if (mock[i].userId == id) {
-                forms.push(mock[i]);
-            }
-        }
-        return forms;
+    function createFormForUser(userId, form) {
+        var deferred = q.defer();
+        console.log("ID WHILE CREATE" + userId);
+        FormModel.create(form, function (err, form) {
+            FormModel.find({ "idForUser": userId }, function (err, forms) {
+                console.log("FORMS IN MODEL" + forms);
+                deferred.resolve(forms);
+            })
+        })
+        return deferred.promise;
     }
 
     function findFormByFormId(formid) {
-        for (var i = 0; i < mock.length; i++) {
-            if (mock[i].id == formid) {
-                return mock[i];
-            }
-        }
-        return null;
+        var deferred = q.defer();
+        FormModel.findById(formid, function (err, form) {
+            deferred.resolve(form);
+        })
+        return deferred.promise;
     }
 
     function selectUser(formId) {
@@ -74,27 +71,19 @@ module.exports = function (app) {
     }
 
     function findFormByTitle(title) {
-        for (i = 0; i < mock.length; i++) {
-            if (mock[i].title == title) {
-                return mock[i];
-            }
-        }
+        var deferred = q.defer();
+        FormModel.find({ "title": title }, function (err, form) {
+            deferred.response(form);
+        })
+        return deferred.promise;
     }
 
     function deleteFormById(formId) {
-        for (i = 0; i < mock.length; i++) {
-            if (mock[i].id == formId) {
-                var userId = mock[i].userId;
-                mock.splice(i, 1);
-                var forms = [];
-                for (i = 0; i < mock.length; i++) {
-                    if (mock[i].userId == userId) {
-                        forms.push(mock[i]);
-                    }
-                }
-                return forms;
-            }
-        }
+        var deferred = q.defer();
+        FormModel.remove({ "_id": formId }, function (err, form) {
+            deferred.response(form);
+        })
+        return deferred.promise;
     }
 
     function updateFormById(formId, form) {

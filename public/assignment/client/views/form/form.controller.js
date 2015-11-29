@@ -14,8 +14,9 @@
 
         if ($rootScope.user != null) {
             user = $rootScope.user;
+
             var findForms = function () {
-                FormService.findAllFormsForUser(user.id)
+                FormService.findAllFormsForUser(user._id)
                     .then(function (forms) {
                         $scope.forms = forms;
                     })
@@ -26,14 +27,15 @@
             $scope.addForm = function (formName) {
                 if (formName) {
                     var formObject = {
-                        "id": 0,
+                        "idForUser": user._id,
                         "title": $scope.formName
                     }
-
-                    FormService.createFormForUser(user.id, formObject).then(function (forms) {
-                        $scope.forms = forms;
-                        $scope.formName = "";
-                    })
+                    console.log("IDDDD" + user._id);
+                    FormService.createFormForUser(user._id, formObject)
+                        .then(function (forms) {
+                            $scope.forms = forms;
+                            $scope.formName = "";
+                        })
                 }
                 else {
                     alert("Enter name for a form");
@@ -41,7 +43,7 @@
             }
 
             $scope.updateForm = function () {
-  
+
                 var formId = formForUpdate.id;
                 var newForm = {
                     title: $scope.formName
@@ -52,33 +54,33 @@
                                 $scope.forms = forms;
                                 $scope.formName = "";
                             })
-            } else {
-                alert("Select Form to update")
+                } else {
+                    alert("Select Form to update")
+                }
+
             }
 
+            $scope.deleteForm = function (form) {
+                var formId = form.id;
+
+                FormService.deleteFormById(formId)
+                    .then(function (forms) {
+                        $scope.forms = forms;
+                    })
+            }
+
+            $scope.selectForm = function (form) {
+                $scope.selectedformOfUser = form;
+                formForUpdate = form;
+
+                $scope.formName = form.title;
+                var index = $scope.forms.indexOf(form);
+                FormService.selectForm(form.id)
+                    .then(function (forms) {
+                        $scope.forms = forms;
+                    })
+            }
         }
-    
-    $scope.deleteForm = function (form) {
-        var formId = form.id;
-
-        FormService.deleteFormById(formId)
-            .then(function (forms) {
-                $scope.forms = forms;
-            })
     }
-
-    $scope.selectForm = function (form) {
-        $scope.selectedformOfUser = form;
-        formForUpdate = form;
-
-        $scope.formName = form.title;
-        var index = $scope.forms.indexOf(form);
-        FormService.selectForm(form.id)
-            .then(function (forms) {
-                $scope.forms = forms;
-            })
-    }
-}
-}
 
 })();

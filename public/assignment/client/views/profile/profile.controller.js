@@ -24,10 +24,9 @@
                     firstName: $scope.firstName,
                     lastName: $scope.lastName,
                     email: $scope.email
-
                 }
-
-                UserService.updateUser(currentUser.id, newDataOfUser)
+                console.log(currentUser._id);
+                UserService.updateUser(currentUser._id, newDataOfUser)
                     .then(function (userAfterUpdate) {
 
                         //                        $location.path("/home");

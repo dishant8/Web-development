@@ -1,7 +1,11 @@
-﻿var mock = require("./user.mock.json");
-
+﻿
 var q = require("q");
-module.exports = function (app) {
+var mongoose = require("mongoose");
+module.exports = function (db) {
+
+    var UserSchema = require("./user.schema.js");
+
+    var UserModel = mongoose.model("UserModel", UserSchema)
 
     var api = {
         findUserByCredentials: findUserByCredentials,
@@ -11,87 +15,79 @@ module.exports = function (app) {
         findAllUsers: findAllUsers,
         updateUser: updateUser,
         deleteUserById: deleteUserById,
-        guid: guid
     }
 
     return api;
 
     function findUserByCredentials(credentials) {
-        var deferred = q.deferred;
-
-        user = null;
-
-        for (i = 0; i < mock.length; i++) {
-            if ((mock[i].userName == credentials.username)
-                && (mock[i].password == credentials.password)) {
-                user = mock[i];
-            }
-        }
-        return user;
+        var deferred = q.defer();
+        UserModel.findOne({ "userName": credentials.userName, "password": credentials.password }, function (err, user) {
+            console.log("USER" + user);
+            deferred.resolve(user);
+        });
+        return deferred.promise;
     }
 
     function findUserByUsername(username) {
-        for (i = 0; i < mock.length; i++) {
-            if (mock[i].userName == username) {
-                user = mock[i];
-            }
-        }
-        return user;
+        var deferred = q.defer();
+        UserModel.findOne({ "userName": credentials.userName }, function (err, user) {
+            deferred.resolve(user);
+        });
+        return deferred.promise;
     }
 
     function findUserById(id) {
-        for (i = 0; i < mock.length; i++) {
-            if (mock[i].id == id) {
-                user = mock[i];
-            }
-        }
-        return user;
+        var deferred = q.defer();
+        UserModel.findById(id, function (err, user) {
+            deferred.resolve(user);
+        });
+        return deferred.promise;
     }
 
     function createUser(userObject) {
-        userObject.id = guid();
-        mock.push(userObject);
-        return userObject;
+        var deferred = q.defer();
+        UserModel.create(userObject, function (err, user) {
+            deferred.resolve(user);
+        });
+        return deferred.promise;
     }
 
     function findAllUsers() {
-        var users = mock;
-        return users;
+        var deferred = q.defer();
+        UserModel.find(function (err, users) {
+            deferred.resolve(users);
+        });
+        return deferred.promise;
     }
 
-    function updateUser(id, user) {
-        for (i = 0; i < mock.length; i++) {
-            console.log(mock[i].id);
-            if (mock[i].id == id) {
-                mock[i].userName = user.userName;
-                mock[i].password = user.password;
-                mock[i].firstName = user.firstName;
-                mock[i].lastName = user.lastName;
-                mock[i].email == user.email;
-                newUser = mock[i];
-                return newUser;
+
+    function updateUser(userId, updatedUser) {
+        var deferred = q.defer();
+
+        UserModel.findById(userId, function (err, user) {
+            for (var prop in user) {
+                if (!(typeof updatedUser[prop] == 'undefined')) {
+                    user[prop] = updatedUser[prop];
+                }
             }
-        }
+            user.save(function (error) {
+                deferred.resolve(user);
+
+            });
+
+        });
+        return deferred.promise;
     }
 
-    function deleteUserById(id) {
-
-        for (i = 0; i < mock.length; i++) {
-            if (mock[i].id == id) {
-                mock.splice(i, 1);
-            }
-        }
-        return mock;
+    function deleteUserById(userId) {
+        var deferred = q.defer();
+        UserModel.remove({ _id: userId }, function (err) {
+            findAllUsers().then(function (users) {
+                deferred.resolve(users);
+            })
+        });
+        return deferred.promise;
     }
 
-    function guid() {
-        function s4() {
-            return Math.floor((1 + Math.random()) * 0x10000)
-              .toString(16)
-              .substring(1);
-        }
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-          s4() + '-' + s4() + s4() + s4();
-    }
 
 }
