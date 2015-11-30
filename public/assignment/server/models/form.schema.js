@@ -1,5 +1,7 @@
 ﻿var mongoose = require('mongoose');
 
+objectId = mongoose.Schema.Types.ObjectId,
+
 module.exports = mongoose.Schema({
     "title": {
         type: String
@@ -10,6 +12,10 @@ module.exports = mongoose.Schema({
     },
 
     "fields": [{
+        "id": {
+            type: objectId
+        },
+
         "label": {
             type: String
         },

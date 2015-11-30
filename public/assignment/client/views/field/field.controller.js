@@ -7,6 +7,7 @@
     function FieldController($scope, $routeParams, FieldService, $location) {
         $scope.$location = $location;
         $scope.selectedForm = null;
+
         function findFieldForForms() {
             var formid = $routeParams.formId;
             FieldService.getFieldsForForm(formid)
@@ -18,8 +19,10 @@
         findFieldForForms();
 
         $scope.addField = function (fieldType) {
-            var fid = $routeParams.formId;
-            if (fid != undefined) {
+            console.log(fieldType);
+            var formId = $routeParams.formId;
+
+            if (formId != undefined) {
                 var newField;
                 if (fieldType == "Single Line Text Field") {
                     newField = { "id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field" };
@@ -62,9 +65,9 @@
                     allFields.push(newField);
                 }
 
-                FieldService.createFieldForForm(fid, newField)
-                    .then(function (formFields) {
-                        $scope.fields = formFields;
+                FieldService.createFieldForForm(formId, newField)
+                    .then(function (form) {
+                        $scope.fields = form.fields;
                     });
             } else {
                 $scope.announce = "Form not selected";
@@ -72,10 +75,11 @@
         }
 
         $scope.removeField = function (fieldId) {
+            console.log(fieldId);
             var formid = $routeParams.formId;
             FieldService.deleteFieldForForm(formid, fieldId)
-                .then(function (fields) {
-                    $scope.fields = fields;
+                .then(function (form) {
+                    $scope.fields = form.fields;
                 });
         }
     };

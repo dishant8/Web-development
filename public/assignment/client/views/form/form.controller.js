@@ -30,7 +30,6 @@
                         "idForUser": user._id,
                         "title": $scope.formName
                     }
-                    console.log("IDDDD" + user._id);
                     FormService.createFormForUser(user._id, formObject)
                         .then(function (forms) {
                             $scope.forms = forms;
@@ -44,8 +43,9 @@
 
             $scope.updateForm = function () {
 
-                var formId = formForUpdate.id;
+                var formId = formForUpdate._id;
                 var newForm = {
+                    "idForUser": user._id,
                     title: $scope.formName
                 }
                 if ($scope.formName) {
@@ -61,8 +61,7 @@
             }
 
             $scope.deleteForm = function (form) {
-                var formId = form.id;
-
+                var formId = form._id;
                 FormService.deleteFormById(formId)
                     .then(function (forms) {
                         $scope.forms = forms;
@@ -70,14 +69,17 @@
             }
 
             $scope.selectForm = function (form) {
-                $scope.selectedformOfUser = form;
                 formForUpdate = form;
-
                 $scope.formName = form.title;
-                var index = $scope.forms.indexOf(form);
-                FormService.selectForm(form.id)
+                FormService.findAllFormsForUser(user._id)
                     .then(function (forms) {
-                        $scope.forms = forms;
+                        var formsAfterSelect = [];
+                        for (var i = 0; i < forms.length; i++) {
+                            if (forms[i]._id != form._id) {
+                                formsAfterSelect.push(forms[i]);
+                            }
+                        }
+                        $scope.forms = formsAfterSelect;
                     })
             }
         }

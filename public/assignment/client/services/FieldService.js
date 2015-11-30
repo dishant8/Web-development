@@ -2,6 +2,7 @@
     angular
         .module("FormBuilderApp")
         .factory("FieldService", FieldService);
+
     function FieldService($http, $q) {
         var api = {
             createFieldForForm: createField,
@@ -12,18 +13,21 @@
         };
         return api;
 
-        function createField(fid, field) {
+        function createField(formId, field) {
+            console.log("AYA");
+            console.log(field);
             var deferred = $q.defer();
-            $http.post("/api/assignment/form/" + fid + "/field", field)
+            $http.post("/api/assignment/form/" + formId + "/field", field)
                 .success(function (response) {
+                    console.log("RESPONSE" + response.fields);
                     deferred.resolve(response);
                 });
             return deferred.promise;
         }
 
-        function getFields(fid) {
+        function getFields(formId) {
             var deferred = $q.defer();
-            $http.get("/api/assignment/form/" + fid + "/field")
+            $http.get("/api/assignment/form/" + formId + "/field")
                 .success(function (response) {
                     deferred.resolve(response);
                 });
@@ -43,6 +47,7 @@
             var deferred = $q.defer();
             $http.delete("/api/assignment/form/" + formid + "/field/" + fieldId)
                 .success(function (response) {
+                    console.log("AFTER DELETE"+response)
                     deferred.resolve(response);
                 });
             return deferred.promise;

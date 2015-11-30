@@ -24,7 +24,7 @@
                         <a>
                             <span class="glyphicon glyphicon-plus"></span>
                         </a>
-                        <a ng-click="removeField(field.id)">
+                        <a ng-click="removeField(field._id)">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
                         <a><span class="glyphicon glyphicon-align-justify"></span></a>
@@ -41,7 +41,7 @@
                         <a>
                             <span class="glyphicon glyphicon-plus"></span>
                         </a>
-                        <a ng-click="removeField(field.id)">
+                        <a ng-click="removeField(field._id)">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
                         <a>
@@ -60,7 +60,7 @@
                         <a>
                             <span class="glyphicon glyphicon-plus"></span>
                         </a>
-                        <a ng-click="removeField(field.id)">
+                        <a ng-click="removeField(field._id)">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
                         <a>
@@ -82,7 +82,7 @@
                         <a>
                             <span class="glyphicon glyphicon-plus"></span>
                         </a>
-                        <a ng-click="removeField(field.id)">
+                        <a ng-click="removeField(field._id)">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
                         <a>
@@ -94,7 +94,7 @@
                 <div class="form-group" ng-switch-when="CHECKBOXES">
                     <label for="check">{{field.label}}</label>
                     <div ng-repeat="option in field.options">
-                        <input class="checkbox" id="check" type="checkbox" name="{{field.label}}+{{field.id}}" />{{option.label}}
+                        <input class="checkbox" id="check" type="checkbox" name="{{field.label}}+{{field._id}}" />{{option.label}}
                     </div>
 
                     <div class="container-fluid">
@@ -104,7 +104,7 @@
                         <a>
                             <span class="glyphicon glyphicon-plus"></span>
                         </a>
-                        <a ng-click="removeField(field.id)">
+                        <a ng-click="removeField(field._id)">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
                         <a>
@@ -116,7 +116,7 @@
                 <div class="form-group" ng-switch-when="RADIOS">
                     <label for="radio">{{field.label}}</label>
                     <div ng-repeat="option in field.options">
-                        <input class="radio" id="radio" type="radio" name="{{field.label}}+{{field.id}}" />{{option.label}}
+                        <input class="radio" id="radio" type="radio" name="{{field.label}}+{{field._id}}" />{{option.label}}
                     </div>
 
                     <div class="container-fluid">
@@ -126,7 +126,7 @@
                         <a>
                             <span class="glyphicon glyphicon-plus"></span>
                         </a>
-                        <a ng-click="removeField(field.id)">
+                        <a ng-click="removeField(field._id)">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
                         <a>

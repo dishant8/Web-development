@@ -8,8 +8,7 @@ module.exports = function (db) {
     var api = {
         findAllFormsForUser: findAllFormsForUser,
         createFormForUser: createFormForUser,
-        findFormByFormId: findFormByFormId,
-        selectUser: selectUser,
+        findFormById: findFormById,
         findFormByTitle: findFormByTitle,
         deleteFormById: deleteFormById,
         updateFormById: updateFormById,
@@ -17,8 +16,6 @@ module.exports = function (db) {
         createField: createField,
         deleteFieldById: deleteFieldById,
         updateField: updateField,
-        guid: guid
-
     }
 
     return api;
@@ -33,84 +30,75 @@ module.exports = function (db) {
 
     function createFormForUser(userId, form) {
         var deferred = q.defer();
-        console.log("ID WHILE CREATE" + userId);
         FormModel.create(form, function (err, form) {
             FormModel.find({ "idForUser": userId }, function (err, forms) {
-                console.log("FORMS IN MODEL" + forms);
                 deferred.resolve(forms);
             })
         })
         return deferred.promise;
     }
 
-    function findFormByFormId(formid) {
+
+    function findFormById(formId) {
         var deferred = q.defer();
-        FormModel.findById(formid, function (err, form) {
+        FormModel.findById(formId, function (err, form) {
             deferred.resolve(form);
-        })
+        });
         return deferred.promise;
-    }
-
-    function selectUser(formId) {
-        var userId;
-        for (i = 0; i < mock.length; i++) {
-            if (mock[i].id == formId) {
-                userId = mock[i].userId;
-            }
-        }
-
-        var forms = [];
-        for (i = 0; i < mock.length; i++) {
-            if (mock[i].id != formId) {
-                if (mock[i].userId == userId) {
-                    forms.push(mock[i]);
-                }
-            }
-        }
-        return forms;
     }
 
     function findFormByTitle(title) {
         var deferred = q.defer();
         FormModel.find({ "title": title }, function (err, form) {
-            deferred.response(form);
+            deferred.resolve(form);
         })
         return deferred.promise;
     }
 
     function deleteFormById(formId) {
         var deferred = q.defer();
-        FormModel.remove({ "_id": formId }, function (err, form) {
-            deferred.response(form);
+        var userId;
+
+        findFormById(formId)
+            .then(function (form) {
+                userId = form.idForUser;
+                FormModel.remove({ "_id": formId }, function (err, form) {
+                    findAllFormsForUser(userId).then(function (forms) {
+                        deferred.resolve(forms);
+                    })
+                })
+            })
+        return deferred.promise;
+    }
+
+    function updateFormById(formId, newForm) {
+        var deferred = q.defer();
+        FormModel.findById(formId, function (err, form) {
+            for (var prop in form) {
+                if (!(typeof newForm[prop] == 'undefined')) {
+
+                    form[prop] = newForm[prop];
+                }
+            }
+            form.save(function (err) {
+                FormModel.findById(formId,function (err, form) {
+                    deferred.resolve(form);
+                })
+            })
         })
         return deferred.promise;
     }
 
-    function updateFormById(formId, form) {
-        console.log(formId);
-        console.log(form.title);
-        for (i = 0; i < mock.length; i++) {
-            if (mock[i].id == formId) {
-                mock[i].title = form.title;
-                var userId = mock[i].userId;
-                var forms = [];
-                for (i = 0; i < mock.length; i++) {
-                    if (mock[i].userId == userId) {
-                        forms.push(mock[i]);
-                    }
-                }
-                return forms;
-            }
-        }
-    }
 
     function findFieldById(fieldId, form) {
-        for (var i = 0; i < form.fields.length; i++) {
+        var deferred = q.defer();
+
+        for (i = 0; i < form.fields.length; i++) {
             if (form.fields[i].id == fieldId) {
-                return form.fields[i];
+                deferred.resolve(form.fields[i]);
             }
         }
-        return null;
+        return deferred.promise;
     }
 
     function deleteFieldById(fieldId, form) {
@@ -119,7 +107,6 @@ module.exports = function (db) {
                 form.fields.splice(i, 1);
             }
         }
-        console.log(form.fields);
         return form.fields;
     }
 

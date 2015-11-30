@@ -11,8 +11,6 @@
             findAllFormsForUser: findAllFormsForUser,
             deleteFormById: deleteFormById,
             updateFormById: updateFormById,
-            selectForm: selectForm,
-            guid: guid
         };
 
         return service;
@@ -21,7 +19,6 @@
             var deferred = $q.defer();
             $http.post("/api/assignment/user/" + userId + "/form", form)
                 .success(function (forms) {
-                    console.log("FORMS RET AFTER CREATION" + forms);
                     deferred.resolve(forms);
                 })
             return deferred.promise;
@@ -30,11 +27,8 @@
         function findAllFormsForUser(userId) {
             var deferred = $q.defer();
 
-            console.log("USERID" + userId)
-
             $http.get("/api/assignment/form/user/" + userId)
                 .success(function (forms) {
-                    console.log("FORMS IN CLIENT SERVICE" + forms)
                     deferred.resolve(forms);
                 })
             return deferred.promise;
@@ -49,15 +43,6 @@
             return deferred.promise;
         }
 
-        function selectForm(formId) {
-            var deferred = $q.defer();
-            $http.get("/api/assignment/form/" + formId)
-                .success(function (forms) {
-                    deferred.resolve(forms);
-                })
-            return deferred.promise;
-        }
-
         function updateFormById(formId, newForm) {
             var deferred = $q.defer();
             $http.put("/api/assignment/form/" + formId, newForm)
@@ -66,17 +51,5 @@
                 })
             return deferred.promise;
         }
-
-        function guid() {
-            function s4() {
-                return Math.floor((1 + Math.random()) * 0x10000)
-                  .toString(16)
-                  .substring(1);
-            }
-            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-              s4() + '-' + s4() + s4() + s4();
-        }
-
     }
-
 })();
