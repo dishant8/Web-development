@@ -6,13 +6,12 @@
     "userName": "bob",
     "password": "bob"
   },
-   {
+  {
     "id": 123,
     "firstName": "Alice",
     "lastName": "Wonderland",
     "userName": "alice",
-    "password": "alice",
-    "email":  "kguldsf"
+    "password": "alice"
   },
   {
     "id": 345,

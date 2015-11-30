@@ -21,4 +21,4 @@ module.exports = mongoose.Schema({
         type: String,
     }
 
-}, { collection: 'test.user' });
+}, { collection: 'cs5610.assignment.user' });

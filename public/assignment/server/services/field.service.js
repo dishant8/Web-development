@@ -1,6 +1,5 @@
-﻿var model = require("../models/form.model.js")();
-
-module.exports = function (app) {
+﻿
+module.exports = function (app, formModel) {
     app.get("/api/assignment/form/:formId/field", getFieldsForForm);
     app.get("/api/assignment/form/:formId/field/:fieldId", getFieldByFieldId);
     app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldByIdForForm);
@@ -9,7 +8,7 @@ module.exports = function (app) {
 
     function getFieldsForForm(req, res) {
         var formid = req.params.formId;
-        model.findFormById(formid)
+        formModel.findFormById(formid)
             .then(function (form) {
                 var output;
                 if (form == null) {
@@ -18,7 +17,6 @@ module.exports = function (app) {
                 else {
                     output = form.fields;
                 }
-//                console.log("OUTPUUT" + output);
                 res.json(output);
             });
 
@@ -27,7 +25,7 @@ module.exports = function (app) {
     function getFieldByFieldId(req, res) {
         var formid = req.params.formId;
         var fieldId = req.params.fieldId;
-        model.findFormById(formid)
+        formModel.findFormById(formid)
             .then(function (form) {
                 fields = form.fields;
                 for (i = 0; i < fields.length; i++) {
@@ -41,14 +39,13 @@ module.exports = function (app) {
     function createNewField(req, res) {
         var formId = req.params.formId;
         var newField = req.body;
-        model.findFormById(formId)
+        formModel.findFormById(formId)
             .then(function (form) {
                 var fields = form.fields;
                 fields.push(newField);
                 form.fields = fields;
-                model.updateFormById(formId, form)
+                formModel.updateFormById(formId, form)
                     .then(function (form) {
-                        console.log("CREATE FIELD" + form);
                         res.json(form);
                     });
             });
@@ -57,16 +54,16 @@ module.exports = function (app) {
     function deleteFieldByIdForForm(req, res) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        model.findFormById(formId).then(function (form) {
+        formModel.findFormById(formId).then(function (form) {
             var fields = form.fields;
             for (var i = 0; i < fields.length; i++) {
                 if (fields[i]._id == fieldId) {
-                    console.log("true");
+
                     fields.splice(i, 1);
                 }
             }
             form.fields = fields;
-            model.updateFormById(formId, form)
+            formModel.updateFormById(formId, form)
                 .then(function (forms) {
                     res.json(forms);
                 });
@@ -78,7 +75,7 @@ module.exports = function (app) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
         var fieldFromBody = req.body;
-        model.findFormById(formId).then(function (form) {
+        formModel.findFormById(formId).then(function (form) {
             var fields = form.fields;
             for (var i = 0; i < fields.length; i++) {
                 if (fields[i] == fieldId) {
@@ -87,7 +84,7 @@ module.exports = function (app) {
             }
             form.fields = fields;
 
-            model.updateFormById(formId, form)
+            formModel.updateFormById(formId, form)
                 .then(function (field) {
                     res.json(field);
                 })

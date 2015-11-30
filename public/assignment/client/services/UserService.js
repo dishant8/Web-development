@@ -4,22 +4,6 @@
         .factory("UserService", UserService);
 
     function UserService($http, $q) {
-        var currentUsers = [{
-            id: "123",
-            userName: "asdf",
-            password: "asdf",
-            firstName: "dishant",
-            lastName: "shah",
-            email: "dishant@sh.com"
-        }
-        ];
-        var courses = [
-            { title: "java", seats: 25 },
-            { title: "web", seats: 2 },
-            { title: "c", seats: 223 }
-
-        ]
-
         var service = {
             getAllCourses: getAllCourses,
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,

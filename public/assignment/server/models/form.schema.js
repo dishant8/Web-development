@@ -35,4 +35,4 @@ module.exports = mongoose.Schema({
     }
 
     ]
-}, { collection: 'test.forms3' });
+}, { collection: 'cs5610.assignment.user' });

@@ -4,7 +4,8 @@ var bodyParser = require('body-parser');
 //var q = require('q');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/cs5610fall2015exmpl1')
+mongoose.connect('mongodb://localhost/cs5610fall2015exmpl1');
+//mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/cs5610')
 var db = mongoose.connection;
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'

@@ -9,9 +9,10 @@
         model.addPage = addPage;
 
         function init() {
-            PageService.getAllPages().then(function (pages) {
-                model.pages = pages;
-            })
+            PageService.getAllPages()
+                .then(function (pages) {
+                    model.pages = pages;
+                })
         }
         init();
 

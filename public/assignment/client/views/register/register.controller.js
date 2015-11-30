@@ -7,8 +7,6 @@
 
     function RegisterController($scope, UserService, $rootScope, $location) {
 
-        $scope.courses = UserService.getAllCourses();
-
         $scope.register = function () {
 
             var userObject = {

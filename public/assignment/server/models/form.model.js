@@ -12,10 +12,6 @@ module.exports = function (db) {
         findFormByTitle: findFormByTitle,
         deleteFormById: deleteFormById,
         updateFormById: updateFormById,
-        findFieldById: findFieldById,
-        createField: createField,
-        deleteFieldById: deleteFieldById,
-        updateField: updateField,
     }
 
     return api;
@@ -81,60 +77,12 @@ module.exports = function (db) {
                 }
             }
             form.save(function (err) {
-                FormModel.findById(formId,function (err, form) {
+                FormModel.findById(formId, function (err, form) {
                     deferred.resolve(form);
                 })
             })
         })
         return deferred.promise;
     }
-
-
-    function findFieldById(fieldId, form) {
-        var deferred = q.defer();
-
-        for (i = 0; i < form.fields.length; i++) {
-            if (form.fields[i].id == fieldId) {
-                deferred.resolve(form.fields[i]);
-            }
-        }
-        return deferred.promise;
-    }
-
-    function deleteFieldById(fieldId, form) {
-        for (var i = 0; i < form.fields.length; i++) {
-            if (form.fields[i].id == fieldId) {
-                form.fields.splice(i, 1);
-            }
-        }
-        return form.fields;
-    }
-
-    function createField(newField, form) {
-        newField.id = guid();
-        form.fields.push(newField);
-        return form.fields;
-    }
-
-    function updateField(fieldId, formFields, form) {
-        for (var i = 0; i < form.fields.length; i++) {
-            if (form.fields[i].id == fieldId) {
-                form.fields[i] = formFields;
-            }
-        }
-        return form.fields;
-    }
-
-
-    function guid() {
-        function s4() {
-            return Math.floor((1 + Math.random()) * 0x10000)
-                .toString(16)
-                .substring(1);
-        }
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-            s4() + '-' + s4() + s4() + s4();
-    }
-
 
 }
