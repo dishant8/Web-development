@@ -1,0 +1,43 @@
+﻿<div ng-controller="MenuProfileController">
+    <h1>MENU</h1>
+    <div class="col-sm-5">
+        <h4>Add New Food-Item</h4><input ng-model="itemName" class="form-control" />
+
+        <div class="menu-add-edit"><h4>Add Cost in $</h4><input ng-model="costPerItem" class="form-control" /></div>
+
+        <button ng-click="addToMenu()" class="form-control btn btn-info">Add to Menu</button>
+        <button ng-click="updateMenu()" class="form-control btn btn-primary">Update Menu</button>  {{selectItemToEdit}}
+
+    </div>
+
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ITEM</th>
+                    <th>PRICE</th>
+                    <th> ACTION </th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ng-repeat="menu in allMenu">
+                    <td>{{menu.item}}</td>
+                    <td>{{menu.costPerItem}}</td>
+                    <td>
+                        <a ng-click="selectMenu(menu._id,menu.item,menu.costPerItem,menu)" class="btn btn-primary">
+                            Edit FoodItem
+                        </a>
+                        <a ng-click="deleteMenu(menu._id)" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="body-image">
+        <img src="views/images/homecooked5.jpg" alt="Event">
+    </div>
+</div>

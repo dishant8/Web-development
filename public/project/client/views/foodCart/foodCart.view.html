@@ -1,0 +1,32 @@
+﻿
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ItemName</th>
+                <th>Price</th>
+                <th>Action</th>
+                <th>Quantity</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr ng-repeat="order in model.orderMade">
+                <td>{{order.item}}</td>
+                <td>{{order.costPerItem}}</td>
+                <td>
+                    <a class="btn btn-primary">
+                        <scan class="glyphicon glyphicon-remove"></scan>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-block">Proceed to Checkout   </button>
+
+    <div id="body-image">
+        <img src="views/images/homecooked5.jpg" alt="Event">
+    </div>
+</div>
+

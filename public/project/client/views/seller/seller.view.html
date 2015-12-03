@@ -1,0 +1,33 @@
+﻿
+<div  ng-controller="SellerController">
+    <div class="row">
+        <h2>{{seller.userName}}</h2>
+        <div class="menu">
+            <div class="col-sm-2">
+                <a href="#/seller/menu/{{seller._id}}" class="btn btn-danger">MENU</a>
+            </div>
+
+            <div class="col-sm-2">
+                <a href="#/reciepe" class="btn btn-danger">RECIPIES</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Reviews</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Comment1</td></tr>
+                <tr><td>Comment1</td></tr>
+                <tr><td>Comment1</td></tr>
+                <tr><td>Comment1</td></tr>
+
+            </tbody>
+
+        </table>
+    </div>
+</div>

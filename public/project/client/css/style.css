@@ -1,0 +1,95 @@
+
+#navigate {
+    float : right;
+    font-size: 20px;
+}
+
+.nav-pills > li {
+    float: right;
+    font-size: 20px;
+}
+
+#upper-header {
+    border-bottom: black solid;
+    border-right: black solid;
+    border-left: black solid;
+    border-top: black solid;
+}
+
+body {
+    padding-top: 40px;
+}
+
+#body-image img {
+    /* z-index: -1;
+	width: 100%;
+	position: absolute;
+	min-height: 400px; */
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0.6;
+}
+
+.menu {
+    padding-top: 1cm;
+}
+
+#welcome {
+    padding-top: 3cm;
+    font-size: 40px;
+    color: #1E1E6B;
+    text-align: center;
+}
+
+.title-text {
+    font-size: 40px;
+    text-shadow: -1px 0 #EC6952, 0 1px #EC6952, 1px 0 #EC6952, 0 -1px #EC6952;
+    text-align: center;
+}
+
+#home2 {
+    text-align: center;
+    padding-top: 2cm;
+}
+
+.sellersAround {
+    padding-bottom: 1cm;
+}
+
+#header-navbar {
+    height: 80px;
+}
+
+.sidebar-mainpage {
+    padding-top: 1.2cm;
+}
+
+
+.header-text-1 {
+    font-size: x-large;
+    color:aqua;
+    padding : 16px 0px 20px 20px;
+}
+
+.navbar-brand {
+    font-size: xx-large;
+    color: aqua;
+}
+
+.navbar {
+    background-color: #126C82;
+}
+
+.map-edit {
+    padding-bottom: 40px;
+}
+
+.menu-add-edit {
+    padding-bottom: 20px;
+}
+

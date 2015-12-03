@@ -45,12 +45,14 @@
 
                 var formId = formForUpdate._id;
                 var newForm = {
-                    "idForUser": user._id,
-                    title: $scope.formName
+                    "title": $scope.formName
                 }
+                console.log("THIS" + newForm.formName);
                 if ($scope.formName) {
                     FormService.updateFormById(formId, newForm)
                             .then(function (forms) {
+
+                                console.log("HUKGHKLH" + forms);
                                 $scope.forms = forms;
                                 $scope.formName = "";
                             })

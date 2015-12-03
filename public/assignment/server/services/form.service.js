@@ -38,7 +38,6 @@
         var newForm = req.body;
         formModel.updateFormById(formId, newForm)
             .then(function (forms) {
-
                 res.json(forms);
             });
     }

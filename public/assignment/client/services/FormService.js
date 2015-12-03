@@ -43,10 +43,14 @@
             return deferred.promise;
         }
 
-        function updateFormById(formId, newForm) {
+        function updateFormById(formId,newForm) {
             var deferred = $q.defer();
             $http.put("/api/assignment/form/" + formId, newForm)
                 .success(function (forms) {
+                    console.log(forms);
+                    for (var i = 0; i < forms.length; i++) {
+                        console.log(forms[i].title);
+                    }
                     deferred.resolve(forms);
                 })
             return deferred.promise;

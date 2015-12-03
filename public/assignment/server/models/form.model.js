@@ -69,19 +69,22 @@ module.exports = function (db) {
 
     function updateFormById(formId, newForm) {
         var deferred = q.defer();
-        FormModel.findById(formId, function (err, form) {
-            for (var prop in form) {
-                if (!(typeof newForm[prop] == 'undefined')) {
-
-                    form[prop] = newForm[prop];
+        console.log("BCCC");
+        findFormById(formId)
+            .then(function (form) {
+                userId = form.idForUser;
+                for (var prop in form) {
+                    if (!(typeof newForm[prop] == 'undefined')) {
+                        form[prop] = newForm[prop];
+                    }
                 }
-            }
-            form.save(function (err) {
-                FormModel.findById(formId, function (err, form) {
-                    deferred.resolve(form);
+                form.save(function (err) {
+                    findAllFormsForUser(userId)
+                        .then(function (forms) {
+                            deferred.resolve(forms);
+                        })
                 })
             })
-        })
         return deferred.promise;
     }
 
