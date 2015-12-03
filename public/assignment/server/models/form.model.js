@@ -81,6 +81,7 @@ module.exports = function (db) {
                 form.save(function (err) {
                     findAllFormsForUser(userId)
                         .then(function (forms) {
+                            console.log("FORMS FROM MODEL" + forms);
                             deferred.resolve(forms);
                         })
                 })

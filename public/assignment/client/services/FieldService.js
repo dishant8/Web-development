@@ -14,12 +14,10 @@
         return api;
 
         function createField(formId, field) {
-            console.log("AYA");
-            console.log(field);
             var deferred = $q.defer();
             $http.post("/api/assignment/form/" + formId + "/field", field)
                 .success(function (response) {
-                    console.log("RESPONSE" + response.fields);
+                    console.log("RESPONSE--- " + response.fields);
                     deferred.resolve(response);
                 });
             return deferred.promise;
@@ -47,7 +45,7 @@
             var deferred = $q.defer();
             $http.delete("/api/assignment/form/" + formid + "/field/" + fieldId)
                 .success(function (response) {
-                    console.log("AFTER DELETE"+response)
+                    console.log("AFTER DELETE---" + response.title);
                     deferred.resolve(response);
                 });
             return deferred.promise;

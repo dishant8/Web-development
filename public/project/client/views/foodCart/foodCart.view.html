@@ -15,7 +15,7 @@
                 <td>{{order.item}}</td>
                 <td>{{order.costPerItem}}</td>
                 <td>
-                    <a class="btn btn-primary">
+                    <a ng-click="model.removeItem(order._id)" class="btn btn-primary">
                         <scan class="glyphicon glyphicon-remove"></scan>
                     </a>
                 </td>

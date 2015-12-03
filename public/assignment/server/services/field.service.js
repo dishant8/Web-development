@@ -45,8 +45,11 @@ module.exports = function (app, formModel) {
                 fields.push(newField);
                 form.fields = fields;
                 formModel.updateFormById(formId, form)
-                    .then(function (form) {
-                        res.json(form);
+                    .then(function (forms) {
+                        formModel.findFormById(formId)
+                            .then(function (form) {
+                                res.json(form);
+                            })
                     });
             });
     }
@@ -54,20 +57,25 @@ module.exports = function (app, formModel) {
     function deleteFieldByIdForForm(req, res) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        formModel.findFormById(formId).then(function (form) {
-            var fields = form.fields;
-            for (var i = 0; i < fields.length; i++) {
-                if (fields[i]._id == fieldId) {
-
-                    fields.splice(i, 1);
+        formModel.findFormById(formId)
+            .then(function (form) {
+                var fields = form.fields;
+                for (var i = 0; i < fields.length; i++) {
+                    if (fields[i]._id == fieldId) {
+                        fields.splice(i, 1);
+                    }
                 }
-            }
-            form.fields = fields;
-            formModel.updateFormById(formId, form)
-                .then(function (forms) {
-                    res.json(forms);
-                });
-        });
+                form.fields = fields;
+                formModel.updateFormById(formId, form)
+                    .then(function (forms) {
+                        formModel.findFormById(formId)
+                            .then(function (form) {
+                                console.log("FORMS AFTER DELETION" + form);
+                                res.json(form);
+
+                            });
+                    });
+            });
     }
 
 

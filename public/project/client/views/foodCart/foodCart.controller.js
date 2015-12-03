@@ -8,6 +8,8 @@
         var model = this;
         var user = $rootScope.user;
 
+        model.removeItem = removeItem;
+
         function findAllOrders() {
             UserService.findUserById(user._id)
                 .then(function (user) {
@@ -16,5 +18,9 @@
                 })
         }
         findAllOrders();
+
+        function removeItem(menuId) {
+            UserService.delete
+        }
     }
 })();

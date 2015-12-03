@@ -19,7 +19,6 @@
         findFieldForForms();
 
         $scope.addField = function (fieldType) {
-            console.log(fieldType);
             var formId = $routeParams.formId;
 
             if (formId != undefined) {
@@ -67,6 +66,7 @@
 
                 FieldService.createFieldForForm(formId, newField)
                     .then(function (form) {
+
                         $scope.fields = form.fields;
                     });
             } else {
@@ -75,7 +75,6 @@
         }
 
         $scope.removeField = function (fieldId) {
-            console.log(fieldId);
             var formid = $routeParams.formId;
             FieldService.deleteFieldForForm(formid, fieldId)
                 .then(function (form) {
