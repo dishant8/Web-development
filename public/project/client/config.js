@@ -32,21 +32,32 @@
         })
         .when("/seller/:sellerId", {
             templateUrl: "views/seller/seller.view.html",
+            controller: "SellerController",
+            controllerAs: "model"
+
         })
         .when("/cook", {
             templateUrl: "views/userCook/userCook.view.html",
+            controller: "UserCookController",
+            controllerAs : "model"
         })
         .when("/userAsCook/menu", {
             templateUrl: "views/menu/menu.view.profile.html",
+        })
+        .when("/userAsCook/reciepe", {
+            templateUrl: "views/reciepe/reciepe.profile.view.html",
+            controller: "ReciepeProfileController",
+            controllerAs: "model"
         })
         .when("/seller/menu/:sellerId", {
             templateUrl: "views/menu/menu.view.html",
             controller: "MenuController",
             controllerAs: "model"
         })
-        .when("/reciepe", {
+        .when("/seller/reciepe/:sellerId", {
             templateUrl: "views/reciepe/reciepe.view.html",
-
+            controller: "ReciepeController",
+            controllerAs: "model"
         })
 		.when("/foodCart", {
 		    templateUrl: "views/foodCart/foodCart.view.html",

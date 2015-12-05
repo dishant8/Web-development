@@ -29,7 +29,7 @@ module.exports = mongoose.Schema({
             "value": String,
         }],
 
-        "palceholder": {
+        "placeholder": {
             type: String
         }
     }

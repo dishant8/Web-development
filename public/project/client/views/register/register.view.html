@@ -1,10 +1,11 @@
 <h1>Register</h1>
 
 <form class="form-horizontal" ng-controller="RegisterController">
+    <h3>{{dontMatch}}</h3>
     <div class="form-group">
         <label for="name" class="col-sm-1 control-label">FirstName</label>
         <div class="col-sm-8">
-            <input ng-model="Name" type="text" class="form-control" id="name"
+            <input ng-model="firstName" type="text" class="form-control" id="name"
                    placeholder="Name    ">
         </div>
     </div>
@@ -38,7 +39,6 @@
                    placeholder="Verify Password">
         </div>
     </div>
-
     <div class="form-group">
         <label for="email" class="col-sm-1 control-label">Email</label>
         <div class="col-sm-8">

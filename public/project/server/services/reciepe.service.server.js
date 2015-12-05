@@ -4,21 +4,21 @@
     //    app.get("/api/project/user", findAllUsers);
     //    app.get("/api/project/user/:username", findUserByUsername);
     //    app.get("/api/project/userById/:userId", findUserById);
-    app.post("/api/project/menu/:userId", createNewMenu)
-    app.put("/api/project/menu/update/:userId", updateMenu);
-    app.delete("/api/project/menu/delete/:userId/:menuId", deleteMenu);
+    app.post("/api/project/reciepe/:userId", createNewReciepe)
+    app.put("/api/project/reciepe/update/:userId", updateReciepe);
+    app.delete("/api/project/reciepe/delete/:userId/:reciepeId", deleteReciepe);
 
 
-    function createNewMenu(req, res) {
+    function createNewReciepe(req, res) {
         var userId = req.params.userId;
-        var newMenu = req.body;
+        var newReciepe = req.body;
         userModel.findUserById(userId)
             .then(function (user) {
                 //  console.log("USER---" + user);
-                var menu = user.seller.menu;
+                var reciepes = user.seller.reciepes;
                 //                console.log(newMenu);
-                menu.push(newMenu);
-                user.seller.menu = menu;
+                reciepes.push(newReciepe);
+                user.seller.reciepes = reciepes;
                 //              console.log("AFTER ADDING" + user.seller.menu);
                 userModel.updateUser(userId, user)
                     .then(function (user) {
@@ -28,18 +28,18 @@
             })
     }
 
-    function deleteMenu(req, res) {
+    function deleteReciepe(req, res) {
         var userId = req.params.userId;
-        var menuId = req.params.menuId;
+        var reciepeId = req.params.reciepeId;
         userModel.findUserById(userId)
             .then(function (user) {
-                var menu = user.seller.menu;
-                for (var i = 0; i < menu.length; i++) {
-                    if (menu[i]._id == menuId) {
-                        menu.splice(i, 1);
+                var reciepes = user.seller.reciepes;
+                for (var i = 0; i < reciepes.length; i++) {
+                    if (reciepes[i]._id == reciepeId) {
+                        reciepes.splice(i, 1);
                     };
                 }
-                user.seller.menu = menu;
+                user.seller.reciepes = reciepes;
                 userModel.updateUser(userId, user)
                     .then(function (user) {
                         //                        console.log("USER UPDATED" + user.seller.menu);
@@ -48,18 +48,18 @@
             })
     }
 
-    function updateMenu(req, res) {
+    function updateReciepe(req, res) {
         var userId = req.params.userId;
-        var updatedMenu = req.body;
+        var updatedReciepe = req.body;
         userModel.findUserById(userId)
             .then(function (user) {
-                var menu = user.seller.menu;
-                for (var i = 0; i < menu.length; i++) {
-                    if (menu[i]._id == updatedMenu._id) {
-                        menu[i] = updatedMenu;
+                var reciepes = user.seller.reciepes;
+                for (var i = 0; i < reciepes.length; i++) {
+                    if (reciepes[i]._id == updatedReciepe._id) {
+                        reciepes[i] = updatedReciepe;
                     };
                 }
-                user.seller.menu = menu;
+                user.seller.reciepes = reciepes;
                 userModel.updateUser(userId, user)
                     .then(function (user) {
                         res.json(user);

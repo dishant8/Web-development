@@ -1,6 +1,6 @@
 
 #navigate {
-    float : right;
+    float: right;
     font-size: 20px;
 }
 
@@ -69,11 +69,10 @@ body {
     padding-top: 1.2cm;
 }
 
-
 .header-text-1 {
     font-size: x-large;
-    color:aqua;
-    padding : 16px 0px 20px 20px;
+    color: aqua;
+    padding: 16px 0px 20px 20px;
 }
 
 .navbar-brand {
@@ -93,3 +92,24 @@ body {
     padding-bottom: 20px;
 }
 
+.text-center {
+    text-align: center !important;
+}
+
+.glyphicon-edit {
+    font-size: 20px;
+}
+
+#textareaEdit {
+    width: 475px;
+    height: 50px;
+    vertical-align: middle;
+}
+
+.ul, li {
+    list-style-type: none;
+}
+
+.search_field {
+    padding-bottom: 30px;
+}

@@ -32,7 +32,7 @@
             var deferred = $q.defer();
             $http.get("/api/project/user")
                 .success(function (users) {
-                    
+
                     deferred.resolve(users);
                 })
             return deferred.promise;
@@ -48,8 +48,7 @@
         }
         function findUserById(userId) {
             var deferred = $q.defer();
-            console.log("IDHAR AYA KYA");
-            console.log(userId);
+
             $http.get("/api/project/userById/" + userId)
                 .success(function (user) {
                     deferred.resolve(user);
@@ -59,6 +58,7 @@
 
         function createUser(userObject) {
             var deferred = $q.defer();
+            
             $http.post("/api/project/user", userObject)
             .success(function (user) {
                 deferred.resolve(user);
@@ -66,12 +66,11 @@
             return deferred.promise;
         }
 
-        function updateUser(id, userObject) {
+        function updateUser(userId, userObject) {
             var deferred = $q.defer();
 
-            $http.put("/api/project/user/" + id, userObject)
+            $http.put("/api/project/user/" + userId, userObject)
                 .success(function (user) {
-
                     deferred.resolve(user);
                 })
             return deferred.promise;

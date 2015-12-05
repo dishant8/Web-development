@@ -12,7 +12,6 @@ module.exports = mongoose.Schema({
     "firstName": {
         type: String,
     },
-
     "lastName": {
         type: String,
     },
@@ -22,7 +21,16 @@ module.exports = mongoose.Schema({
     },
 
     "location": {
-        type: String,
+        "lat": {
+            type: String,
+        },
+        "lng": {
+            type: String,
+        }
+    },
+
+    "totalBill": {
+        type: Number
     },
 
     "buyer": [{
@@ -34,16 +42,23 @@ module.exports = mongoose.Schema({
             type: String
         },
 
+        "nameOfSeller": {
+            type: String
+        },
+
         "userProviding": {
             type: String
         },
 
-        "quantiy": {
-            type: String
+        "quantity": {
+            type: Number
         },
 
         "costPerItem": {
-            type: String
+            type: Number
+        },
+        "total": {
+            type: Number
         },
     }
     ],
@@ -61,15 +76,43 @@ module.exports = mongoose.Schema({
                 type: Number,
             }
         }],
-        "recipies": {
-            type: String
-        },
+        "reciepes": [{
+            "reciepeName": {
+                type: String
+            },
+            "reciepeDescription": {
+                type: String
+            }
+        }],
+
+        "reviews": [{
+            "reviewMadeById": {
+                type: String
+            },
+            "reviewMadeByName": {
+                type: String
+            },
+
+            "reviewDescription": {
+                type: String
+            }
+        }],
 
         "orders": {
             type: String
         }
 
 
-    }
+    },
+
+    "reviewsByMe": [{
+        "reviewMadeOn": {
+            type: String
+        },
+        "review": {
+            type: String
+        }
+
+    }]
 
 }, { collection: 'cs5610.project.test_1.user' });

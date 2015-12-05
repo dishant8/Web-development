@@ -57,7 +57,6 @@
         var userObject = req.body;
         userModel.updateUser(userId, userObject)
             .then(function (user) {
-                console.log("UPDATED USER ORDER" + user.buyer);
                 res.json(user);
             });
     }

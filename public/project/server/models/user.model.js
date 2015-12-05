@@ -70,6 +70,7 @@ module.exports = function (db) {
                 }
             }
             user.save(function (error) {
+                console.log("UPDATED USER" + user.location.lat)
                 deferred.resolve(user);
             });
 

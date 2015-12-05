@@ -42,7 +42,6 @@
 
         $scope.deleteUserById = function (user) {
             var userId = user.id;
-            console.log(userId);
             UserService.deleteUserById(userId)
             .then(function (users) {
                 $scope.users = users;

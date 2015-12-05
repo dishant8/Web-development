@@ -10,8 +10,13 @@
 
         return api;
 
-        function deleteFoodCartItem() {
-
+        function deleteFoodCartItem(userId, itemId) {
+            var deferred = $q.defer();
+            $http.delete("/api/project/user/foodcart/" + userId + "/" + itemId)
+                .success(function (user) {
+                    deferred.resolve(user);
+                })
+            return deferred.promise;
         }
     }
 })();

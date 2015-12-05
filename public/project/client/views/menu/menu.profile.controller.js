@@ -25,18 +25,15 @@
                     $scope.itemName = "";
                     $scope.costPerItem = "";
                     $scope.allMenu = user.seller.menu;
-                    console.log($scope.allMenu);
                 })
         }
 
         $scope.deleteMenu = function (menuId) {
-            console.log("ID--" + menuId);
             MenuService.deleteMenu(user._id, menuId)
                 .then(function (user) {
                     var check = user.seller.menu;
-                    console.log("CHECK" + check);
                     for (var i = 0; i < check.length; i++) {
-                        console.log("DELETED" + check[i].item);
+//                        console.log("DELETED" + check[i].item);
                     }
                     $scope.allMenu = user.seller.menu;
 
@@ -45,7 +42,6 @@
 
         $scope.selectMenu = function (menuId, itemName, costPerItem) {
             menuForUpdate = menuId;
-            console.log("MENUID----" + menuId);
             $scope.itemName = itemName;
             $scope.costPerItem = costPerItem;
             var menuAfterSelect = [];
@@ -59,7 +55,6 @@
                             menuAfterSelect.push(menu[i]);
                         }
                     }
-                    console.log("AFTER SELECT" + menuAfterSelect);
                     $scope.allMenu = menuAfterSelect;
                 })
 
