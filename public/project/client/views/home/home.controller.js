@@ -39,6 +39,7 @@
             $scope.lat = position.coords.latitude;
             $scope.lng = position.coords.longitude;
             $scope.where = $scope.lat + "," + $scope.lng;
+            console.log("LOCATION" +$scope.where)
         }
 
         function findUsersUsingLocation() {
