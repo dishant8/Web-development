@@ -1,12 +1,16 @@
 ﻿
 <div class="">
+    <div class="col-sm-12">
+        <h2 class="col-sm-12 sellerHeader">We provide you a platform to advertise your food making ART</h2>
+    </div>
+
     <form class="navbar-form navbar-left sellersAround">
-        <label for="search">Add your location so users find you.</label>
+        <label for="search" class="inputSearch">Add your location so users find you.</label>
         <input id="search" type="text" ng-model="model.searchQuery" googleplace class="form-control" placeholder="Search...">
         <a ng-click="model.addLocation()" class="btn btn-primary">Add a location</a>
     </form>
 
-    <div class="col-sm-12 map-edit" id="map" map-lazy-load="https://maps.google.com/maps/api/js">
+    <div class="col-sm-12 map-edit" map-lazy-load="https://maps.google.com/maps/api/js">
         <ng-map center="{{model.where}}" zoom="10">
 
             <marker position="{{model.where}}"></marker>
@@ -17,26 +21,24 @@
     </div>
 
     <div class="row menu sellersAround">
-        <div class="col-sm-2">
-            <a href="#/userAsCook/menu" class="btn btn-danger">MENU</a>
+        <div class="col-sm-12">
+            <h3 class="menuAndRecipe col-sm-4 col-sm-offset-4">Make Your own Menu</h3>
+            <a href="#/userAsCook/menu" class="btn btn-primary col-sm-4 col-sm-offset-4">MENU</a>
         </div>
 
-        <div class="col-sm-2 sellersAround">
-            <a href="#/userAsCook/reciepe" class="btn btn-danger">Reciepes</a>
+        <div class="col-sm-12 sellersAround">
+            <h3 class="menuAndRecipe col-sm-4 col-sm-offset-4">Add some recipes and share your talent with everyone</h3>
+            <a href="#/userAsCook/reciepe" class="btn btn-primary col-sm-4 col-sm-offset-4">Recipes</a>
         </div>
 
         <div id="body-image">
             <!-- <img src="/project/images/homecooked5.jpg" alt="Event">-->
         </div>
 
-        {{model.where}}
     </div>
 
-    <div id="body-image">
+    <!--<div id="body-image">
         <img src="views/images/homecooked5.jpg" alt="Event">
-    </div>
-
-    {{model.lat}}
-    {{model.lng}}
+    </div>-->
 </div>
 

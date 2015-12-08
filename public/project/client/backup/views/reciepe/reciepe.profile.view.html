@@ -1,0 +1,48 @@
+﻿
+<h2>Add some awesome reciepes and attract customers</h2>
+
+<div class="col-sm-5">
+    <h4>Provide a Reciepe Name:</h4><input ng-model="model.reciepeName" class="form-control" />
+
+    <div class="menu-add-edit">
+        <h4>Add a description:</h4>
+        <textarea id="textareaEdit" maxlength="100" ng-model="model.reciepeDescription"></textarea>
+        <span>Max length 100 letters</span>
+    </div>
+
+    <button ng-click="model.addToReciepe()" class="form-control btn btn-info">Add to Reciepes</button>
+    <button ng-click="model.updateReciepe()" class="form-control btn btn-primary">Update Reciepes</button>  {{selectItemToEdit}}
+
+</div>
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr ng-repeat="reciepe in model.allReciepes">
+                <td>{{reciepe.reciepeName}}</td>
+                <td>{{reciepe.reciepeDescription}}</td>
+                <td>
+                    <a ng-click="model.selectReciepe(reciepe._id,reciepe.reciepeName,reciepe.reciepeDescription)"
+                       class="btn btn-primary">
+                        Edit Reciepe
+                    </a>
+                    <a ng-click="model.deleteReciepe(reciepe._id)" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="body-image">
+    <img src="views/images/homecooked5.jpg" alt="Event">
+</div>
+</div>

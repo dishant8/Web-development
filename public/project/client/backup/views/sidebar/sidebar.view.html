@@ -1,0 +1,6 @@
+﻿<ul class="nav nav-pills adjust" ng-controller="SidebarController">
+    <li ng-if="user" ng-class="{'active' : $location.url().indexOf('home') != -1}"><a href="#/home2">Home</a></li>
+    <li ng-if="user" ng-class="{'active' : $location.url().indexOf('userHome') != -1}"><a href="#/userHome">Buyer</a></li>
+    <li ng-if="user" ng-class="{'active' : $location.url().indexOf('cook') != -1}"><a href="#/cook">Seller</a></li>
+    <li ng-if="user" ng-class="{'active' : $location.url().indexOf('orderHistory') != -1}"><a href="#/orderHistory">Order History</a></li>
+</ul>

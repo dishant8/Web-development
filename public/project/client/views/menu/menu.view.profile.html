@@ -1,15 +1,16 @@
 ﻿<div ng-controller="MenuProfileController">
-    <h1>MENU</h1>
-    <div class="col-sm-5">
-        <h4>Add New Food-Item</h4><input ng-model="itemName" class="form-control" />
+    <div class="col-sm-12">
+        <h1>MENU</h1>
+        <div class="">
+            <h4>Add New Food-Item</h4><input ng-model="itemName" class="form-control" />
 
-        <div class="menu-add-edit"><h4>Add Cost in $</h4><input ng-model="costPerItem" class="form-control" /></div>
+            <div class="menu-add-edit"><h4>Add Cost in $</h4><input ng-model="costPerItem" class="form-control" /></div>
 
-        <button ng-click="addToMenu()" class="form-control btn btn-info">Add to Menu</button>
-        <button ng-click="updateMenu()" class="form-control btn btn-primary">Update Menu</button>  {{selectItemToEdit}}
+            <button ng-click="addToMenu()" class="form-control btn btn-info ">Add to Menu</button>
+            <button ng-click="updateMenu()" class="form-control btn btn-primary">Update Menu</button>  {{selectItemToEdit}}
 
+        </div>
     </div>
-
     <div>
         <table class="table table-striped">
             <thead>
@@ -37,7 +38,7 @@
         </table>
     </div>
 
-    <div id="body-image">
+    <!--<div id="body-image">
         <img src="views/images/homecooked5.jpg" alt="Event">
-    </div>
+    </div>-->
 </div>

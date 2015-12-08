@@ -1,67 +1,63 @@
 ﻿
-<div>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ItemName</th>
-                <th>Seller</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="order in model.orderMade">
-                <td>{{order.item}}</td>
-                <td>
-                    <a href="#/seller/{{order.userProviding}}">{{order.nameOfSeller}}</a>
-                </td>
-                <td>${{order.costPerItem}}</td>
-                <td>
-                    <div class="form-group">
-                        <div>
-                            <div class=" col-md-3">
-                                <select id="add" class="form-control" ng-model="model.quantity">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10+">10+</option>
-                                </select>
-                            </div>
-                            <div class="container-fluid">
-                                <a ng-click="model.updateOrder(order,model.quantity)">
-                                    <div>
-                                        <span class="glyphicon glyphicon-edit"></span>
-                                    </div>
-                                </a>
-                            </div>
+<table class="table table-striped checkOutTable">
+    <thead>
+        <tr>
+            <th>ItemName</th>
+            <th>Seller</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="order in model.orderMade">
+            <td>{{order.item}}</td>
+            <td>
+                <a href="#/seller/{{order.userProviding}}">{{order.nameOfSeller}}</a>
+            </td>
+            <td>${{order.costPerItem}}</td>
+            <td>
+                <div class="form-group">
+                    <div>
+                        <div class=" col-md-3">
+                            <select id="add" class="form-control" ng-model="model.quantity">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10+">10+</option>
+                            </select>
+                        </div>
+                        <div class="container-fluid">
+                            <a ng-click="model.updateOrder(order,model.quantity)">
+                                <div>
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                </td>
-                <td>
-                    {{order.total}}
-                </td>
-                <td>
-                    <a ng-click="model.removeItem(order._id)" class="btn btn-primary">
-                        <scan class="glyphicon glyphicon-remove"></scan>
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                </div>
+            </td>
+            <td>
+                {{order.total}}
+            </td>
+            <td>
+                <a ng-click="model.removeItem(order._id)" class="btn btn-primary">
+                    <scan class="glyphicon glyphicon-remove"></scan>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-    <h3>SubTotal {{model.totalBill}}</h3>
+<h3 class="checkOutTable">SubTotal {{model.totalBill}}</h3>
+<div>
     <button class="btn btn-block">Proceed to Checkout   </button>
-
-    <div id="body-image">
-        <img src="views/images/homecooked5.jpg" alt="Event">
-    </div>
 </div>
 

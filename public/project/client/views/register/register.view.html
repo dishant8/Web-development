@@ -1,60 +1,78 @@
-<h1>Register</h1>
+<div class="container">
+    <h1>Register</h1>
+    <section id="registration" class="container">
 
-<form class="form-horizontal" ng-controller="RegisterController">
-    <h3>{{dontMatch}}</h3>
-    <div class="form-group">
-        <label for="name" class="col-sm-1 control-label">FirstName</label>
-        <div class="col-sm-8">
-            <input ng-model="firstName" type="text" class="form-control" id="name"
-                   placeholder="Name    ">
-        </div>
-    </div>
+        <form class="form-horizontal css-form center" role="form" ng-controller="RegisterController">
+            <h3>{{model.dontMatch}}</h3>
 
-    <div class="form-group">
-        <label for="lastName" class="col-sm-1 control-label">LastName</label>
-        <div class="col-sm-8">
-            <input ng-model="lastName" type="text" class="form-control" id="lastName"
-                   placeholder="LastName">
-        </div>
-    </div>
+            <fieldset class="registration-form">
+                <div class="form-group">
+                    <label for="name" class="col-sm-1 control-label">
+                        FirstName
+                    </label>
 
-    <div class="form-group">
-        <label for="username" class="col-sm-1 control-label">Username</label>
-        <div class="col-sm-8">
-            <input ng-model="userName" type="text" class="form-control" id="username"
-                   placeholder="Username">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="password" class="col-sm-1 control-label">Password</label>
-        <div class="col-sm-8">
-            <input ng-model="password" type="password" class="form-control" id="password"
-                   placeholder="Password">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="verify password" class="col-sm-1 control-label">Verify Password</label>
-        <div class="col-sm-8">
-            <input ng-model="verifyPassword" type="password" class="form-control" id="verify password"
-                   placeholder="Verify Password">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="email" class="col-sm-1 control-label">Email</label>
-        <div class="col-sm-8">
-            <input ng-model="email" type="email" class="form-control" id="email"
-                   placeholder="Email">
-        </div>
-    </div>
+                    <div class="form-group input-group col-sm-4">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input ng-model="model.firstName" class="form-control" type="text" name='username' placeholder="username" />
+                    </div>
+                </div>
 
-    <div class="form-group">
-        <div class="col-lg-1"></div>
-        <div class=" col-sm-8">
-            <a ng-click="register()" class="btn btn-primary btn-group-justified"> Register to get variety of food </a>
-        </div>
-    </div>
-</form>
 
-<div id="body-image">
-    <img src="views/images/homecooked5.jpg" alt="Event">
+
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-1 control-label">LastName</label>
+                    <div class="form-group input-group col-sm-4">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input ng-model="model.lastName" type="text" class="form-control" id="lastName"
+                               placeholder="LastName" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="username" class="col-sm-1 control-label">Username</label>
+                    <div class="form-group input-group col-sm-4">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input ng-model="model.userName" type="text" class="form-control" id="username"
+                               placeholder="Username" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="col-sm-1 control-label">Password</label>
+                    <div class="form-group input-group col-sm-4">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input ng-model="model.password" type="password" class="form-control" id="password"
+                               placeholder="Password" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="verify password" class="col-sm-1 control-label">Verify Password</label>
+                    <div class="form-group input-group col-sm-4">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input ng-model="model.verifyPassword" type="password" class="form-control" id="verify password"
+                               placeholder="Verify Password" required>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label for="email" class="col-sm-1 control-label">Email</label>
+                    <div class="form-group input-group col-sm-4">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input type="email" ng-model="model.email" class="form-control" id="email" placeholder="Email" required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-1"></div>
+                    <div class="form-group input-group col-sm-4">
+                        <a ng-click="model.register()" class="btn btn-primary btn-group-justified"> Register to get variety of food </a>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+        <div id="body-image">
+            <!-- <img src="views/images/homecooked5.jpg" alt="Event">-->
+        </div>
+    </section>
 </div>

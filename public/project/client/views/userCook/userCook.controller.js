@@ -57,7 +57,6 @@
                     model.error = "An unknown error occurred."
                     break;
             }
-            model.$apply();
         }
 
         function showPosition(position) {

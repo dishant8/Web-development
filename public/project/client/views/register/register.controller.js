@@ -5,27 +5,33 @@
         .controller("RegisterController", RegisterController);
 
 
-    function RegisterController($scope, UserService, $rootScope, $location) {
+    function RegisterController(UserService, $rootScope, $location) {
+        var model = this;
+        model.register = register;
 
-        $scope.register = function () {
-            if ($scope.password == $scope.verifyPassword) {
-                var userObject = {
-                    firstName: $scope.firstName,
-                    lastName: $scope.lastName,
-                    userName: $scope.userName,
-                    password: $scope.password,
-                    email: $scope.email
+        function register() {
+            if (model.firstName && model.lastName && model.password && model.verifyPassword) {
+                if (model.password == model.verifyPassword) {
+                    var userObject = {
+                        firstName: model.firstName,
+                        lastName: model.lastName,
+                        userName: model.userName,
+                        password: model.password,
+                        email: model.email
+                    }
+                    console.log(userObject);
+
+                    UserService.createUser(userObject)
+                        .then(function (user) {
+                            $rootScope.user = user;
+                            $location.path("/home2");
+                        });
                 }
-                console.log(userObject);
-
-                UserService.createUser(userObject)
-                    .then(function (user) {
-                        $rootScope.user = user;
-                        $location.path("/home2");
-                    });
-            }
-            else {
-                $scope.dontMatch = "Password do not match";
+                else {
+                    model.dontMatch = "Password do not match";
+                }
+            } else {
+                model.dontMatch = "Enter Required Fields"
             }
         }
     }

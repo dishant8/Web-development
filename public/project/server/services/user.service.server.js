@@ -5,7 +5,7 @@
     app.get("/api/project/user/:username", findUserByUsername);
     app.get("/api/project/userById/:userId", findUserById);
     app.post("/api/project/user", createUser)
-    app.put("/api/project/user/:id", updateUser);
+    app.put("/api/project/user/:userId", updateUser);
     app.delete("/api/project/user/:id", deleteUserById);
 
     function findUser(req, res) {
@@ -53,7 +53,7 @@
     }
 
     function updateUser(req, res) {
-        var userId = req.params.id;
+        var userId = req.params.userId;
         var userObject = req.body;
         userModel.updateUser(userId, userObject)
             .then(function (user) {

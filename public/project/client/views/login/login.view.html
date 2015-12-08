@@ -1,29 +1,31 @@
-<h1>Login</h1>
-<form class="form-horizontal" ng-controller="LoginController">
+<div class="container" ng-controller="LoginController">
+    <h1>Login</h1>
+    <form class="form-horizontal">
 
-    <div class="form-group">
-        <label for="username" class="col-sm-1 control-label">Username</label>
-        <div class="col-sm-8">
-            <input ng-model="userName" placeholder="Username" type="text" class="form-control">
+        <div class="form-group">
+            <label for="username" class="col-sm-1 control-label">Username</label>
+            <div class="form-group input-group col-sm-4">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input ng-model="userName" placeholder="Username" type="text" class="form-control">
+            </div>
+        </div>  
+        <div class="form-group">
+            <label for="password" class="col-sm-1 control-label">Password</label>
+            <div class="form-group input-group col-sm-4">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input ng-model="password" type="password" class="form-control"
+                       placeholder="Password">
+            </div>
+
         </div>
-    </div>
-    <div class="form-group">
-        <label for="password" class="col-sm-1 control-label">Password</label>
-        <div class="col-sm-8">
-            <input ng-model="password" type="password" class="form-control"
-                   placeholder="Password">
+
+        <div class="form-group">
+            <div class="col-sm-1"></div>
+            <div class="form-group input-group col-sm-4">
+                <a ng-click="login()" class="btn  btn-group-justified btn-primary"> Welcome Back </a>
+            </div>
         </div>
 
-    </div>
+    </form>
 
-    <div class="form-group">
-        <div class="col-sm-1"></div>
-        <div class=" col-sm-8">
-            <a ng-click="login()" class="btn  btn-group-justified btn-primary"> Welcome Back </a>
-        </div>
-    </div>
-
-</form>
-<div id="body-image">
-    <img src="views/images/homecooked5.jpg" alt="Event">
 </div>

@@ -26,7 +26,6 @@
                     sellerName = user.userName;
                 })
 
-
             UserService.findUserById(userInScope._id)
                 .then(function (user) {
                     var orderMade = user.buyer;
@@ -43,7 +42,7 @@
 
                     UserService.updateUser(user._id, user)
                         .then(function (user) {
-                            findSellerById();
+                            //findSellerById();
                             UserService.findUserById(userInScope._id)
                                 .then(function (user) {
                                     var totalBill = 0;

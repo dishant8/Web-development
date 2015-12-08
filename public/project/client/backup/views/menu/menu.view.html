@@ -1,0 +1,31 @@
+﻿<div ng-controller="MenuController">
+    <h1>MENU</h1>
+
+    {{model.check.userName}}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ITEM</th>
+                <th>PRICE</th>
+                <th> ACTION </th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr ng-repeat="menu in model.allMenu">
+                <td>{{menu.item}}</td>
+                <td>{{menu.costPerItem}}</td>
+                <td>
+                    <a ng-click="model.addToCart(menu.item,menu.costPerItem)" class="btn btn-primary">
+                        Add To FoodCart
+                    </a>
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+    <div id="body-image">
+     <!--   <img src="views/images/homecooked5.jpg" alt="Event">-->
+    </div>
+</div>

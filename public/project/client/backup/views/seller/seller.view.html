@@ -1,0 +1,52 @@
+﻿
+<div>
+    <div class="row menuRecipe">
+        <h2>{{model.seller.firstName}}'s Profile </h2>
+        <div class="menu">
+            <div class="col-sm-12 menuRecipe">
+                <a href="#/seller/menu/{{model.seller._id}}" class="btn btn-danger col-sm-3">MENU</a>
+            </div>
+
+            <div class="col-sm-12 menuRecipe">
+                <a href="#/seller/reciepe/{{model.seller._id}}" class="btn btn-danger col-sm-3">RECIPIES</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="reviewHeaderEdit">
+        Your Review Awaits
+    </div>
+
+    <div class="menu-add-edit col-sm-5">
+        <h3>Add a review for {{model.seller.userName}}</h3>
+        <textarea id="textareaEdit" maxlength="100" ng-model="model.reviewDescription"></textarea>
+        <span>Max length 100 letters</span>
+        <button ng-click="model.addToReview()" class="form-control btn btn-info col-sm-3">Add a review</button>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td class="reviewHeaderEdit"><h4>Reviews</h4></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="review in model.reviews">
+                <td>
+                    <a href="#/seller/{{review.reviewMadeById}}"><h3>{{review.reviewMadeByName}}</h3></a>
+                    <ul>
+                        <li>
+                            <h4>{{review.reviewDescription}}</h4>
+
+                        </li>
+                        <li>
+                            <a ng-click="model.deleteReview(review._id, review.reviewMadeById)">Delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+

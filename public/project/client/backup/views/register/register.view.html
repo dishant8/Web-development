@@ -1,0 +1,61 @@
+<h1>Register</h1>
+
+<form class="form-horizontal css-form" ng-controller="RegisterController">
+    <h3>{{dontMatch}}</h3>
+    
+    <div class="form-group">
+        <label for="name" class="col-sm-1 control-label">FirstName</label>
+        <div class="col-sm-8">
+            <input ng-model="firstName" type="text" class="form-control" id="name"
+                   placeholder="Name" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="lastName" class="col-sm-1 control-label">LastName</label>
+        <div class="col-sm-8">
+            <input ng-model="lastName" type="text" class="form-control" id="lastName"
+                   placeholder="LastName" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="username" class="col-sm-1 control-label">Username</label>
+        <div class="col-sm-8">
+            <input ng-model="userName" type="text" class="form-control" id="username"
+                   placeholder="Username" required>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="password" class="col-sm-1 control-label">Password</label>
+        <div class="col-sm-8">
+            <input ng-model="password" type="password" class="form-control" id="password"
+                   placeholder="Password" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="verify password" class="col-sm-1 control-label">Verify Password</label>
+        <div class="col-sm-8">
+            <input ng-model="verifyPassword" type="password" class="form-control" id="verify password"
+                   placeholder="Verify Password" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email" class="col-sm-1 control-label">Email</label>
+        <div class="col-sm-8">
+            <input type="email" ng-model="email" class="form-control" id="email" placeholder="Email" required />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-1"></div>
+        <div class=" col-sm-8">
+            <a ng-click="register()" class="btn btn-primary btn-group-justified"> Register to get variety of food </a>
+        </div>
+    </div>
+</form>
+
+<div id="body-image">
+   <!-- <img src="views/images/homecooked5.jpg" alt="Event">-->
+</div>

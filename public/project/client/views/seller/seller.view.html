@@ -1,47 +1,62 @@
-﻿
-<div>
-    <div class="row">
-        <h2>{{model.seller.userName}}</h2>
-        <div class="menu">
-            <div class="col-sm-2">
-                <a href="#/seller/menu/{{model.seller._id}}" class="btn btn-danger">MENU</a>
-            </div>
-
-            <div class="col-sm-2">
-                <a href="#/seller/reciepe/{{model.seller._id}}" class="btn btn-danger">RECIPIES</a>
+﻿<div id="title" class="emerald">
+    <div class="container">
+        <div class="row">
+            <div class="">
+                <h1> Have a Look at {{model.seller.userName}}s' Profile</h1>
             </div>
         </div>
     </div>
+</div><!--/#title-->
 
-    <div class="menu-add-edit col-sm-5">
-        <h3>Add a review for {{model.seller.userName}}</h3>
-        <textarea id="textareaEdit" maxlength="100" ng-model="model.reviewDescription"></textarea>
-        <span>Max length 100 letters</span>
-        <button ng-click="model.addToReview()" class="form-control btn btn-info col-sm-3">Add a review</button>
+<p>&nbsp;</p>
+
+<div ng-repeat="menu in model.allMenu" class="col-sm-12">
+    <div class="media">
+        <div class="media-body">
+            <div class="well">
+                <div class="media-heading col-sm-4">{{menu.item}}</div>
+                <div class="col-sm-4">{{menu.costPerItem}}</div>
+                <div class="col-sm-4 " ng-click="model.addToCart(menu.item,menu.costPerItem)">Add To Cart</div>
+            </div>
+        </div>
     </div>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <td>Reviews</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="review in model.reviews">
-                <td>
-                    <a href="#/seller/{{review.reviewMadeById}}"><h3>{{review.reviewMadeByName}}</h3></a>
-                    <ul>
-                        <li>
-                            <h4>{{review.reviewDescription}}</h4>
-
-                        </li>
-                        <li>
-                            <a ng-click="model.deleteReview(review._id, review.reviewMadeById)">Delete</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        </tbody>
-
-    </table>
 </div>
+
+
+<div class="reviewHeaderEdit">
+    Your Review Awaits
+</div>
+
+<div class="menu-add-edit col-sm-4">
+    <h3>Add a review for {{model.seller.firstName}}</h3>
+    <textarea id="textareaEdit" maxlength="200" ng-model="model.reviewDescription"></textarea>
+    <span>Max length 200 letters</span>
+    <button ng-click="model.addToReview()" class="form-control btn btn-info col-sm-3">Add a review</button>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td class="reviewHeaderEdit"><h4>Reviews</h4></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="review in model.reviews">
+            <td>
+                <a class="reviewName" href="#/seller/{{review.reviewMadeById}}"><h3>{{review.reviewMadeByName}}</h3></a>
+                <ul>
+                    <li>
+                        <p class="reviewDescription">{{review.reviewDescription}}</p>
+
+                    </li>
+                    <li>
+                        <a ng-click="model.deleteReview(review._id, review.reviewMadeById)">Delete</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+
 

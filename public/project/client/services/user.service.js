@@ -58,7 +58,7 @@
 
         function createUser(userObject) {
             var deferred = $q.defer();
-            
+
             $http.post("/api/project/user", userObject)
             .success(function (user) {
                 deferred.resolve(user);
@@ -68,7 +68,7 @@
 
         function updateUser(userId, userObject) {
             var deferred = $q.defer();
-
+            console.log("userObject--" + userObject.firstName);
             $http.put("/api/project/user/" + userId, userObject)
                 .success(function (user) {
                     deferred.resolve(user);

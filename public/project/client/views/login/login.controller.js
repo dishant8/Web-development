@@ -5,17 +5,17 @@
         .module("FoodOrderApp")
         .controller("LoginController", LoginController);
 
-
-
     function LoginController($scope, $location, UserService, $rootScope) {
-        $scope.user = $rootScope.user;
+        //$scope.user = $rootScope.user;
 
         $scope.login = function () {
             UserService.findUserByUsernameAndPassword($scope.userName, $scope.password)
                 .then(function (user) {
                     if (user != null) {
                         $rootScope.user = user;
-                        $location.path("/home2");
+                        console.log(user.userName);
+                        $scope.user = $rootScope.user;
+                        $location.path("/userHome");
                     } else {
                         alert("UserName/Password do not exist");
                     }
