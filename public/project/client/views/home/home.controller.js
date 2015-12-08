@@ -16,6 +16,7 @@
             }
         }
         init();
+        findUsersUsingLocation();
 
         function showError(error) {
             switch (error.code) {
@@ -39,10 +40,11 @@
             $scope.lat = position.coords.latitude;
             $scope.lng = position.coords.longitude;
             $scope.where = $scope.lat + "," + $scope.lng;
-            console.log("LOCATION" +$scope.where)
+            console.log("LOCATION" + $scope.where)
         }
 
         function findUsersUsingLocation() {
+            console.log("ARE U GETTING CALLED")
             UserService.findAllUsers()
                 .then(function (users) {
                     var usersNearMe = [];
@@ -62,10 +64,10 @@
 
                         }
                     }
+                    console.log("NEAR ME" + usersNearMe);
                     $scope.users = usersNearMe;
                 })
         }
-        findUsersUsingLocation();
 
         function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
             var R = 6371; // Radius of the earth in km
