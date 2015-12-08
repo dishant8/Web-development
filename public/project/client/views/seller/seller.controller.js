@@ -85,7 +85,7 @@
                     UserService.updateUser(user._id, user)
                         .then(function (user) {
                             findSellerById(user._id);
-                            UserService.findUserById(userInScope._id)
+                            UserService.findUserById(user._id)
                                 .then(function (user) {
                                     var totalBill = 0;
                                     for (var i = 0; i < user.buyer.length; i++) {
