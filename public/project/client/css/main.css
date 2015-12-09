@@ -89,7 +89,7 @@ a:focus {
 }
 
 body > section {
-    padding: 50px 0;
+    padding: 80px 0;
 }
 
 .turquoise,
@@ -486,7 +486,7 @@ body > section {
 }
 
 #recent-works {
-    padding: 90px 0;
+    padding: 80px 0;
 }
 
     #recent-works .item-inner {
@@ -708,6 +708,7 @@ body > section {
     margin: 0;
     font-size: 36px;
     font-weight: 300;
+    padding-top: 25px;
 }
 
 .center {
@@ -1276,10 +1277,10 @@ ul.faq {
 }
 
 .map-edit {
-    padding-left: 80px;
-    padding-right: 50px;
+    padding-left: 0px;
     padding-bottom: 40px;
     padding-top: 30px;
+ 
 }
 
 
@@ -1291,6 +1292,7 @@ ul.faq {
 }
 
 .viewOfPages {
+    padding-top: 100px;
     padding-right: 0px;
     padding-left: 0px;
 }
@@ -1318,6 +1320,10 @@ ul.faq {
     padding-bottom: 15px;
 }
 
+.padding-for-ng-view {
+    padding-bottom: 34px;
+}
+
 .nav-edit {
     padding-top: 24px;
     font-size: 15px;
@@ -1335,6 +1341,7 @@ ul.faq {
 
 .searchButton {
     width: 80px;
+    padding-top: 10px;
     padding-bottom: 10px;
 }
 
@@ -1342,5 +1349,25 @@ ul.faq {
     padding-bottom: 30px;
 }
 
-.titleEdit {
+.searchButtonEdit {
+    padding-right: 60px;
 }
+
+.regiser-edit {
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+.login_link {
+    padding-top: 50px;
+    padding-bottom: 80px;
+}
+
+.review-add-edit {
+    padding-top;
+}
+
+/*.map-align {
+    width: 690px;
+    margin: auto;
+}*/

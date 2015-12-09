@@ -43,6 +43,7 @@
         }
         findAllOrders();
 
+        findUsersUsingLocation();
         function init() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -52,6 +53,7 @@
             }
         }
         init();
+
 
         function showError(error) {
             switch (error.code) {
@@ -74,6 +76,7 @@
             model.lat = position.coords.latitude;
             model.lng = position.coords.longitude;
             model.where = model.lat + "," + model.lng;
+            console.log("LOCATION USER" + model.where)
         }
 
         NgMap.getMap()
@@ -90,7 +93,7 @@
             model.map.hideInfoWindow('map-event');
         };
 
-        function findForDistance  () {
+        function findForDistance() {
             if (model.distance) {
                 findUsersUsingLocation();
                 model.enterDistance = "";
@@ -130,6 +133,7 @@
         }
 
         function findUsersUsingLocation() {
+            console.log("ARE U GETTING CALLED");
             UserService.findAllUsers()
                 .then(function (users) {
                     var usersNearMe = [];
@@ -159,7 +163,6 @@
                     model.users = usersNearMe;
                 })
         }
-        findUsersUsingLocation();
 
         function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
             var R = 6371; // Radius of the earth in km
@@ -172,7 +175,7 @@
             var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             var d = R * c; // Distance in km
 
-            var distanceInMiles = d * 0.621371; 
+            var distanceInMiles = d * 0.621371;
 
             return distanceInMiles;
         }

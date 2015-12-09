@@ -44,7 +44,7 @@
         }
 
         function findUsersUsingLocation() {
-            console.log("ARE U GETTING CALLED")
+
             UserService.findAllUsers()
                 .then(function (users) {
                     var usersNearMe = [];

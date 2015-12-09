@@ -62,7 +62,7 @@
                             console.log("THIS IS DISTANCE" + model.distance);
                             var distanceForSearch;
                             if (model.distance == undefined) {
-                                distanceForSearch = 5;
+                                distanceForSearch = 10;
                             } else {
                                 distanceForSearch = model.distance;
                             }

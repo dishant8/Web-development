@@ -1,16 +1,16 @@
 ﻿<div id="title" class="emerald">
     <div class="container">
         <div class="row">
-            <div class="">
-                <h1>{{model.userInScope.userName}}s' Profile</h1>
-                <h4>Find great cooks' around you.</h4>
+            <div class="userName">
+                <h1 align="center">{{model.userInScope.userName}} {{model.userInScope.lastName}}</h1>
+                <h3 align="center">Find great cooks' around you.</h3>
             </div>
         </div>
     </div>
 </div><!--/#title-->
 
 <div class="col-sm-8 map-edit" map-lazy-load="https://maps.google.com/maps/api/js">
-    <ng-map center="{{model.where}}" zoom="10">
+    <ng-map class="map-align" center="{{model.where}}" zoom="10">
 
         <marker position="{{model.where}}"></marker>
         <div>
@@ -26,28 +26,27 @@
 <div class="col-sm-4 map-edit">
     <form class="navbar-form navbar-left sellersAround">
         <div class="search_field">
-            <label class="inputSearch" for="search">Search Cook using location</label>
-            <input id="search" type="text" ng-model="model.searchQuery" googleplace class="form-control" placeholder="Search...">
+            <label class="inputSearch" for="search">Search Cooks' using location</label>
+            <input id="search" class="searchButtonEdit"type="text" ng-model="model.searchQuery" googleplace class="form-control" placeholder="Search...">
             <a ng-click="model.findSeller()" class="btn btn-success searchButton">Search</a>
         </div>
         <div>
             <label class="inputSearch" for="distance">Enter a distance for search</label>
-            <input id="distance" type="text" ng-model="model.distance" class="form-control " placeholder="Distance...">
+            <input id="distance" class="searchButtonEdit"  accepttype="text" ng-model="model.distance" class="form-control " placeholder="Distance...">
             <a ng-click="model.findForDistance()" class="btn btn-success searchButton">Find</a>
         </div>
     </form>
 </div>
 
 
-
-<div ng-repeat="user in model.users" class="col-sm-6">
+<div ng-repeat="user in model.users" class="col-sm-5">
     <div class="media">
         <div class="pull-left">
             <img class="avatar img-circle" src="images/blog/avatar1.png" />
         </div>
         <div class="media-body">
             <div class="well">
-                <div class="media-heading"><a href="#/seller/{{user._id}}" class="eachUserInList">{{user.userName}}</a></div>
+                <div class="media-heading"><a href="#/seller/{{user._id}}" class="eachUserInList"><h4>{{user.userName}}</h4></a></div>
             </div>
         </div>
     </div>
