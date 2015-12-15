@@ -1,5 +1,49 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,700,300);
 
+/*Generic CSS*/
+
+.wrapper {
+    text-align: center;
+}
+
+.addMenuButton {
+    position: absolute;
+    top: 50%;
+}
+
+.chef-avatar {
+    width: 68px;
+    height: 68px;
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 70%;
+    margin: auto;
+}
+
+
+.float-right {
+    float: right;
+}
+
+.userTitle {
+    padding-left: 1%;
+    padding-top: 3%;
+}
+/*Bootstrap Override CSS*/
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.navbar-brand {
+    line-height: 35px !important;
+}
+
+
+/*Bootstrap Override CSS*/
+
 .clearfix {
     *zoom: 1;
 }
@@ -270,7 +314,7 @@ body > section {
 }
 
 .emerald {
-    background-color: #2ecc71;
+    background-color: #625275;
 }
 
 .nephritis {
@@ -486,7 +530,7 @@ body > section {
 }
 
 #recent-works {
-    padding: 80px 0;
+    padding-bottom: 10%;
 }
 
     #recent-works .item-inner {
@@ -740,7 +784,9 @@ body > section {
     -moz-box-shadow: none;
     box-shadow: none;
     border: 0;
+    padding-bottom: 35px !important;
 }
+
 
 ul.breadcrumb {
     margin: 20px 0 0;
@@ -818,6 +864,7 @@ ul.tag-cloud {
     .btn-social:hover {
         color: #fff;
     }
+
 
 .navbar-inverse {
     border: none;
@@ -1280,7 +1327,6 @@ ul.faq {
     padding-left: 0px;
     padding-bottom: 40px;
     padding-top: 30px;
- 
 }
 
 
@@ -1292,7 +1338,7 @@ ul.faq {
 }
 
 .viewOfPages {
-    padding-top: 100px;
+    padding-top: 4.9%;
     padding-right: 0px;
     padding-left: 0px;
 }
@@ -1332,7 +1378,6 @@ ul.faq {
 .inputSearch {
     padding-right: 20px;
     font-size: 20px;
-    color: slateblue;
 }
 
 .headEdit {
@@ -1343,6 +1388,7 @@ ul.faq {
     width: 80px;
     padding-top: 10px;
     padding-bottom: 10px;
+    padding-left: 20px;
 }
 
 .search_field {
@@ -1371,3 +1417,66 @@ ul.faq {
     width: 690px;
     margin: auto;
 }*/
+
+.usersRepeat {
+    width: 50%;
+}
+
+
+.menuTitle {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif 'Palace Script MT';
+    padding-bottom: 30px;
+}
+
+.whatWeDo {
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+
+.map-padding {
+    padding-top: 10%;
+}
+
+.thumbnail {
+    padding: 0px;
+}
+
+.panel {
+    position: relative;
+}
+
+    .panel > .panel-heading:after, .panel > .panel-heading:before {
+        position: absolute;
+        top: 11px;
+        left: -16px;
+        right: 100%;
+        width: 0;
+        height: 0;
+        display: block;
+        content: " ";
+        border-color: transparent;
+        border-style: solid solid outset;
+        pointer-events: none;
+    }
+
+    .panel > .panel-heading:after {
+        border-width: 7px;
+        border-right-color: #f7f7f7;
+        margin-top: 1px;
+        margin-left: 2px;
+    }
+
+    .panel > .panel-heading:before {
+        border-right-color: #ddd;
+        border-width: 8px;
+    }
+
+.deleteButton {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.reviewDescription {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

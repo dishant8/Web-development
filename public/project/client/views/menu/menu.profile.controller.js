@@ -7,8 +7,12 @@
         var user = $rootScope.user;
 
         var menuForUpdate;
+
         function displayMenu() {
-            $scope.allMenu = user.seller.menu;
+            UserService.findUserById(user._id)
+                .then(function (user) {
+                    $scope.allMenu = user.seller.menu;
+                })
         }
 
         displayMenu();
@@ -33,7 +37,7 @@
                 .then(function (user) {
                     var check = user.seller.menu;
                     for (var i = 0; i < check.length; i++) {
-//                        console.log("DELETED" + check[i].item);
+                        //                        console.log("DELETED" + check[i].item);
                     }
                     $scope.allMenu = user.seller.menu;
 

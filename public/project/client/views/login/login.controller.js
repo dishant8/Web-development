@@ -7,14 +7,17 @@
 
     function LoginController($scope, $location, UserService, $rootScope) {
         //$scope.user = $rootScope.user;
+        var model = this;
+        model.login = login;
+        model.deleteUserById = deleteUserById;
 
-        $scope.login = function () {
-            UserService.findUserByUsernameAndPassword($scope.userName, $scope.password)
+        function login() {
+            UserService.findUserByUsernameAndPassword(model.userName, model.password)
                 .then(function (user) {
                     if (user != null) {
                         $rootScope.user = user;
                         console.log(user.userName);
-                        $scope.user = $rootScope.user;
+                        model.user = $rootScope.user;
                         $location.path("/userHome");
                     } else {
                         alert("UserName/Password do not exist");
@@ -27,7 +30,7 @@
             UserService.findAllUsers()
                 .then(function (users) {
 
-                    $scope.users = users;
+                    model.users = users;
                 })
         }
         //findAllUsers();
@@ -40,11 +43,11 @@
             })
         }
 
-        $scope.deleteUserById = function (user) {
+        function deleteUserById(user) {
             var userId = user.id;
             UserService.deleteUserById(userId)
             .then(function (users) {
-                $scope.users = users;
+                model.users = users;
             })
         }
     }

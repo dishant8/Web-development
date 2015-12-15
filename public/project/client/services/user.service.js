@@ -32,7 +32,6 @@
             var deferred = $q.defer();
             $http.get("/api/project/user")
                 .success(function (users) {
-
                     deferred.resolve(users);
                 })
             return deferred.promise;

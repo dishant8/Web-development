@@ -76,7 +76,7 @@
             model.lat = position.coords.latitude;
             model.lng = position.coords.longitude;
             model.where = model.lat + "," + model.lng;
-            console.log("LOCATION USER" + model.where)
+            //            console.log("LOCATION USER" + model.where)
         }
 
         NgMap.getMap()
@@ -132,8 +132,22 @@
 
         }
 
+        function findAllUsers() {
+            UserService.findAllUsers()
+                .then(function (users) {
+
+                    var sellers = users;
+                    var sellersList = [];
+                    for (var i = 0; i < 5; i++) {
+                        sellersList.push(sellers[i]);
+                    }
+                    model.topSeller = sellersList;
+                })
+        }
+        findAllUsers();
+
         function findUsersUsingLocation() {
-            console.log("ARE U GETTING CALLED");
+            //            console.log("ARE U GETTING CALLED");
             UserService.findAllUsers()
                 .then(function (users) {
                     var usersNearMe = [];

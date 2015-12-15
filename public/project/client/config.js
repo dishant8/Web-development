@@ -23,6 +23,8 @@
          })
          .when("/login", {
              templateUrl: "views/login/login.view.html",
+             controller: "LoginController",
+             controllerAs: "model"
          })
          .when("/register", {
              templateUrl: "views/register/register.view.html",
@@ -52,6 +54,7 @@
     .when("/userAsCook/menu", {
         templateUrl: "views/menu/menu.view.profile.html",
     })
+
     .when("/userAsCook/reciepe", {
         templateUrl: "views/reciepe/reciepe.profile.view.html",
         controller: "ReciepeProfileController",

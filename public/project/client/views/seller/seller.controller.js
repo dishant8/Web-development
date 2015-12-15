@@ -13,21 +13,48 @@
         model.addToCart = addToCart;
 
         function findSellerById() {
-            //var userId = $routeParams.sellerId;
-            //console.log(sellerId);
+            var sellerId = $routeParams.sellerId;
             UserService.findUserById(sellerId)
                 .then(function (user) {
-                    console.log(user.userName);
+                    model.check = user;
                     model.seller = user;
-                    console.log(user.seller.reviews);
-                    model.allMenu = user.seller.menu;
-                    if (user.seller.reviews != null) {
-                        model.reviews = user.seller.reviews;
-                        console.log(user.seller.menu);
+                    model.showMenu = false;
+                    if (user.seller.menu != null) {
+                        model.showMenu = true;
+                        model.allMenu = user.seller.menu;
                     }
+
+
+                    console.log("MENU " + user.seller.menu);
+                    model.showReviews = false;
+                    if (user.seller.reviews != null) {
+                        model.showReviews = true;
+                        model.reviews = user.seller.reviews;
+                        //console.log(user.seller.menu);
+                    }
+
                 })
         }
         findSellerById();
+
+
+        //function findSellerById() {
+        //    //var userId = $routeParams.sellerId;
+        //    //console.log(sellerId);
+        //    UserService.findUserById(sellerId)
+        //        .then(function (user) {
+        //            console.log("SELLERNAME" + user.userName);
+        //            model.seller = user;
+        //            // console.log(user.seller.reviews);
+        //            model.allMenu = user.seller.menu;
+        //            console.log("MENU" + user.seller.menu);
+        //            if (user.seller.reviews != null) {
+        //                model.reviews = user.seller.reviews;
+        //                //console.log(user.seller.menu);
+        //            }
+        //        })
+        //}
+        //findSellerById();
 
         function addToReview() {
             var reviewMadeBy = user._id;
@@ -91,7 +118,7 @@
                                     for (var i = 0; i < user.buyer.length; i++) {
                                         totalBill = totalBill + user.buyer[i].total;
                                     }
-                                    console.log("TOTAL BILL" + totalBill);
+                                    //                                    console.log("TOTAL BILL" + totalBill);
                                     user.totalBill = totalBill;
                                     UserService.updateUser(user._id, user)
                                         .then(function (user) {
