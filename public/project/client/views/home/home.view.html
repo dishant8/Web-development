@@ -8,13 +8,21 @@
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
+        <div class="item">
+            <img src="images/slider/chef4.jpg" alt="" width="460" height="345">
+        </div>
         <div class="item active">
-            <img src="images/slider/chef1.jpg" alt="" width="460" height="345">
+            <img src="images/slider/chef2.jpg" alt="" width="460" height="345">
         </div>
 
         <div class="item">
-            <img src="images/slider/chef2.jpg" alt="" width="460" height="345">
+            <img src="images/slider/chef3.jpeg" alt="" width="460" height="345">
         </div>
+
+
+        <!--<div class="item">
+            <img src="images/slider/chef2.jpg" alt="" width="460" height="345">
+        </div>-->
 
     </div>
 
@@ -30,32 +38,6 @@
 </div>
 
 
-<section id="slide-show" class="map-padding">
-    <div ng-controller="HomeController">
-        <!--<h1 id="welcome">HUNGRY!!!!</h1>-->
-        <div class="container">
-            <div id="map" map-lazy-load="https://maps.google.com/maps/api/js">
-                <ng-map center="{{where}}" id="map" zoom="10">
-
-                    <marker position="{{where}}"></marker>
-                    <div>
-                        <marker ng-repeat="user in users"
-                                position="{{user.location.lat}},{{user.location.lng}}"
-                                on-click="clickEventInfo(event,user)">
-                        </marker>
-                    </div>
-                </ng-map>
-            </div>
-        </div>
-    </div>
-
-    <!--<div align="center" class="login_link">
-        <h3>Look so many food providers around you.</h3>
-        <div><a href="#/login"><h4>Login to find whats' cooking around you.</h4></a></div>
-        <div><a href="#/register"><h4>Still not a user SERIOUSLY. Hit <strong>MEE</strong></h4></a></div>
-    </div>-->
-</section>
-
 <div id="tf-about" class="whatWeDo">
     <div class="container">
         <div class="row">
@@ -65,7 +47,7 @@
             <div class="col-md-6">
                 <div class="about-text">
                     <div class="section-title">
-                        <h4>About Food Crave</h4>
+                        <h3><strong>About Food Crave</strong></h3>
                         <h2>Who we are <strong>and what we do</strong></h2>
                         <hr>
                         <div class="clearfix"></div>
@@ -93,12 +75,37 @@
     </div>
 </div>
 
+<section id="slide-show" class="map-padding">
+    <h2 align="center" class="map-heading">Food Suppliers Around You.</h2>
+    <div>
+        <div class="container">
+            <div id="map" map-lazy-load="https://maps.google.com/maps/api/js">
+                <ng-map center="{{model.where}}" id="map" zoom="10">
+
+                    <marker position="{{model.where}}"></marker>
+                    <div>
+                        <marker ng-repeat="user in model.users"
+                                position="{{user.location.lat}},{{user.location.lng}}">
+                        </marker>
+                    </div>
+                </ng-map>
+            </div>
+        </div>
+    </div>
+
+    <!--<div align="center" class="login_link">
+        <h3>Look so many food providers around you.</h3>
+        <div><a href="#/login"><h4>Login to find whats' cooking around you.</h4></a></div>
+        <div><a href="#/register"><h4>Still not a user SERIOUSLY. Hit <strong>MEE</strong></h4></a></div>
+    </div>-->
+</section>
+
 <section id="recent-works">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <h3>Cuisines</h3>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                <p>Find all types of cuisine around you. Come along we will help you..</p>
                 <div class="btn-group">
                     <a class="btn btn-danger" href="#scroller" data-slide="prev"><i class="icon-angle-left"></i></a>
                     <a class="btn btn-danger" href="#scroller" data-slide="next"><i class="icon-angle-right"></i></a>
@@ -110,20 +117,6 @@
                     <div class="carousel-inner">
                         <div class="item active">
                             <div class="row">
-                                <div class="col-xs-4">
-                                    <div class="portfolio-item">
-                                        <div class="item-inner">
-                                            <img class="img-responsive" src="images/portfolio/recent/italian.jpg" alt="">
-                                            <h5>
-                                                Italian
-                                            </h5>
-                                            <div class="overlay">
-                                                <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/recent/chinese.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
                                 <div class="col-xs-4">
                                     <div class="portfolio-item">
                                         <div class="item-inner">
@@ -150,6 +143,19 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-xs-4">
+                                    <div class="portfolio-item">
+                                        <div class="item-inner">
+                                            <img class="img-responsive" src="images/portfolio/recent/mexican.jpg" alt="">
+                                            <h5>
+                                                Mexican
+                                            </h5>
+                                            <div class="overlay">
+                                                <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/recent/mexican.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div><!--/.row-->
                         </div><!--/.item-->
                         <div class="item">
@@ -167,6 +173,21 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-xs-4">
+                                    <div class="portfolio-item">
+                                        <div class="item-inner">
+                                            <img class="img-responsive" src="images/portfolio/recent/egg.jpg" alt="">
+                                            <h5>
+                                                French
+                                            </h5>
+                                            <div class="overlay">
+                                                <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/recent/mexican.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-xs-4">
                                     <div class="portfolio-item">
                                         <div class="item-inner">
@@ -176,19 +197,6 @@
                                             </h5>
                                             <div class="overlay">
                                                 <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/recent/indian.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="portfolio-item">
-                                        <div class="item-inner">
-                                            <img class="img-responsive" src="images/portfolio/recent/chinese2.jpg" alt="">
-                                            <h5>
-                                                Chinese
-                                            </h5>
-                                            <div class="overlay">
-                                                <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
                                             </div>
                                         </div>
                                     </div>

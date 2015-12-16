@@ -41,7 +41,7 @@
         }
 
         function deleteReciepe(reciepeId) {
-            console.log("AYAAAA");
+//            console.log("AYAAAA");
             ReciepeService.deleteReciepe(user._id, reciepeId)
                 .then(function (user) {
                     var check = user.seller.menu;
@@ -54,8 +54,8 @@
         }
 
         function selectReciepe(reciepeId, reciepeName, reciepeDescription) {
-            console.log("RECIPE NAME" + reciepeName);
-            console.log("AYAAAA");
+  //          console.log("RECIPE NAME" + reciepeName);
+//            console.log("AYAAAA");
             reciepeForUpdate = reciepeId;
             model.reciepeName = reciepeName;
             model.reciepeDescription = reciepeDescription;

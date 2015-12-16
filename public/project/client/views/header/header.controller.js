@@ -10,13 +10,20 @@
 
         $scope.userInScope = $rootScope.user;
         $scope.$location = $location;
-        console.log($scope.$location);
 
 
         $scope.logout = function () {
             $rootScope.user = null;
             $location.path("/home");
         };
+
+        if ($(window).width < 768) {
+            $scope.dynamicHeight = 20;
+        }
+        else {
+            $scope.dynamicHeight = 40;
+        }
+        
     }
 
 

@@ -11,6 +11,10 @@
         model.addToReview = addToReview;
         model.deleteReview = deleteReview;
         model.addToCart = addToCart;
+        model.menuSelected = menuSelected;
+        model.recipesSelected = recipesSelected;
+        model.reviewsSelected = reviewsSelected;
+        model.menuSelect = true;
 
         function findSellerById() {
             var sellerId = $routeParams.sellerId;
@@ -18,17 +22,21 @@
                 .then(function (user) {
                     model.check = user;
                     model.seller = user;
-                    model.showMenu = false;
+
                     if (user.seller.menu != null) {
-                        model.showMenu = true;
+                    
                         model.allMenu = user.seller.menu;
                     }
 
+                    if (user.seller.reciepes != null) {
 
-                    console.log("MENU " + user.seller.menu);
-                    model.showReviews = false;
+                        model.allReciepes = user.seller.reciepes;
+                    }
+
+                    console.log("MENU " + user.seller.menu.length);
+
                     if (user.seller.reviews != null) {
-                        model.showReviews = true;
+                    
                         model.reviews = user.seller.reviews;
                         //console.log(user.seller.menu);
                     }
@@ -85,6 +93,29 @@
             } else {
                 alert("You have not created this review")
             }
+        }
+
+        function menuSelected() {
+            console.log("MENU TRUE");
+            model.menuSelect = true;
+            model.recipeSelect = false;
+            model.reviewsSelect = false;
+        }
+
+        function recipesSelected() {
+
+            console.log("recipe aya");
+            model.recipeSelect = true;
+            model.menuSelect = false;
+            model.reviewsSelect = false;
+        }
+
+        function reviewsSelected() {
+            console.log("review aya")
+            model.reviewsSelect = true;
+            model.recipeSelect = false;
+            model.menuSelect = false;
+
         }
 
         function addToCart(itemName, costPerItem) {

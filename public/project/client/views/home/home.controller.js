@@ -3,44 +3,43 @@
 
     angular
         .module("FoodOrderApp")
-        .controller("HomeController", HomeController)
+        .controller("HomeViewController", HomeViewController)
 
-    function HomeController($scope, UserService) {
-
+    function HomeViewController($scope, UserService) {
+        var model = this;
         function init() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition, showError);
             }
             else {
-                $scope.error = "Geolocation is not supported by this browser.";
+                model.error = "Geolocation is not supported by this browser.";
             }
         }
         init();
-        findUsersUsingLocation();
 
         function showError(error) {
             switch (error.code) {
                 case error.PERMISSION_DENIED:
-                    $scope.error = "User denied the request for Geolocation."
+                    model.error = "User denied the request for Geolocation."
                     break;
                 case error.POSITION_UNAVAILABLE:
-                    $scope.error = "Location information is unavailable."
+                    model.error = "Location information is unavailable."
                     break;
                 case error.TIMEOUT:
-                    $scope.error = "The request to get user location timed out."
+                    model.error = "The request to get user location timed out."
                     break;
                 case error.UNKNOWN_ERROR:
-                    $scope.error = "An unknown error occurred."
+                    model.error = "An unknown error occurred."
                     break;
             }
-            $scope.$apply();
+            model.$apply();
         }
 
         function showPosition(position) {
-            $scope.lat = position.coords.latitude;
-            $scope.lng = position.coords.longitude;
-            $scope.where = $scope.lat + "," + $scope.lng;
-            console.log("LOCATION" + $scope.where)
+            model.lat = position.coords.latitude;
+            model.lng = position.coords.longitude;
+            model.where = model.lat + "," + model.lng;
+            findUsersUsingLocation();
         }
 
         function findUsersUsingLocation() {
@@ -51,12 +50,12 @@
                     for (var i = 0; i < users.length; i++) {
                         if (users[i].location != undefined) {
                             var location = users[i].location;
-                            var distance = getDistanceFromLatLonInKm($scope.lat, $scope.lng, location.lat, location.lng);
+                            var distance = getDistanceFromLatLonInKm(model.lat, model.lng, location.lat, location.lng);
                             var distanceForSearch;
-                            if ($scope.distance == undefined) {
+                            if (model.distance == undefined) {
                                 distanceForSearch = 5;
                             } else {
-                                distanceForSearch = $scope.distance;
+                                distanceForSearch = model.distance;
                             }
                             if (distance < distanceForSearch) {
                                 usersNearMe.push(users[i]);
@@ -64,8 +63,7 @@
 
                         }
                     }
-                    console.log("NEAR ME" + usersNearMe);
-                    $scope.users = usersNearMe;
+                    model.users = usersNearMe;
                 })
         }
 

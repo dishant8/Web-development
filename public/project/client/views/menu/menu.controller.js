@@ -49,7 +49,7 @@
                                     for (var i = 0; i < user.buyer.length; i++) {
                                         totalBill = totalBill + user.buyer[i].total;
                                     }
-                                    console.log("TOTAL BILL" + totalBill);
+//                                    console.log("TOTAL BILL" + totalBill);
                                     user.totalBill = totalBill;
                                     UserService.updateUser(user._id, user)
                                         .then(function (user) {

@@ -19,12 +19,12 @@
                         password: model.password,
                         email: model.email
                     }
-                    console.log(userObject);
+//                    console.log(userObject);
 
                     UserService.createUser(userObject)
                         .then(function (user) {
                             $rootScope.user = user;
-                            $location.path("/home2");
+                            $location.path("/userHome");
                         });
                 }
                 else {

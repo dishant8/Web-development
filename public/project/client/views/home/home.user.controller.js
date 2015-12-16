@@ -38,7 +38,6 @@
         }
 
         function showPosition(position) {
-            //            console.log("position" + position)
             model.lat = position.coords.latitude;
             model.lng = position.coords.longitude;
             model.where = model.lat + "," + model.lng;
@@ -51,15 +50,8 @@
                     for (var i = 0; i < users.length; i++) {
                         if (users[i].location != undefined) {
                             var location = users[i].location;
-                            console.log("LOCATION--" + location.lat);
-
-                            console.log("LOCATION--" + users[i].userName);
-                            console.log("LOCATION LAT--" + model.lat);
-                            console.log("LOCATION LNG--" + model.lng);
-
                             var distance = getDistanceFromLatLonInKm(model.lat, model.lng, location.lat, location.lng);
-                            console.log("DISTANCE--" + distance);
-                            console.log("THIS IS DISTANCE" + model.distance);
+
                             var distanceForSearch;
                             if (model.distance == undefined) {
                                 distanceForSearch = 10;
@@ -67,13 +59,11 @@
                                 distanceForSearch = model.distance;
                             }
                             if (distance < distanceForSearch) {
-                                console.log("YES DISTANCE IS LESS")
                                 usersNearMe.push(users[i]);
                             }
 
                         }
                     }
-                    console.log(usersNearMe);
                     $scope.users = usersNearMe;
                 })
         }
@@ -88,9 +78,9 @@
               Math.sin(dLon / 2) * Math.sin(dLon / 2);
             var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             var d = R * c; // Distance in km
-            console.log("distanceInKM" + d);
+
             var distanceInMiles = d * 0.621371;
-            console.log(distanceInMiles);
+
             return distanceInMiles;
         }
 

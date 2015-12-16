@@ -34,7 +34,8 @@
         var myLocationLong = model.lng;
         var userInScope = $rootScope.user;
         model.userInScope = $rootScope.user;
-
+        //model.here = "I am here";
+        model.topSeller = ["knlas"];
         function findAllOrders() {
             UserService.findUserById(userInScope._id)
                 .then(function (user) {
@@ -43,7 +44,6 @@
         }
         findAllOrders();
 
-        findUsersUsingLocation();
         function init() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -53,6 +53,7 @@
             }
         }
         init();
+
 
 
         function showError(error) {
@@ -76,7 +77,9 @@
             model.lat = position.coords.latitude;
             model.lng = position.coords.longitude;
             model.where = model.lat + "," + model.lng;
+            console.log("WHERE" + model.where);
             //            console.log("LOCATION USER" + model.where)
+            findUsersUsingLocation();
         }
 
         NgMap.getMap()
@@ -135,45 +138,49 @@
         function findAllUsers() {
             UserService.findAllUsers()
                 .then(function (users) {
-
-                    var sellers = users;
                     var sellersList = [];
-                    for (var i = 0; i < 5; i++) {
-                        sellersList.push(sellers[i]);
+                    for (var i = 0; i < 2; i++) {
+                        if (!users.length < 5) {
+                            if (users[i]._id != userInScope._id) {
+                                sellersList.push(users[i]);
+                            }
+                        }
                     }
-                    model.topSeller = sellersList;
+                    model.sellers = sellersList;
                 })
         }
         findAllUsers();
 
         function findUsersUsingLocation() {
-            //            console.log("ARE U GETTING CALLED");
+            console.log("ARE U GETTING CALLED");
             UserService.findAllUsers()
                 .then(function (users) {
                     var usersNearMe = [];
                     for (var i = 0; i < users.length; i++) {
                         if (users[i]._id != userInScope._id) {
+                            console.log("ANDAR AYA");
                             if (users[i].location != undefined) {
                                 var location = users[i].location;
-
-
-
+                                console.log("LOCATION" + location);
+                                console.log("LATITUDE" + model.lat);
                                 var distance = getDistanceFromLatLonInKm(model.lat, model.lng, location.lat, location.lng);
-
-
+                                console.log("DISTANCE" + distance)
+                                console.log("IDHAR BHI AYA");
                                 var distanceForSearch;
                                 if (model.distance == undefined) {
+                                    console.log("IIIIIIII");
                                     distanceForSearch = 5;
                                 } else {
                                     distanceForSearch = model.distance;
                                 }
                                 if (distance < distanceForSearch) {
-
+                                    console.log("idhar kyu nai aya");
                                     usersNearMe.push(users[i]);
                                 }
                             }
                         }
                     }
+                    console.log("USERS NEAR ME" + usersNearMe.length)
                     model.users = usersNearMe;
                 })
         }

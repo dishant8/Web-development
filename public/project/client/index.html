@@ -6,8 +6,7 @@
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Food Crave</title>
-
+    
     <!--BootStrap templates scripts-->
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -19,11 +18,11 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <!--<link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    <likn rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">-->
 
     <!--My Scripts-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -62,12 +61,18 @@
     <script src="services/reciepe.service.js"></script>
     <script src="services/review.service.js"></script>
     <script src="views/directive.js"></script>
+
+    <script type="text/javascript">
+        console.log("aaya");
+        $(".body").css("padding-top", "10%");
+
+    </script>
 </head>
-<body>
-    <div class="container-fluid" ng-include="'views/header/header.view.html'">
+<body class="alwaysLoad">
+    <div class="" ng-include="'views/header/header.view.html'">
     </div>
 
-    <div class="viewOfPages" ng-view>
+    <div ng-view>
 
     </div>
 

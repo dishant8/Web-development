@@ -1,129 +1,180 @@
 ﻿
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="sellerHeader center">We provide you a platform to advertise your food making ART</h2>
-        </div>
 
+    <div class="col-md-12">
+        <h2 class="sellerHeader center foodCartTitle">We provide you a platform to advertise your food making ART</h2>
+    </div>
 
-        <div class="navbar-form navbar-left sellersAround col-md-12">
-            <label for="search" class="inputSearch">Add your location so users find you.</label>
-            <input id="search" type="text" ng-model="model.searchQuery" googleplace class="form-control" placeholder="Search...">
+    <div class="col-md-12 searchLocation">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+
+            <label for="search" class="inputSearch center registration-form">Add your location so users find you.</label>
+            <div class="searchButtonLocation">
+                <input id="search" type="text" ng-model="model.searchQuery" googleplace class="form-control" placeholder="Search...">
+            </div>
             <a ng-click="model.addLocation()" class="btn btn-primary">Add a location</a>
         </div>
+        <div class="col-md-4">
 
-
-        <div class="col-md-12">
-            <h2 align="center">MENU</h2>
-            
         </div>
-        <div align="center" class="col-md-12">
-            <button type="button" class="btn btn-info btn-lg btn-xs" ng-click="isAddMenuItem=true" data-toggle="modal" data-target="#addMenuItem">Add a new FoodItem to your menu</button>
-        </div>
-        <!--<a href="#" onclick="return false;" ng-click="model.addToMenu()" class="btn btn-primary col-sm-4 col-sm-offset-4">MENU</a>-->
-        <div class="col-md-12">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>ITEM</th>
-                        <th>PRICE</th>
-                        <th>ACTION</th>
-                    </tr>
+    </div>
+    <!--<div class="navbar-form navbar-left sellersAround col-md-12">
+        <label for="search" class="inputSearch center registration-form">Add your location so users find you.</label>
+        <input id="search" type="text" ng-model="model.searchQuery" googleplace class="form-control" placeholder="Search...">
+        <a ng-click="model.addLocation()" class="btn btn-primary">Add a location</a>
+    </div>-->
 
-                </thead>
-                <tbody>
-                    <tr ng-repeat="menu in model.allMenu">
-                        <td>{{menu.item}}</td>
-                        <td>{{menu.costPerItem}}</td>
-                        <td>
-                            <button type="button" class="btn btn-info btn-lg" ng-click="model.selectMenu(menu._id,menu.item,menu.costPerItem,menu);" data-toggle="modal" data-target="#addMenuItem">Edit FoodItem</button>
-
-                            <a ng-click="model.deleteMenu(menu._id)" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="row">
+        <div class=" col-md-12">
+            <ul class="menu_recipe_pills nav nav-pills">
+                <li ng-click="model.menuSelected()" role="presentation" data-toggle="tab" class="active"><a href="">Menu</a></li>
+                <li ng-click="model.recipesSelected()" role="presentation" data-toggle="tab"><a href="">Recipes</a></li>
+            </ul>
         </div>
 
-        <div class="">
-            <h2>Recipies</h2>
+        <div ng-if="model.menuSelect">
 
-            <button type="button" ng-click="isAddRecepieItem=true" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addRecepieItem">Add Recepie</button>
+            <!--<div align="center" class="col-md-12 menuButton">
+                <button type="button" class="btn btn-primary " ng-click="model.openAddMenuPop()" data-toggle="modal" data-target="#addMenuItem">Add a new FoodItem to your menu</button>
+            </div>-->
+            <!--<a href="#" onclick="return false;" ng-click="model.addToMenu()" class="btn btn-primary col-sm-4 col-sm-offset-4">MENU</a>-->
+            <div ng-if="model.menuSelect" class="add-menu-pills col-md-12">
+                <h3>
+                    Add New Food Item
+                    <a ng-click="model.openAddMenuPop()" data-toggle="modal" data-target="#addMenuItem">
+                        <span class="glyphicon glyphicon-plus glyph-size">
+                        </span>
+                    </a>
+                </h3>
 
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        Recipe
-                    </tr>
-                </thead>
+            </div>
 
-                <tbody>
-                    <tr ng-repeat="reciepe in model.allRecipies">
-                        <td>
-                            <ul>
-                                <li>
-                                    <h4>Recipe Name:</h4> {{reciepe.reciepeName}}
-                                </li>
-                                <li>
-                                    <h4>Description:</h4> {{reciepe.reciepeDescription}}
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                </tbody>
+            <div class="col-md-12 table_edit_borders">
+                <div class="col-md-12 text_size">
+                    <div ng-if="model.allMenu.length > 0">
 
-            </table>
-        </div>
-        <!--<div id="body-image">
-            <img src="views/images/homecooked5.jpg" alt="Event">
-        </div>-->
-        <!-- Modal -->
-        <div id="addMenuItem" class="modal fade" role="dialog">
-            <div class="modal-dialog" style="margin:0 !important; left:30%; padding-top:10%;">
+                        <table id="menu-table" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th width="25%">Dish</th>
+                                    <th width="25%">Price</th>
+                                    <th width="25%">Update</th>
+                                    <th width="25%">Remove</th>
+                                </tr>
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><strong>Add New Food-Item</strong></h4>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="menu in model.allMenu">
+                                    <td width="25%">{{menu.item}}</td>
+                                    <td width="25%">{{menu.costPerItem}}</td>
+                                    <td width="25%">
+                                        <button type="button" class="btn btn-primary" ng-click="model.selectMenu(menu._id,menu.item,menu.costPerItem,menu);" data-toggle="modal" data-target="#addMenuItem">Edit FoodItem</button>
+                                    </td>
+                                    <td width="25%">
+                                        <a ng-click="model.deleteMenu(menu._id)" class="">
+                                            <span class="glyphicon glyphicon-trash glyph-size"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="modal-body">
-                        <input type="text" ng-model="model.itemName" class="form-control" />
-                        <div class="menu-add-edit"><h4>Add Cost in $</h4><input ng-model="model.costPerItem" class="form-control" /></div>
-                        <button ng-click="model.addToMenu()" type="button" ng-show="isAddMenuItem" class="form-control btn btn-info ">Add to Menu</button>
-                        <button ng-click="model.updateMenu()" type="button" ng-hide="isAddMenuItem" class="form-control btn btn-primary">Update Menu</button>
+                    <div ng-if="model.allMenu.length < 1">
+                        <h3>Your Menu is empty. Add one now!!!</h3>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
+
                 </div>
 
             </div>
 
         </div>
+    </div>
+    <!-- -------------------------------------------------------------------------------------------------------------------- -->
+    <div ng-if="model.recipeSelect">
+        <div class="col-md-12 recipePadding">
+            <div ng-if="model.allReciepes.length > 0">
+                <div class="table table-bordered reciepeDivEdit">
+                    <div style="width:100%;">
+                        <h2 style="border-bottom:2px ridge #BFCFFF">Recipes</h2>
+                    </div>
 
-        <!-- Modal -->
-        <div id="addRecepieItem" class="modal fade" role="dialog">
-            <div class="modal-dialog" style="margin:0 !important; left:30%; padding-top:10%;">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Add New Recepie</h4>
+                    <div ng-repeat="reciepe in model.allReciepes">
+                        <div style="border-bottom:1px dotted #BFCFFF">
+                            <ul>
+                                <li>
+                                    <h4>Recipe Name:</h4> {{reciepe.reciepeName}}
+                                    <a class="recipeUpdate" ng-click="model.selectReciepe(reciepe._id,reciepe.reciepeName,reciepe.reciepeDescription);"
+                                       data-toggle="modal" data-target="#addRecepieItem"
+                                       href="">Edit Recipe</a><br />
+                                    <a class="recipeUpdate" ng-click="model.deleteReciepe(reciepe._id)" href="">Delete Recipe</a>
+                                </li>
+                                <li>
+                                    <h4>Description:</h4> <p>{{reciepe.reciepeDescription}}</p>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <h4>Provide a Reciepe Name:</h4><input ng-model="model.reciepeName" class="form-control" />
-                        <h4>Add a description:</h4>
-                        <textarea id="textareaEdit" maxlength="100" ng-model="model.reciepeDescription"></textarea>
-                        <span>Max length 100 letters</span>
-                        <button ng-click="model.addToReciepe()" type="button" ng-show="isAddRecepieItem" class="form-control btn btn-info">Add to Reciepes</button>
-                        <button ng-click="model.updateReciepe()" type="button" ng-hide="isAddRecepieItem" class="form-control btn btn-primary">Update Reciepes</button>  {{selectItemToEdit}}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
+
+                </div>
+            </div>
+            <div ng-if="model.allReciepes.length < 1">
+                <h3>You have no recipes. Add one now!!!</h3>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="model.recipeSelect" class="add-menu-pills-pad col-md-12">
+        <h3>Add New Recipe </h3>
+        <a ng-click="model.openAddRecipePop()" data-toggle="modal" data-target="#addRecepieItem">
+            <span class="glyphicon glyphicon-plus glyph-size">
+            </span>
+        </a>
+    </div>
+    <!-- Modal -->
+    <div id="addMenuItem" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="margin:0 !important; padding-top:10%;">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><strong>Add New Food-Item</strong></h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" ng-model="model.itemName" class="form-control" />
+                    <div class="menu-add-edit"><h4>Add Cost in $</h4><input ng-model="model.costPerItem" class="form-control" /></div>
+                    <button ng-click="model.addToMenu()" type="button" ng-show="model.isAddMenuItem" class="form-control btn btn-primary btn-group-justified add_menu_button">Add to Menu</button>
+                    <button ng-click="model.updateMenu()" type="button" ng-show="!(model.isAddMenuItem)" class="form-control btn btn-primary">Update Menu</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div id="addRecepieItem" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="margin:0 !important; padding-top:10%;">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add New Recepie</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Provide a Reciepe Name:</h4><input ng-model="model.reciepeName" class="form-control" />
+                    <h4>Add a description:</h4>
+                    <textarea class="col-md-12" id="textareaEdit" maxlength="300" ng-model="model.reciepeDescription"></textarea>
+                    <span>Max length 300 charachters</span>
+                    <button ng-click="model.addToReciepe()" type="button" ng-show="model.isAddRecepieItem" class="btn btn-primary add_menu_button btn-group-justified">Add to Reciepes</button>
+                    <button ng-click="model.updateReciepe()" type="button" ng-show="!(model.isAddRecepieItem)" class="btn btn-primary">Update Reciepes</button>  {{selectItemToEdit}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

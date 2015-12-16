@@ -12,7 +12,7 @@
             UserService.findUserById(sellerId)
                 .then(function (user) {
                     model.seller = user;
-                    console.log("RECIEPE USERNAME" + user.userName);
+//                    console.log("RECIEPE USERNAME" + user.userName);
                     model.allRecipies = user.seller.reciepes;
                 })
         }

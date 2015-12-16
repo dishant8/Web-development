@@ -16,7 +16,6 @@
                 .then(function (user) {
                     if (user != null) {
                         $rootScope.user = user;
-                        console.log(user.userName);
                         model.user = $rootScope.user;
                         $location.path("/userHome");
                     } else {

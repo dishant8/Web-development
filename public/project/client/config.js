@@ -9,7 +9,9 @@
 		    redirectTo: "/home"
 		})
 		.when("/home", {
-		    templateUrl: "views/home/home.view.html"
+		    templateUrl: "views/home/home.view.html",
+		    controller: "HomeViewController",
+            controllerAs: "model"
 		})
          .when("/homeView", {
              templateUrl: "views/home/home.user.view.html",

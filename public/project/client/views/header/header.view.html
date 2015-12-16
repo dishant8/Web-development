@@ -1,42 +1,44 @@
-﻿<header class="navbar navbar-fixed-top navbar-inverse" role="banner" ng-controller="HeaderController">
+﻿
+<nav class="navbar navbar-inverse edit_navbar" ng-controller="HeaderController">
     <div class="container">
-        <div class="navbar-header head">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="">Food Crave</a>
+            <a class="navbar-brand" href="#">Food Crave</a>
         </div>
-        <div class="collapse navbar-collapse align-navbar">
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li ng-if="!user" ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="#/register" data-target="#register">Register</a></li>
                 <li ng-if="!user" ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login" data-target="#login">Login</a></li>
                 <li ng-if="user" ng-class="{'active' : $location.url().indexOf('userHome') != -1}">
                     <a href="#/userHome">
-                        Home
+                        Buy
                         <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                    </a>
-                </li>
-                <li ng-if="user" ng-class="{'active' : $location.url().indexOf('profile') != -1}">
-                    <a href="#/profile">
-                        {{user.userName}}
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                     </a>
                 </li>
                 <li ng-if="user" ng-class="{'active' : $location.url().indexOf('cook') != -1}">
                     <a href="#/cook">
-                        Make Some Money
+                        Sell
                         <span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
                     </a>
                 </li>
-                <li ng-if="user" ng-class="{'active' : $location.url().indexOf('orderHistory') != -1}"><a href="#/orderHistory">Order History</a></li>
+                <!--<li ng-if="user" ng-class="{'active' : $location.url().indexOf('orderHistory') != -1}"><a href="#/orderHistory">Order History</a></li>-->
                 <li ng-if="user" ng-class="{'active' : $location.url().indexOf('foodCart') != -1}">
                     <a href="#/foodCart">
                         Food Cart
                         <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true">
                         </span>
+                    </a>
+                </li>
+                <li ng-if="user" ng-class="{'active' : $location.url().indexOf('profile') != -1}">
+                    <a href="#/profile">
+                        {{user.firstName}}
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                     </a>
                 </li>
                 <li ng-if="user">
@@ -48,5 +50,4 @@
             </ul>
         </div>
     </div>
-</header><!--/header-->
-
+</nav>

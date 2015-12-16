@@ -12,7 +12,7 @@
         model.update = update;
         var currentUser = $rootScope.user;
         function getData() {
-            console.log("AYA")
+//            console.log("AYA")
             UserService.findUserById(currentUser._id)
                 .then(function (user) {
                     model.userName = user.userName;
@@ -33,7 +33,7 @@
                 "lastName": model.lastName,
                 "email": model.email
             }
-            console.log(currentUser._id);
+  //          console.log(currentUser._id);
             UserService.updateUser(currentUser._id, newDataOfUser)
                 .then(function (userAfterUpdate) {
                     UserService.findUserById(currentUser._id)
