@@ -53,8 +53,10 @@
     }
 
     function updateUser(req, res) {
+        console.log("AYA");
         var userId = req.params.userId;
         var userObject = req.body;
+        console.log(userObject.buyer);
         userModel.updateUser(userId, userObject)
             .then(function (user) {
                 res.json(user);

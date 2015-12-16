@@ -115,4 +115,4 @@ module.exports = mongoose.Schema({
 
     }]
 
-}, { collection: 'cs5610.project.test_1.user' });
+}, { collection: 'cs5610.project.user' });

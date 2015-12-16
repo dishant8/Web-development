@@ -77,7 +77,6 @@
             model.lat = position.coords.latitude;
             model.lng = position.coords.longitude;
             model.where = model.lat + "," + model.lng;
-            console.log("WHERE" + model.where);
             //            console.log("LOCATION USER" + model.where)
             findUsersUsingLocation();
         }
@@ -149,38 +148,32 @@
                     model.sellers = sellersList;
                 })
         }
-        findAllUsers();
+//        findAllUsers();
 
         function findUsersUsingLocation() {
-            console.log("ARE U GETTING CALLED");
+
             UserService.findAllUsers()
                 .then(function (users) {
                     var usersNearMe = [];
                     for (var i = 0; i < users.length; i++) {
                         if (users[i]._id != userInScope._id) {
-                            console.log("ANDAR AYA");
+
                             if (users[i].location != undefined) {
                                 var location = users[i].location;
-                                console.log("LOCATION" + location);
-                                console.log("LATITUDE" + model.lat);
                                 var distance = getDistanceFromLatLonInKm(model.lat, model.lng, location.lat, location.lng);
-                                console.log("DISTANCE" + distance)
-                                console.log("IDHAR BHI AYA");
+
                                 var distanceForSearch;
                                 if (model.distance == undefined) {
-                                    console.log("IIIIIIII");
                                     distanceForSearch = 5;
                                 } else {
                                     distanceForSearch = model.distance;
                                 }
                                 if (distance < distanceForSearch) {
-                                    console.log("idhar kyu nai aya");
                                     usersNearMe.push(users[i]);
                                 }
                             }
                         }
                     }
-                    console.log("USERS NEAR ME" + usersNearMe.length)
                     model.users = usersNearMe;
                 })
         }

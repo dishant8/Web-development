@@ -24,7 +24,7 @@
                     model.seller = user;
 
                     if (user.seller.menu != null) {
-                    
+
                         model.allMenu = user.seller.menu;
                     }
 
@@ -33,10 +33,8 @@
                         model.allReciepes = user.seller.reciepes;
                     }
 
-                    console.log("MENU " + user.seller.menu.length);
-
                     if (user.seller.reviews != null) {
-                    
+
                         model.reviews = user.seller.reviews;
                         //console.log(user.seller.menu);
                     }
@@ -117,18 +115,20 @@
             model.menuSelect = false;
 
         }
-
         function addToCart(itemName, costPerItem) {
             var sellerId = $routeParams.sellerId;
+            console.log("SELLER" + sellerId)
             var sellerName;
             UserService.findUserById(sellerId)
                 .then(function (user) {
                     sellerName = user.userName;
+                    console.log(sellerName);
                 })
 
             UserService.findUserById(user._id)
                 .then(function (user) {
                     var orderMade = user.buyer;
+                    console.log("ORDER RET" + orderMade)
                     var newOrder = {
                         "item": itemName,
                         "nameOfSeller": sellerName,
@@ -142,22 +142,26 @@
 
                     UserService.updateUser(user._id, user)
                         .then(function (user) {
-                            findSellerById(user._id);
+                            findSellerById();
+                            console.log("USER RETURN" + user.buyer.length);
                             UserService.findUserById(user._id)
                                 .then(function (user) {
                                     var totalBill = 0;
                                     for (var i = 0; i < user.buyer.length; i++) {
                                         totalBill = totalBill + user.buyer[i].total;
                                     }
-                                    //                                    console.log("TOTAL BILL" + totalBill);
+                                    console.log("TOTAL BILL" + totalBill);
                                     user.totalBill = totalBill;
                                     UserService.updateUser(user._id, user)
                                         .then(function (user) {
-
+                                            console.log(user.totalBill);
                                         })
                                 })
+
+
                         })
                 })
+
 
         }
     };

@@ -26,7 +26,6 @@
                     sellerName = user.userName;
                 })
 
-
             UserService.findUserById(userInScope._id)
                 .then(function (user) {
                     var orderMade = user.buyer;
