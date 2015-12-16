@@ -1,73 +1,78 @@
 ﻿<div class="container">
-    <div class="row">
-        <h1 align="center" class="foodCartTitle">Your FoodCart</h1>
-        <div class="col-md-10">
-            <div ng-if="model.orderMade.length > 0">
 
-                <table class="table table-condensed checkOutTable">
-                    <thead>
-                        <tr>
-                            <th>ItemName</th>
-                            <th>Seller</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="order in model.orderMade">
-                            <td>{{order.item}}</td>
-                            <td>
-                                <a href="#/seller/{{order.userProviding}}">{{order.nameOfSeller}}</a>
-                            </td>
-                            <td>${{order.costPerItem}}</td>
-                            <td>
-                                <div class="form-group">
-                                    <div>
-                                        <div class=" col-md-3">
-                                            <select id="add" class="form-control" ng-model="order.quantity">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10+">10+</option>
-                                            </select>
-                                        </div>
-                                        <div class="container-fluid">
-                                            <a class="btn btn-primary" ng-click="model.updateOrder(order,model.quantity)">
-                                                Update Quantity
-                                            </a>
-                                        </div>
+    <h1 align="center" class="foodCartTitle">Your FoodCart</h1>
+
+    <div class="col-md-12 cartWrap">
+        <div ng-if="model.orderMade.length > 0">
+
+            <table class="table table-condensed checkOutTable">
+                <thead>
+                    <tr>
+                        <th>ItemName</th>
+                        <th>Seller</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="order in model.orderMade">
+                        <td>{{order.item}}</td>
+                        <td>
+                            <a href="#/seller/{{order.userProviding}}">{{order.nameOfSeller}}</a>
+                        </td>
+                        <td>${{order.costPerItem}}</td>
+                        <!--<td width="5%">
+                            <div class="form-group">
+                                <div>
+                                    <div class="">
+                                        <select id="add" class="form-control" ng-model="order.quantity">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10+">10+</option>
+                                        </select>
+                                    </div>
+                                    <div class="container-fluid">
+                                        <a ng-click="model.updateOrder(order,order.quantity)">
+                                            <div>
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
-                            </td>
-                            <td>
-                                {{order.total}}
-                            </td>
-                            <td>
-                                <a ng-click="model.removeItem(order._id)" class="btn btn-primary">
-                                    <scan class="glyphicon glyphicon-remove"></scan>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div ng-if="model.orderMade.length < 1">
-                <h2>Your FoodCart is Empty </h2>
-            </div>
+                            </div>
+                        </td>-->
+                        <td>
+                            {{order.total}}
+
+                        </td>
+                        <td>
+                            <a ng-click="model.removeItem(order._id)" class="btn btn-primary">
+                                <scan class="glyphicon glyphicon-remove"></scan>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="col-md-2">
-            <h3 class="checkOutTable">SubTotal : {{model.totalBill}}</h3>
-            <div>
-                <button class="btn btn-primary">Proceed to Checkout   </button>
-            </div>
+    </div>
+    <div ng-if="model.orderMade.length < 1">
+        <h2>Your FoodCart is Empty </h2>
+    </div>
+    <div class="col-md-2">
+        <h3 class="checkOutTable">SubTotal : {{model.totalBill}}</h3>
+        <div>
+            <button class="btn btn-primary">Proceed to Checkout   </button>
         </div>
     </div>
 </div>
+
+
+

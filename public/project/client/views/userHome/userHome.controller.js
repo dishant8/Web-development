@@ -34,6 +34,9 @@
         var myLocationLong = model.lng;
         var userInScope = $rootScope.user;
         model.userInScope = $rootScope.user;
+        if (model.userInScope) {
+            model.here = true;
+        }
         //model.here = "I am here";
         model.topSeller = ["knlas"];
         function findAllOrders() {
@@ -148,7 +151,7 @@
                     model.sellers = sellersList;
                 })
         }
-//        findAllUsers();
+        //        findAllUsers();
 
         function findUsersUsingLocation() {
 

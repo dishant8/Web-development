@@ -13,7 +13,8 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-if="!user" ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="https://docs.google.com/document/d/1Za0MyfWqHfbjAawdVk_CnMctrwQBBFAcH6YaC7OWPtg/edit">Google Doc</a></li>
+                <li ng-if="!user" ng-class="{'active' : $location.url().indexOf('home') != -1}"><a href="#/home" data-target="#register">Home</a></li>
+                <li ng-if="!user"><a href="https://docs.google.com/document/d/1Za0MyfWqHfbjAawdVk_CnMctrwQBBFAcH6YaC7OWPtg/edit">Google Doc</a></li>
                 <li ng-if="!user" ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="#/register" data-target="#register">Register</a></li>
                 <li ng-if="!user" ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login" data-target="#login">Login</a></li>
                 <li ng-if="user" ng-class="{'active' : $location.url().indexOf('userHome') != -1}">

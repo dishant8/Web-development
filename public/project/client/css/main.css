@@ -5,6 +5,11 @@
     font-size: 20px;
 }
 
+.cartWrap {
+    padding-left: 0% !important;
+    padding-right: 0% !important;
+}
+
 .menu-add-edit {
     padding-bottom: 1%;
 }
@@ -19,7 +24,7 @@
 
 .add-menu-pills {
     padding-bottom: 2%;
-    padding-left: 0%;
+    padding-left: 2%;
     float: left;
 }
 
