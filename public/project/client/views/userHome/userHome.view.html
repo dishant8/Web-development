@@ -4,13 +4,6 @@
 
     <div id="title" class="">
         <h2>Welcome {{model.user.firstName}} {{model.user.lastName}}</h2>
-        <!--<div class="row">
-            <div class="userName">
-                <h1 align="center">{{model.user.userName}} {{model.user.lastName}}</h1>
-                <h3 align="center">Find great cooks' around you.</h3>
-            </div>
-        </div>-->
-
     </div><!--/#title-->
 
     <div class="row ">
@@ -29,13 +22,12 @@
         <div class="col-md-4 map-edit">
             <form class="navbar-form navbar-left sellersAround">
                 <div class="search_field">
-                    <label class="inputSearch" for="search">Search Cooks' using location</label>
-                    <input id="search" class="searchButtonEdit form-control" type="text" ng-model="model.searchQuery" googleplace placeholder="Search...">
+                    <label class="inputSearch" for="search">Search Cooks'</label>
+                    <input id="search" class="searchButtonEdit form-control" type="text" ng-model="model.searchQuery" googleplace placeholder=" Using location...">
                     <a ng-click="model.findSeller()" class="btn btn-primary searchButton">Search</a>
                 </div>
                 <div>
-                    <label class="inputSearch" for="distance">Enter a distance for search</label>
-                    <input id="distance" class="searchButtonEdit form-control" accepttype="text" ng-model="model.distance" placeholder="Distance...">
+                    <input id="distance" class="searchButtonEdit form-control" accepttype="text" ng-model="model.distance" placeholder=" Using Distance...">
                     <a ng-click="model.findForDistance()" class="btn btn-primary searchButton">Find</a>
                 </div>
             </form>
@@ -80,24 +72,22 @@
                 </div>
             </div>
             <div ng-if="model.users.length < 1">
-                <h2>No food providers around you!!!</h2>
+                <h2> DAMN!!! No food providers around you!!!</h2>
+                <h2> Try changing distance!!!</h2>
             </div>
         </div>
-        <div class="col-md-4">
-            <!--<div ng-
-            if="model.users.length > 0">
-                    <h2 class="topCooks">Top Cooks' Around You</h2>
+        <!--<div class="col-md-4">
+            <div ng-if="model.users.length > 0">
+                <h2 class="haveALook">Top Cooks' Around You</h2>
 
-                    <div ng-repeat="seller in model.sellers track by $index">
-                        <div class="well topCooksList">
-                            <div class="media-heading"><h4>{{seller.firstName}} {{seller.lastName}}</h4></a></div>
-                            <div> <a href="#/seller/{{seller._id}}" class="eachUserInList">Check the Profile</a></div>
-                        </div>
+                <div ng-repeat="seller in model.sellers track by $index">
+                    <div class="well topCooksList">
+                        <div class="media-heading"><a><h4>{{seller.firstName}} {{seller.lastName}}</h4></a></div>
+                        <div> <a href="#/seller/{{seller._id}}" class="eachUserInList">Check the Profile</a></div>
                     </div>
-                </div>-->
-            </
-            div>
-        </div>
+                </div>
+            </div>
+        </div>-->
     </div>
 </div>
 

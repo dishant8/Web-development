@@ -5,6 +5,23 @@
     font-size: 20px;
 }
 
+.setNavMargin {
+    margin-bottom: 2% !important;
+    margin-top: 2% !important;
+}
+
+.sellersAround {
+    margin-top: 0% !important;
+}
+
+.sellerEdit {
+    padding-top: 3%;
+}
+
+.appTittle {
+    font-family: cursive !important;
+}
+
 .cartWrap {
     padding-left: 0% !important;
     padding-right: 0% !important;
@@ -20,6 +37,7 @@
 
 .recipePadding {
     padding-left: 0% !important;
+    margin-top: 2% !important;
 }
 
 .add-menu-pills {
@@ -34,8 +52,13 @@
     padding-right: 2%;
 }
 
+.upperPartEdit {
+    margin-top: 0% !important;
+}
+
 .add-menu-pills-pad {
     padding-left: 0% !important;
+    margin-top: 0% !important;
 }
 
 .add_menu_button {
@@ -148,9 +171,22 @@
     font-size: 20px;
 }
 
+.recipeTableWidth {
+    width: 100%;
+}
+
+.tableMenuWidth {
+    width: 33.33%;
+}
+
+.recipeTableBorder {
+    border-bottom: 2px ridge #BFCFFF;
+}
+
 .haveALook {
     padding-left: 2%;
     padding-bottom: 2%;
+    margin-top: 0% !important;
 }
 
 .topCooks {
@@ -176,6 +212,11 @@
 .addMenuButton {
     position: absolute;
     top: 50%;
+}
+
+.collapse-edit {
+    margin-top: 2% !important;
+    margin-bottom: 2% !important;
 }
 
 .chef-avatar {
@@ -921,6 +962,7 @@ body > section {
     font-size: 36px;
     font-weight: 300;
     border-bottom: 2px solid darkgrey;
+    font-family: initial;
 }
 
 .center {
@@ -1493,8 +1535,8 @@ ul.faq {
 
 .map-edit {
     padding-left: 0px;
-    padding-bottom: 40px;
-    padding-top: 30px;
+    padding-bottom: 4%;
+    padding-top: 4%;
 }
 
 
