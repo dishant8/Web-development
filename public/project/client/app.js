@@ -1,5 +1,5 @@
 ﻿(function () {
     angular
-        .module("FoodOrderApp", ["ngRoute", 'ngMap'])
+        .module("FoodOrderApp", ["ngRoute", 'ngMap', "ngCookies"])
 
 })();

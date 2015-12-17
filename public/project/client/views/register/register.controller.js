@@ -5,9 +5,10 @@
         .controller("RegisterController", RegisterController);
 
 
-    function RegisterController(UserService, $rootScope, $location) {
+    function RegisterController(UserService, $rootScope, $location, AuthService) {
         var model = this;
         model.register = register;
+        model.user = $rootScope.user;
 
         function register() {
             if (model.firstName && model.lastName && model.password && model.verifyPassword) {
@@ -19,11 +20,13 @@
                         password: model.password,
                         email: model.email
                     }
-//                    console.log(userObject);
+                    //                    console.log(userObject);
 
                     UserService.createUser(userObject)
                         .then(function (user) {
                             $rootScope.user = user;
+                            AuthService.setUser(user._id);
+                            $rootScope.$broadcast('auth', user);
                             $location.path("/userHome");
                         });
                 }

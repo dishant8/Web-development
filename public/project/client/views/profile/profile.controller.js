@@ -10,9 +10,18 @@
         var model = this;
 
         model.update = update;
+
         var currentUser = $rootScope.user;
+        console.log("first time" + currentUser);
+
+        $rootScope.$on('auth', function (user) {
+            currentUser = model.user = $rootScope.user;
+            console.log("INSIDE REFRESH" + currentUser._id);
+            getData();
+        });
+
         function getData() {
-//            console.log("AYA")
+            //            if (currentUser != undefined) {
             UserService.findUserById(currentUser._id)
                 .then(function (user) {
                     model.userName = user.userName;
@@ -21,8 +30,11 @@
                     model.lastName = user.lastName;
                     model.email = user.email;
                 })
+            //          }
         }
-        getData();
+        if (currentUser != undefined) {
+            getData();
+        }
 
         function update() {
 
@@ -33,7 +45,7 @@
                 "lastName": model.lastName,
                 "email": model.email
             }
-  //          console.log(currentUser._id);
+            //          console.log(currentUser._id);
             UserService.updateUser(currentUser._id, newDataOfUser)
                 .then(function (userAfterUpdate) {
                     UserService.findUserById(currentUser._id)

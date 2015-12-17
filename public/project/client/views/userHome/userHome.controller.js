@@ -1,51 +1,65 @@
 ﻿(function () {
     'use strict';
     angular
-        .module("FoodOrderApp")
-        .controller("UserbuyController", UserbuyController)
-        .directive('googleplace', function () {
-            return {
+    .module("FoodOrderApp")
+    .controller("UserbuyController", UserbuyController)
+    .directive('googleplace', function () {
+        return {
 
-                require: 'ngModel',
-                link: function (scope, element, attrs, model) {
-                    var options = {
-                        types: [],
-                        componentRestrictions: {}
-                    };
-                    scope.gPlace = new google.maps.places.Autocomplete(element[0], options);
+            require: 'ngModel',
+            link: function (scope, element, attrs, model) {
+                var options = {
+                    types: [],
+                    componentRestrictions: {}
+                };
+                scope.gPlace = new google.maps.places.Autocomplete(element[0], options);
 
-                    google.maps.event.addListener(scope.gPlace, 'place_changed', function () {
-                        scope.$apply(function () {
-                            model.$setViewValue(element.val());
-                        });
+                google.maps.event.addListener(scope.gPlace, 'place_changed', function () {
+                    scope.$apply(function () {
+                        model.$setViewValue(element.val());
                     });
-                }
-            };
-        });
+                });
+            }
+        };
+    });
 
 
-    function UserbuyController($scope, UserService, $rootScope, $location, $http, NgMap) {
+    function UserbuyController(UserService, $rootScope, $location, $http, NgMap) {
+        console.log("AYA")
         var model = this;
+        model.user = $rootScope.user;
 
         model.findSeller = findSeller;
         model.findForDistance = findForDistance;
         model.clickEventInfo = clickEventInfo;
+
         var myLocationLat = model.lat;
         var myLocationLong = model.lng;
         var userInScope = $rootScope.user;
-        model.userInScope = $rootScope.user;
-        if (model.userInScope) {
-            model.here = true;
+        //console.log("FIRSTTIME" + userInScope)
+        $rootScope.$on('auth', function (user) {
+            //            console.log("I M CALLEC")
+            userInScope = model.user = $rootScope.user;
+            console.log(userInScope);
+            //  findAllOrders();
+        });
+
+        function init() {
+            if ($rootScope.user) {
+                model.user = $rootScope.user;
+            }
         }
         //model.here = "I am here";
-        model.topSeller = ["knlas"];
+
         function findAllOrders() {
-            UserService.findUserById(userInScope._id)
+            if (userInScope) {
+                UserService.findUserById(userInScope._id)
                 .then(function (user) {
                     model.orderMade = user.buyer;
-                })
+                });
+            }
         }
-        findAllOrders();
+        //findAllOrders();
 
         function init() {
             if (navigator.geolocation) {
@@ -85,9 +99,9 @@
         }
 
         NgMap.getMap()
-            .then(function (map) {
-                model.map = map;
-            });
+        .then(function (map) {
+            model.map = map;
+        });
 
         function clickEventInfo(event, e) {
             model.mapEvent = e;
@@ -139,46 +153,46 @@
 
         function findAllUsers() {
             UserService.findAllUsers()
-                .then(function (users) {
-                    var sellersList = [];
-                    for (var i = 0; i < 2; i++) {
-                        if (!users.length < 5) {
-                            if (users[i]._id != userInScope._id) {
-                                sellersList.push(users[i]);
-                            }
+            .then(function (users) {
+                var sellersList = [];
+                for (var i = 0; i < 2; i++) {
+                    if (!users.length < 5) {
+                        if (users[i]._id != userInScope._id) {
+                            sellersList.push(users[i]);
                         }
                     }
-                    model.sellers = sellersList;
-                })
+                }
+                model.sellers = sellersList;
+            })
         }
         //        findAllUsers();
 
         function findUsersUsingLocation() {
 
             UserService.findAllUsers()
-                .then(function (users) {
-                    var usersNearMe = [];
-                    for (var i = 0; i < users.length; i++) {
-                        if (users[i]._id != userInScope._id) {
+            .then(function (users) {
+                var usersNearMe = [];
+                for (var i = 0; i < users.length; i++) {
+                    if (userInScope && users[i]._id != userInScope._id) {
 
-                            if (users[i].location != undefined) {
-                                var location = users[i].location;
-                                var distance = getDistanceFromLatLonInKm(model.lat, model.lng, location.lat, location.lng);
+                        if (users[i].location != undefined) {
+                            var location = users[i].location;
+                            var distance = getDistanceFromLatLonInKm(model.lat, model.lng, location.lat, location.lng);
 
-                                var distanceForSearch;
-                                if (model.distance == undefined) {
-                                    distanceForSearch = 5;
-                                } else {
-                                    distanceForSearch = model.distance;
-                                }
-                                if (distance < distanceForSearch) {
-                                    usersNearMe.push(users[i]);
-                                }
+                            var distanceForSearch;
+                            if (model.distance == undefined) {
+                                distanceForSearch = 5;
+                            } else {
+                                distanceForSearch = model.distance;
+                            }
+                            if (distance < distanceForSearch) {
+                                usersNearMe.push(users[i]);
                             }
                         }
                     }
-                    model.users = usersNearMe;
-                })
+                }
+                model.users = usersNearMe;
+            })
         }
 
         function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
@@ -186,9 +200,9 @@
             var dLat = deg2rad(lat2 - lat1);  // deg2rad below
             var dLon = deg2rad(lon2 - lon1);
             var a =
-              Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-              Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
             var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             var d = R * c; // Distance in km
 

@@ -5,17 +5,18 @@
         .module("FoodOrderApp")
         .controller("LoginController", LoginController);
 
-    function LoginController($scope, $location, UserService, $rootScope) {
+    function LoginController($location, UserService, $rootScope, AuthService) {
         //$scope.user = $rootScope.user;
         var model = this;
         model.login = login;
-        model.deleteUserById = deleteUserById;
 
         function login() {
             UserService.findUserByUsernameAndPassword(model.userName, model.password)
                 .then(function (user) {
                     if (user != null) {
                         $rootScope.user = user;
+                        AuthService.setUser(user._id);
+                        $rootScope.$broadcast('auth', user);
                         model.user = $rootScope.user;
                         $location.path("/userHome");
                     } else {
@@ -34,21 +35,6 @@
         }
         //findAllUsers();
 
-        $scope.check = function () {
-            var id = $scope.test;
-            UserService.findUserByUsername(id)
-            .then(function (user) {
-                $scope.data = user;
-            })
-        }
-
-        function deleteUserById(user) {
-            var userId = user.id;
-            UserService.deleteUserById(userId)
-            .then(function (users) {
-                model.users = users;
-            })
-        }
     }
 
 })();

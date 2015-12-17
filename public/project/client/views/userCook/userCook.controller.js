@@ -26,9 +26,8 @@
 
     function UserCookController($scope, UserService, MenuService, ReciepeService, $rootScope, $location, $http) {
         var model = this;
-        var user = $rootScope.user;
-
         model.menuSelect = true;
+
         model.addLocation = addLocation;
 
         model.addToMenu = addToMenu;
@@ -45,36 +44,45 @@
         model.deleteReciepe = deleteReciepe;
         model.openAddRecipePop = openAddRecipePop;
 
-        var userInScope = $rootScope.user;
         var usersLat;
         var usersLng;
         var myLocationLat = model.lat;
         var myLocationLong = model.lng;
 
-
-        var reciepeForUpdate;
-
-
-        function displayMenu() {
-            //            debugger;
-            UserService.findUserById(user._id)
-                .then(function (user) {
-                    //                    console.log("PRINTTT" + user.seller.menu)
-                    model.allMenu = user.seller.menu;
-                })
-        }
+        var user = $rootScope.user;
 
         displayMenu();
+        displayReciepe();
 
+        $rootScope.$on('auth', function (currentUser) {
 
-        function displayReciepe() {
-            UserService.findUserById(user._id).then(function (user) {
+            user = model.user = $rootScope.user;
+            console.log("IN RELOAD" + user);
+            displayMenu();
+            displayReciepe();
+        });
+        var reciepeForUpdate;
 
-                model.allReciepes = user.seller.reciepes;
-            });
+        function displayMenu() {
+            console.log("HERE" + user);
+            if (user != undefined) {
+                console.log("CALLED FROM TOP");
+                UserService.findUserById(user._id)
+                    .then(function (user) {
+                        //                    console.log("PRINTTT" + user.seller.menu)
+                        model.allMenu = user.seller.menu;
+                    })
+            }
         }
 
-        displayReciepe();
+        function displayReciepe() {
+            if (user != undefined) {
+                UserService.findUserById(user._id).then(function (user) {
+
+                    model.allReciepes = user.seller.reciepes;
+                });
+            }
+        }
 
         function init() {
             if (navigator.geolocation) {
@@ -111,31 +119,27 @@
             model.where = model.lat + "," + model.lng;
         }
 
-        //$scope.place = "";
-
         function addLocation() {
-            if (model.searchQuery != "") {
+            if (model.searchQuery == "") {
+                model.where = model.lat + "," + model.lng;
+            } else if (user != undefined) {
                 $http.get('http://maps.google.com/maps/api/geocode/json?address=' + model.searchQuery).success(function (mapData) {
                     if (mapData.results.length != 0) {
-                        //                        console.log(mapData.results[0].geometry.location.lat, mapData.results[0].geometry.location.lng);
-                        // showPosition(mapData.results[0].geometry.location.lat, mapData.results[0].geometry.location.lng);
                         model.where = mapData.results[0].geometry.location.lat + "," + mapData.results[0].geometry.location.lng;
-                        //                        console.log($scope.where);
 
                         usersLat = mapData.results[0].geometry.location.lat;
                         usersLng = mapData.results[0].geometry.location.lng;
 
-                        UserService.findUserById(userInScope._id)
+                        UserService.findUserById(user._id)
                             .then(function (user) {
                                 var location = {
                                     "lat": usersLat,
                                     "lng": usersLng
                                 }
                                 user.location = location;
-                                UserService.updateUser(userInScope._id, user)
+                                UserService.updateUser(user._id, user)
                                     .then(function (user) {
-                                        //                                        console.log("USERS LOCATION" + user.location.lat);
-                                        //                                        console.log("USERS LOCATION" + user.location.lng);
+
                                     })
                             })
                     }
@@ -149,11 +153,6 @@
                     model.showErr = true;
                 });
             }
-            else {
-                model.where = model.lat + "," + model.lng;
-                //               $scope.show();
-            }
-
         }
 
         function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
@@ -178,76 +177,70 @@
 
 
         function addToMenu() {
-            //    console.log("AYAYAYAYAYYA")
-            $('#addMenu').modal('show');
-            var itemName = model.itemName;
-            var costPerItem = model.costPerItem;
-            var menu = {
-                "item": itemName,
-                "costPerItem": costPerItem
+            if (user != undefined) {
+                $('#addMenu').modal('show');
+                var itemName = model.itemName;
+                var costPerItem = model.costPerItem;
+                var menu = {
+                    "item": itemName,
+                    "costPerItem": costPerItem
+                }
+                MenuService.createNewMenu(user._id, menu)
+                    .then(function (user) {
+                        model.itemName = "";
+                        model.costPerItem = "";
+                        model.allMenu = user.seller.menu;
+                    })
             }
-            MenuService.createNewMenu(user._id, menu)
-                .then(function (user) {
-                    model.itemName = "";
-                    model.costPerItem = "";
-                    model.allMenu = user.seller.menu;
-                })
         }
 
         function deleteMenu(menuId) {
-            MenuService.deleteMenu(user._id, menuId)
-                .then(function (user) {
-                    var check = user.seller.menu;
-                    for (var i = 0; i < check.length; i++) {
-                        //                        console.log("DELETED" + check[i].item);
-                    }
-                    model.allMenu = user.seller.menu;
+            if (user != undefined) {
+                MenuService.deleteMenu(user._id, menuId)
+                    .then(function (user) {
+                        var check = user.seller.menu;
+                        for (var i = 0; i < check.length; i++) {
+                            //                        console.log("DELETED" + check[i].item);
+                        }
+                        model.allMenu = user.seller.menu;
 
-                })
+                    })
+            }
         }
 
         var menuForUpdate;
         function selectMenu(menuId, itemName, costPerItem) {
-            menuForUpdate = menuId;
-            model.itemName = itemName;
-            model.costPerItem = costPerItem;
-            model.isAddMenuItem = false;
-            console.log("menu");
-            var menuAfterSelect = [];
-            var menu = user.seller.menu;
-
-            //UserService.findUserById(user._id)
-            //    .then(function (user) {
-            //        menu = user.seller.menu;
-            //        for (var i = 0; i < menu.length; i++) {
-            //            if (menu[i]._id != menuId) {
-            //                menuAfterSelect.push(menu[i]);
-            //            }
-            //        }
-            //        model.allMenu = menuAfterSelect;
-            //    })
-
-
+            if (user != undefined) {
+                menuForUpdate = menuId;
+                model.itemName = itemName;
+                model.costPerItem = costPerItem;
+                model.isAddMenuItem = false;
+                console.log("menu");
+                var menuAfterSelect = [];
+                var menu = user.seller.menu;
+            }
         }
 
         function updateMenu() {
-            var menuId = menuForUpdate;
-            var menu = {
-                "_id": menuId,
-                "item": model.itemName,
-                "costPerItem": model.costPerItem
-            }
+            if (user != undefined) {
+                var menuId = menuForUpdate;
+                var menu = {
+                    "_id": menuId,
+                    "item": model.itemName,
+                    "costPerItem": model.costPerItem
+                }
 
-            if (model.itemName) {
-                MenuService.updateMenu(user._id, menu)
-                    .then(function (user) {
-                        model.allMenu = user.seller.menu;
-                        model.itemName = "";
-                        model.costPerItem = "";
-                    })
-            }
-            else {
-                alert("Select Item to Edit");
+                if (model.itemName) {
+                    MenuService.updateMenu(user._id, menu)
+                        .then(function (user) {
+                            model.allMenu = user.seller.menu;
+                            model.itemName = "";
+                            model.costPerItem = "";
+                        })
+                }
+                else {
+                    alert("Select Item to Edit");
+                }
             }
         }
 
@@ -257,6 +250,7 @@
         }
 
         function menuSelected() {
+            $rootScope.menuSelectstatus = true;
             console.log("MENU TRUE");
             model.menuSelect = true;
             model.recipeSelect = false;
@@ -264,67 +258,55 @@
         }
 
         function recipesSelected() {
-            console.log("REcipe select")
+            $rootScope.menuSelectstatus = false;
+            console.log("RECIPE SELECTED" + $rootScope.menuSelectstatus);
             model.recipeSelect = true;
             model.menuSelect = false;
-
         }
         //------------------------------------------------------------------------------------------------------------
 
         function addToReciepe() {
-            console.log("AYA IDHAR");
-            if (model.reciepeName && model.reciepeDescription) {
-                var reciepeName = model.reciepeName;
-                var reciepeDescription = model.reciepeDescription;
-                var reciepe = {
-                    "reciepeName": reciepeName,
-                    "reciepeDescription": reciepeDescription
+            if (user != undefined) {
+                if (model.reciepeName && model.reciepeDescription) {
+                    var reciepeName = model.reciepeName;
+                    var reciepeDescription = model.reciepeDescription;
+                    var reciepe = {
+                        "reciepeName": reciepeName,
+                        "reciepeDescription": reciepeDescription
+                    }
+                    ReciepeService.createNewReciepe(user._id, reciepe)
+                        .then(function (user) {
+                            model.reciepeName = "";
+                            model.reciepeDescription = "";
+                            console.log("USER" + user.seller.reciepes);
+                            model.allReciepes = user.seller.reciepes;
+                        })
                 }
-                ReciepeService.createNewReciepe(user._id, reciepe)
-                    .then(function (user) {
-                        model.reciepeName = "";
-                        model.reciepeDescription = "";
-                        console.log("USER" + user.seller.reciepes);
-                        model.allReciepes = user.seller.reciepes;
-                    })
-            }
-            else {
-                alert("Provide name and description for reciepe")
+                else {
+                    alert("Provide name and description for reciepe")
+                }
             }
         }
 
         function deleteReciepe(reciepeId) {
-            console.log("AYAAAA");
-            ReciepeService.deleteReciepe(user._id, reciepeId)
-                .then(function (user) {
-                    var check = user.seller.menu;
-                    for (var i = 0; i < check.length; i++) {
-                        //                        console.log("DELETED" + check[i].item);
-                    }
-                    model.allReciepes = user.seller.reciepes;
+            if (user != undefined) {
+                ReciepeService.deleteReciepe(user._id, reciepeId)
+                    .then(function (user) {
+                        var check = user.seller.menu;
+                        for (var i = 0; i < check.length; i++) {
 
-                })
+                        }
+                        model.allReciepes = user.seller.reciepes;
+
+                    })
+            }
         }
 
         function selectReciepe(reciepeId, reciepeName, reciepeDescription) {
-            //            console.log("RECIPE NAME" + reciepeName);
-            //            console.log("AYAAAA");
             reciepeForUpdate = reciepeId;
             model.reciepeName = reciepeName;
             model.reciepeDescription = reciepeDescription;
             var reciepeAfterSelect = [];
-            //var reciepes = user.seller.reciepes;
-
-            //UserService.findUserById(user._id)
-            //    .then(function (user) {
-            //        reciepes = user.seller.reciepes;
-            //        for (var i = 0; i < reciepes.length; i++) {
-            //            if (reciepes[i]._id != reciepeId) {
-            //                reciepeAfterSelect.push(reciepes[i]);
-            //            }
-            //        }
-            //        model.allReciepes = reciepeAfterSelect;
-            //    })
         }
 
         function openAddRecipePop() {
@@ -333,23 +315,25 @@
         }
 
         function updateReciepe() {
-            var reciepeId = reciepeForUpdate;
-            var reciepe = {
-                "_id": reciepeId,
-                "reciepeName": model.reciepeName,
-                "reciepeDescription": model.reciepeDescription
-            }
+            if (user != undefined) {
+                var reciepeId = reciepeForUpdate;
+                var reciepe = {
+                    "_id": reciepeId,
+                    "reciepeName": model.reciepeName,
+                    "reciepeDescription": model.reciepeDescription
+                }
 
-            if (model.reciepeName) {
-                ReciepeService.updateReciepe(user._id, reciepe)
-                    .then(function (user) {
-                        model.allReciepes = user.seller.reciepes;
-                        model.reciepeName = "";
-                        model.reciepeDescription = "";
-                    })
-            }
-            else {
-                alert("Select Reciepe to Edit");
+                if (model.reciepeName) {
+                    ReciepeService.updateReciepe(user._id, reciepe)
+                        .then(function (user) {
+                            model.allReciepes = user.seller.reciepes;
+                            model.reciepeName = "";
+                            model.reciepeDescription = "";
+                        })
+                }
+                else {
+                    alert("Select Reciepe to Edit");
+                }
             }
         }
     }
