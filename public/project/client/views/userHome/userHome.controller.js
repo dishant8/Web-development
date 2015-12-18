@@ -26,33 +26,33 @@
 
     function UserbuyController($scope, UserService, $rootScope, $location, $http, NgMap) {
         console.log("AYA")
-        var model = this;
+        //    var model = this;
         //        model.user = $rootScope.user;
 
-        model.findSeller = findSeller;
-        model.findForDistance = findForDistance;
-        model.clickEventInfo = clickEventInfo;
+        //$scope.findSeller = findSeller;
+        //$scope.findForDistance = findForDistance;
+        //$scope.clickEventInfo = clickEventInfo;
 
-        var myLocationLat = model.lat;
-        var myLocationLong = model.lng;
-        var userInScope = model.user = $rootScope.user;
+        var myLocationLat = $scope.lat;
+        var myLocationLong = $scope.lng;
+        var userInScope = $scope.user = $rootScope.user;
 
         //PAGINATION//
-        model.filteredTodos = []
-        model.currentPage = 1
-        model.numPerPage = 10
-        model.maxSize = 5;
+        $scope.filteredTodos = [];
+        $scope.currentPage = 1;
+        $scope.numPerPage = 4;
+
 
         $rootScope.$on('auth', function (user) {
 
-            userInScope = model.user = $rootScope.user;
+            userInScope = $scope.user = $rootScope.user;
             console.log(userInScope);
 
         });
 
         function init() {
             if ($rootScope.user) {
-                model.user = $rootScope.user;
+                $scope.user = $rootScope.user;
             }
         }
 
@@ -60,7 +60,7 @@
             if (userInScope != undefined) {
                 UserService.findUserById(userInScope._id)
                 .then(function (user) {
-                    model.orderMade = user.buyer;
+                    $scope.orderMade = user.buyer;
                 });
             }
         }
@@ -71,7 +71,7 @@
                 navigator.geolocation.getCurrentPosition(showPosition, showError);
             }
             else {
-                model.error = "Geolocation is not supported by this browser.";
+                $scope.error = "Geolocation is not supported by this browser.";
             }
         }
         init();
@@ -81,76 +81,76 @@
         function showError(error) {
             switch (error.code) {
                 case error.PERMISSION_DENIED:
-                    model.error = "User denied the request for Geolocation."
+                    $scope.error = "User denied the request for Geolocation."
                     break;
                 case error.POSITION_UNAVAILABLE:
-                    model.error = "Location information is unavailable."
+                    $scope.error = "Location information is unavailable."
                     break;
                 case error.TIMEOUT:
-                    model.error = "The request to get user location timed out."
+                    $scope.error = "The request to get user location timed out."
                     break;
                 case error.UNKNOWN_ERROR:
-                    model.error = "An unknown error occurred."
+                    $scope.error = "An unknown error occurred."
                     break;
             }
         }
 
         function showPosition(position) {
-            model.lat = position.coords.latitude;
-            model.lng = position.coords.longitude;
-            model.where = model.lat + "," + model.lng;
+            $scope.lat = position.coords.latitude;
+            $scope.lng = position.coords.longitude;
+            $scope.where = $scope.lat + "," + $scope.lng;
             //            console.log("LOCATION USER" + model.where)
             findUsersUsingLocation();
         }
 
         NgMap.getMap()
         .then(function (map) {
-            model.map = map;
+            $scope.map = map;
         });
 
         function clickEventInfo(event, e) {
-            model.mapEvent = e;
-            model.map.showInfoWindow('map-event');
+            $scope.mapEvent = e;
+            $scope.map.showInfoWindow('map-event');
         };
 
-        model.hideDetail = function () {
-            model.map.hideInfoWindow('map-event');
+        $scope.hideDetail = function () {
+            $scope.map.hideInfoWindow('map-event');
         };
 
-        function findForDistance() {
-            if (model.distance) {
+        $scope.findForDistance = function () {
+            if ($scope.distance) {
                 findUsersUsingLocation();
-                model.enterDistance = "";
+                $scope.enterDistance = "";
             } else {
-                model.enterDistance = "Enter a distance for Search";
+                $scope.enterDistance = "Enter a distance for Search";
             }
         }
 
-        function findSeller() {
-            if (model.searchQuery != "") {
-                $http.get('http://maps.google.com/maps/api/geocode/json?address=' + model.searchQuery).success(function (mapData) {
+        $scope.findSeller = function () {
+            if ($scope.searchQuery != "") {
+                $http.get('http://maps.google.com/maps/api/geocode/json?address=' + $scope.searchQuery).success(function (mapData) {
                     if (mapData.results.length != 0) {
                         //                        console.log(mapData.results[0].geometry.location.lat, mapData.results[0].geometry.location.lng);
                         // showPosition(mapData.results[0].geometry.location.lat, mapData.results[0].geometry.location.lng);
-                        model.where = mapData.results[0].geometry.location.lat + "," + mapData.results[0].geometry.location.lng;
+                        $scope.where = mapData.results[0].geometry.location.lat + "," + mapData.results[0].geometry.location.lng;
 
-                        model.location = mapData.results[0].geometry.location.lat + "," + mapData.results[0].geometry.location.lng;
-                        model.lat = mapData.results[0].geometry.location.lat;
-                        model.lng = mapData.results[0].geometry.location.lng;
+                        $scope.location = mapData.results[0].geometry.location.lat + "," + mapData.results[0].geometry.location.lng;
+                        $scope.lat = mapData.results[0].geometry.location.lat;
+                        $scope.lng = mapData.results[0].geometry.location.lng;
                         findUsersUsingLocation();
                     }
                     else {
-                        model.error = "Could not find entered location";
-                        model.showErr = true;
+                        $scope.error = "Could not find entered location";
+                        $scope.showErr = true;
                     }
 
                 }).error(function (error) {
-                    model.error = "Could not find entered location";
-                    model.showErr = true;
+                    $scope.error = "Could not find entered location";
+                    $scope.showErr = true;
                 });
             }
             else {
-                model.where = model.lat + "," + model.lng;
+                $scope.where = $scope.lat + "," + $scope.lng;
                 //               model.show();
             }
 
@@ -168,47 +168,69 @@
                             }
                         }
                     }
-                    model.sellers = sellersList;
+                    $scope.sellers = sellersList;
                 })
             }
         }
         findAllUsers();
 
         function findUsersUsingLocation() {
+            console.log("AYAYAYAYA");
             if (userInScope != undefined) {
                 UserService.findAllUsers()
-                .then(function (users) {
-                    var usersNearMe = [];
-                    for (var i = 0; i < users.length; i++) {
-                        if (userInScope && users[i]._id != userInScope._id) {
+                    .then(function (users) {
+                        $scope.usersNearMe = [];
+                        for (var i = 0; i < users.length; i++) {
+                            if (userInScope && users[i]._id != userInScope._id) {
 
-                            if (users[i].location != undefined) {
-                                var location = users[i].location;
-                                var distance = getDistanceFromLatLonInKm(model.lat, model.lng, location.lat, location.lng);
+                                if (users[i].location != undefined) {
+                                    var location = users[i].location;
+                                    var distance = getDistanceFromLatLonInKm($scope.lat, $scope.lng, location.lat, location.lng);
 
-                                var distanceForSearch;
-                                if (model.distance == undefined) {
-                                    distanceForSearch = 5;
-                                } else {
-                                    distanceForSearch = model.distance;
-                                }
-                                if (distance < distanceForSearch) {
-                                    usersNearMe.push(users[i]);
+                                    var distanceForSearch;
+                                    if ($scope.distance == undefined) {
+                                        distanceForSearch = 5;
+                                    } else {
+                                        distanceForSearch = $scope.distance;
+                                    }
+                                    if (distance < distanceForSearch) {
+                                        $scope.usersNearMe.push(users[i]);
+                                    }
                                 }
                             }
                         }
-                    }
-                    model.users = usersNearMe;
-                    //$scope.$watch('currentPage + numPerPage', function () {
-                    //    console.log("AYA KYA")
-                    //    var begin = ((model.currentPage - 1) * model.numPerPage), end = begin + model.numPerPage;
-
-                    //    model.users = usersNearMe.slice(begin, end);
-                    //});
-                })
+                        $scope.users = $scope.usersNearMe;
+                        $scope.maxSize = $scope.usersNearMe.length;
+                        console.log($scope.maxSize);
+                        console.log("LENGTH" + $scope.usersNearMe.length);
+                        $scope.$watch('currentPage + numPerPage', function () {
+                            console.log("AYA KYA")
+                            var begin = (($scope.currentPage - 1) * $scope.numPerPage);
+                            var end = begin + $scope.numPerPage;
+                            //    console.log("BEGIN" + begin);
+                            //   console.log("end" + end);
+                            $scope.filteredTodos = $scope.usersNearMe.slice(begin, end);
+                            //   console.log("TODO" + $scope.filteredTodos)
+                        });
+                    })
             }
         }
 
+        $scope.controlIncrease = function () {
+            if ($scope.currentPage * $scope.numPerPage < $scope.maxSize) {
+                $scope.currentPage += 1;
+                console.log("INCREASE" + $scope.currentPage);
+            }
+        }
+
+        $scope.controlDecrease = function () {
+            if ($scope.currentPage > 1) {
+
+                $scope.currentPage = $scope.currentPage - 1;
+                console.log("DECREASE" + $scope.currentPage);
+            }
+
+        }
 
         function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
             var R = 6371; // Radius of the earth in km

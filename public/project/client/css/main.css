@@ -125,8 +125,8 @@
 }
 
 .avatar-size {
-    width: 67px;
-    height: 74px;
+    width: 42px;
+    height: 44px;
 }
 
 .foodCartTitle {
@@ -209,8 +209,10 @@
 .haveALook {
     padding-left: 2%;
     padding-bottom: 2%;
-    margin-top: 4% !important;
     text-align: center;
+    font-size: 26px;
+    margin-top: 0% !important;
+    margin-bottom: 8.547px;
 }
 
 .topCooks {
@@ -219,6 +221,13 @@
 
 .topCooksList {
     background-color: darkgrey;
+}
+
+.map_edit {
+    margin-top: 3%;
+    margin-bottom: 3%;
+    padding-left: 0%!important;
+    padding-right: 0%!important;
 }
 
 .map-heading {
@@ -238,14 +247,23 @@
     top: 50%;
 }
 
+.imageEdit {
+    height: 40px !important;
+}
+
+.well_edit {
+    padding-bottom: 0% !important;
+    padding-top: 0% !important;
+}
+
 .collapse-edit {
     margin-top: 2% !important;
     margin-bottom: 2% !important;
 }
 
 .chef-avatar {
-    width: 68px;
-    height: 68px;
+    width: 44px;
+    height: 42px;
 }
 
 .carousel-inner > .item > img,
@@ -254,11 +272,18 @@
     margin: auto;
 }
 
-
+.pag-glyph-size {
+    font-size: 15px;
+}
 
 .float-right {
     float: right;
 }
+
+.float-left {
+    float: left;
+}
+
 
 .userTitle {
     padding-left: 1%;
@@ -1017,7 +1042,6 @@ body > section {
     -moz-box-shadow: none;
     box-shadow: none;
     border: 0;
-    padding-bottom: 35px !important;
 }
 
 
@@ -1619,13 +1643,17 @@ ul.faq {
     margin-bottom: 4% !important;
 }
 
+.usersList {
+    padding-top: 47px !important;
+}
+
 .addMenuInput {
     width: 100% !important;
 }
 
 .inputSearch {
     padding-right: 20px;
-    font-size: 17px;
+    font-size: 26px;
     padding-bottom: 2%;
 }
 
@@ -1648,6 +1676,7 @@ ul.faq {
     width: 100% !important;
     padding-bottom: 3% !important;
     margin-bottom: 2% !important;
+    margin-top: 2% !important;
 }
 
 .regiser-edit {

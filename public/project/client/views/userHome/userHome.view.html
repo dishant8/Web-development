@@ -1,69 +1,53 @@
 ﻿
 
-<div class="container" ng-init="init()">
+<div class="container" ng-init="init()" ng-controller="UserbuyController">
 
     <div id="title" class="">
-        <h2>Welcome {{model.user.firstName}} {{model.user.lastName}}</h2>
+        <h2>Welcome {{user.firstName}} {{user.lastName}}</h2>
     </div><!--/#title-->
 
     <div class="row ">
-        <div class="col-md-8 map-edit" map-lazy-load="https://maps.google.com/maps/api/js">
-            <ng-map class="map-align" center="{{model.where}}" zoom="10">
-
-                <marker position="{{model.where}}"></marker>
-                <div>
-                    <marker ng-repeat="user in model.users"
-                            position="{{user.location.lat}},{{user.location.lng}}">
-                    </marker>
-                </div>
-            </ng-map>
-        </div>
-
-        <div class="col-md-4 map-edit">
+        <div class="col-md-6 map-edit">
             <form class="navbar-form navbar-left sellersAround">
                 <div class="search_field">
-                    <label class="inputSearch" for="search">Search Cooks'</label>
-                    <input id="search" class="searchButtonEdit form-control" type="text" ng-model="model.searchQuery" googleplace placeholder=" Using location...">
-                    <a ng-click="model.findSeller()" class="btn btn-primary btn-group-justified searchButton">Search</a>
+                    <span class="inputSearch" for="search">Search Chefs' around you.</span>
+                    <input id="search" class="searchButtonEdit form-control" type="text" ng-model="searchQuery" googleplace placeholder=" Using location...">
+                    <a ng-click="findSeller()" class="btn btn-primary btn-group-justified searchButton">Search</a>
                 </div>
                 <div>
-                    <input id="distance" class="searchButtonEdit form-control" accepttype="text" ng-model="model.distance" placeholder=" Using Distance...">
-                    <a ng-click="model.findForDistance()" class="btn btn-primary btn-group-justified searchButton">Find</a>
+                    <input id="distance" class="searchButtonEdit form-control" accepttype="text" ng-model="distance" placeholder=" Using Distance...">
+                    <a ng-click="findForDistance()" class="btn btn-primary btn-group-justified searchButton">Find</a>
                 </div>
             </form>
         </div>
-    </div>
-    <div class="row">
 
-        <div class="col-md-8">
-            <div ng-if="model.users.length > 0">
+        <div class="col-md-6 usersList">
+            <div ng-if="users.length > 0">
                 <div class="row">
                     <h2 class="haveALook">Have a look at Food Providers around you.</h2>
-                    <div ng-if="model.users.length == 1">
-                        <div ng-repeat="user in model.users" class="col-md-12">
-                            <div class="media">
-                                <div class="pull-left chef-avatar">
-                                    <img class="avatar img-circle" src="images/blog/chef-avatar.jpg" />
-                                </div>
-                                <div class="media-body">
-                                    <div class="well">
-                                        <div class="media-heading"><h4>{{user.firstName}} {{user.lastName}}</h4></a></div>
-                                        <div> <a href="#/seller/{{user._id}}" class="eachUserInList">More Info...</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div ng-if="model.users.length > 1">
-                        <div ng-repeat="user in model.users" class="col-md-6">
+                    <div ng-if="users.length == 1">
+                        <div ng-repeat="user in filteredTodos" class="col-md-12">
                             <div class="media">
                                 <div class="pull-left chef-avatar">
                                     <img class="avatar img-circle avatar-size" src="images/blog/chef-avatar.jpg" />
                                 </div>
                                 <div class="media-body">
-                                    <div class="well">
-                                        <div class="media-heading"><h4>{{user.firstName}} {{user.lastName}}</h4></a></div>
-                                        <div> <a href="#/seller/{{user._id}}" class="eachUserInList">More Info...</a></div>
+                                    <div class="well well_edit">
+                                        <div class="media-heading"><a href="#/seller/{{user._id}}" class="eachUserInList"><h4>{{user.firstName}} {{user.lastName}}</h4></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="users.length > 1">
+                        <div ng-repeat="user in filteredTodos" class="col-md-6">
+                            <div class="media">
+                                <div class="pull-left chef-avatar">
+                                    <img class="avatar img-circle avatar-size" src="images/blog/chef-avatar.jpg" />
+                                </div>
+                                <div class="media-body">
+                                    <div class="well well_edit">
+                                        <div class="media-heading"><a href="#/seller/{{user._id}}" class="eachUserInList"><h4>{{user.firstName}} {{user.lastName}}</h4></a></div>
                                     </div>
                                 </div>
                             </div>
@@ -71,25 +55,40 @@
                     </div>
                 </div>
             </div>
-            <div ng-if="model.users.length < 1">
+            <div ng-if="users.length > 0">
+                <div class="row">
+                    <div class="col-md-5"></div>
+                    <div>
+                        <a class="float-left col-md-1" ng-click="controlDecrease()" href="">
+                            <span class="glyphicon glyphicon-chevron-left pag-glyph-size"></span>
+                        </a>
+                        <a class="float-right col-md-1" ng-click="controlIncrease()" href="">
+                            <span class="glyphicon glyphicon-chevron-right pag-glyph-size"></span>
+                        </a>
+                    </div>
+                    <div class="col-md-5"></div>
+                </div>
+            </div>
+            <div ng-if="users.length < 1">
                 <h2> DAMN!!! No food providers around you!!!</h2>
                 <h2> Try changing distance!!!</h2>
             </div>
         </div>
-        <!--<div class="col-md-4">
-            <div ng-if="model.users.length > 0">
-                <h2 class="haveALook">Top Cooks' Around You</h2>
+    </div>
+    <div class="col-md-12 map_edit" map-lazy-load="https://maps.google.com/maps/api/js">
+        <ng-map class="map-align" center="{{where}}" zoom="10">
 
-                <div ng-repeat="seller in model.sellers track by $index">
-                    <div class="well topCooksList">
-                        <div class="media-heading"><a><h4>{{seller.firstName}} {{seller.lastName}}</h4></a></div>
-                        <div> <a href="#/seller/{{seller._id}}" class="eachUserInList">Check the Profile</a></div>
-                    </div>
-                </div>
+            <marker position="{{where}}"></marker>
+            <div>
+                <marker ng-repeat="user in users"
+                        position="{{user.location.lat}},{{user.location.lng}}">
+                </marker>
             </div>
-        </div>-->
+        </ng-map>
     </div>
 </div>
+
+
 
 <!--<div ng-if="!(model.here)">
     <h2><a href="#/login">LOGIN</a>to continue!!!</h2>
