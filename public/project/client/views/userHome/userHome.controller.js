@@ -24,7 +24,7 @@
     });
 
 
-    function UserbuyController(UserService, $rootScope, $location, $http, NgMap) {
+    function UserbuyController($scope, UserService, $rootScope, $location, $http, NgMap) {
         console.log("AYA")
         var model = this;
         //        model.user = $rootScope.user;
@@ -35,7 +35,13 @@
 
         var myLocationLat = model.lat;
         var myLocationLong = model.lng;
-        var userInScope = $rootScope.user;
+        var userInScope = model.user = $rootScope.user;
+
+        //PAGINATION//
+        model.filteredTodos = []
+        model.currentPage = 1
+        model.numPerPage = 10
+        model.maxSize = 5;
 
         $rootScope.$on('auth', function (user) {
 
@@ -193,9 +199,16 @@
                         }
                     }
                     model.users = usersNearMe;
+                    //$scope.$watch('currentPage + numPerPage', function () {
+                    //    console.log("AYA KYA")
+                    //    var begin = ((model.currentPage - 1) * model.numPerPage), end = begin + model.numPerPage;
+
+                    //    model.users = usersNearMe.slice(begin, end);
+                    //});
                 })
             }
         }
+
 
         function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
             var R = 6371; // Radius of the earth in km

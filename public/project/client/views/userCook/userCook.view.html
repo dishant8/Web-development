@@ -14,6 +14,7 @@
                 <input id="search" type="text" ng-model="model.searchQuery" googleplace class="form-control" placeholder="Search...">
             </div>
             <a ng-click="model.addLocation()" class="btn btn-primary btn-group-justified">Add a location</a>
+            <span ng-if="model.locationAdded" class="glyphicon glyphicon-ok-sign okEdit"> New location added</span>
         </div>
         <div class="col-md-4">
 

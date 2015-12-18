@@ -5,6 +5,13 @@
     font-size: 20px;
 }
 
+
+.okEdit {
+    font-size: 16px;
+    color: green;
+    padding-top: 1%;
+}
+
 .screenSmallRecipe {
     width: 100%;
 }

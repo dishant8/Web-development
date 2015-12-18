@@ -3,7 +3,6 @@
     <section id="registration">
         <form class="form-horizontal css-form" role="form" ng-controller="RegisterController">
             <field-set class="registeration-form">
-                <h3>{{model.dontMatch}}</h3>
 
                 <div class="form-group">
 
@@ -13,7 +12,8 @@
 
                     <div class="input-group col-md-4">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input ng-model="model.firstName" class="form-control" type="text" id='username' placeholder="username" required />
+                        <input ng-model="model.firstName" class="form-control" type="text" id='username' placeholder="FirstName" required />
+
                     </div>
                 </div>
 
@@ -64,6 +64,7 @@
                     <div class="col-md-2"></div>
                     <div class="input-group col-md-4">
                         <a ng-click="model.register()" class="btn btn-primary btn-group-justified"> Register to get variety of food </a>
+                        <h4 class="costColor">{{model.dontMatch}}</h4>
                     </div>
                 </div>
             </field-set>
