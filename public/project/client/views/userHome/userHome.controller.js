@@ -26,13 +26,6 @@
 
     function UserbuyController($scope, UserService, $rootScope, $location, $http, NgMap) {
         console.log("AYA")
-        //    var model = this;
-        //        model.user = $rootScope.user;
-
-        //$scope.findSeller = findSeller;
-        //$scope.findForDistance = findForDistance;
-        //$scope.clickEventInfo = clickEventInfo;
-
         var myLocationLat = $scope.lat;
         var myLocationLong = $scope.lng;
         var userInScope = $scope.user = $rootScope.user;
@@ -40,8 +33,7 @@
         //PAGINATION//
         $scope.filteredTodos = [];
         $scope.currentPage = 1;
-        $scope.numPerPage = 4;
-
+        $scope.numPerPage = 6;
 
         $rootScope.$on('auth', function (user) {
 

@@ -3,14 +3,14 @@
 <div class="container" ng-init="init()" ng-controller="UserbuyController">
 
     <div id="title" class="">
-        <h2>Welcome {{user.firstName}} {{user.lastName}}</h2>
+        <h2 align="center">Welcome {{user.firstName}} {{user.lastName}}</h2>
     </div><!--/#title-->
 
     <div class="row ">
         <div class="col-md-6 map-edit">
             <form class="navbar-form navbar-left sellersAround">
                 <div class="search_field">
-                    <span class="inputSearch" for="search">Search Chefs' around you.</span>
+                    <span class="inputSearch" for="search">Search Chefs around you.</span>
                     <input id="search" class="searchButtonEdit form-control" type="text" ng-model="searchQuery" googleplace placeholder=" Using location...">
                     <a ng-click="findSeller()" class="btn btn-primary btn-group-justified searchButton">Search</a>
                 </div>
@@ -70,11 +70,12 @@
                 </div>
             </div>
             <div ng-if="users.length < 1">
-                <h2> DAMN!!! No food providers around you!!!</h2>
-                <h2> Try changing distance!!!</h2>
+                <h2> Sorry no services in this area!!!</h2>
+                <h2> Try changing the distance!!!</h2>
             </div>
         </div>
     </div>
+    <span class="map-title">No one will be hungry around these pins.</span>
     <div class="col-md-12 map_edit" map-lazy-load="https://maps.google.com/maps/api/js">
         <ng-map class="map-align" center="{{where}}" zoom="10">
 
