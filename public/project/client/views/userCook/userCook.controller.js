@@ -190,6 +190,8 @@
                         model.itemName = "";
                         model.costPerItem = "";
                         model.allMenu = user.seller.menu;
+                        model.itemName = "";
+                        model.costPerItem = "";
                     })
             }
         }

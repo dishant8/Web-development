@@ -6,7 +6,6 @@
         .controller("LoginController", LoginController);
 
     function LoginController($location, UserService, $rootScope, AuthService) {
-        //$scope.user = $rootScope.user;
         var model = this;
         model.login = login;
 

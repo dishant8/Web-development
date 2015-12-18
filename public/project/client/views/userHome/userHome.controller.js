@@ -27,7 +27,7 @@
     function UserbuyController(UserService, $rootScope, $location, $http, NgMap) {
         console.log("AYA")
         var model = this;
-        model.user = $rootScope.user;
+        //        model.user = $rootScope.user;
 
         model.findSeller = findSeller;
         model.findForDistance = findForDistance;
@@ -36,12 +36,12 @@
         var myLocationLat = model.lat;
         var myLocationLong = model.lng;
         var userInScope = $rootScope.user;
-        //console.log("FIRSTTIME" + userInScope)
+
         $rootScope.$on('auth', function (user) {
-            //            console.log("I M CALLEC")
+
             userInScope = model.user = $rootScope.user;
             console.log(userInScope);
-            //  findAllOrders();
+
         });
 
         function init() {
@@ -49,10 +49,9 @@
                 model.user = $rootScope.user;
             }
         }
-        //model.here = "I am here";
 
         function findAllOrders() {
-            if (userInScope) {
+            if (userInScope != undefined) {
                 UserService.findUserById(userInScope._id)
                 .then(function (user) {
                     model.orderMade = user.buyer;
@@ -152,47 +151,50 @@
         }
 
         function findAllUsers() {
-            UserService.findAllUsers()
-            .then(function (users) {
-                var sellersList = [];
-                for (var i = 0; i < 2; i++) {
-                    if (!users.length < 5) {
-                        if (users[i]._id != userInScope._id) {
-                            sellersList.push(users[i]);
+            if (userInScope != undefined) {
+                UserService.findAllUsers()
+                .then(function (users) {
+                    var sellersList = [];
+                    for (var i = 0; i < 2; i++) {
+                        if (!users.length < 5) {
+                            if (users[i]._id != userInScope._id) {
+                                sellersList.push(users[i]);
+                            }
                         }
                     }
-                }
-                model.sellers = sellersList;
-            })
+                    model.sellers = sellersList;
+                })
+            }
         }
-        //        findAllUsers();
+        findAllUsers();
 
         function findUsersUsingLocation() {
+            if (userInScope != undefined) {
+                UserService.findAllUsers()
+                .then(function (users) {
+                    var usersNearMe = [];
+                    for (var i = 0; i < users.length; i++) {
+                        if (userInScope && users[i]._id != userInScope._id) {
 
-            UserService.findAllUsers()
-            .then(function (users) {
-                var usersNearMe = [];
-                for (var i = 0; i < users.length; i++) {
-                    if (userInScope && users[i]._id != userInScope._id) {
+                            if (users[i].location != undefined) {
+                                var location = users[i].location;
+                                var distance = getDistanceFromLatLonInKm(model.lat, model.lng, location.lat, location.lng);
 
-                        if (users[i].location != undefined) {
-                            var location = users[i].location;
-                            var distance = getDistanceFromLatLonInKm(model.lat, model.lng, location.lat, location.lng);
-
-                            var distanceForSearch;
-                            if (model.distance == undefined) {
-                                distanceForSearch = 5;
-                            } else {
-                                distanceForSearch = model.distance;
-                            }
-                            if (distance < distanceForSearch) {
-                                usersNearMe.push(users[i]);
+                                var distanceForSearch;
+                                if (model.distance == undefined) {
+                                    distanceForSearch = 5;
+                                } else {
+                                    distanceForSearch = model.distance;
+                                }
+                                if (distance < distanceForSearch) {
+                                    usersNearMe.push(users[i]);
+                                }
                             }
                         }
                     }
-                }
-                model.users = usersNearMe;
-            })
+                    model.users = usersNearMe;
+                })
+            }
         }
 
         function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {

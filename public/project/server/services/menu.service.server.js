@@ -1,9 +1,5 @@
 ﻿module.exports = function (app, userModel) {
 
-    //    app.get("/api/project/user/:username/:password", findUser);
-    //    app.get("/api/project/user", findAllUsers);
-    //    app.get("/api/project/user/:username", findUserByUsername);
-    //    app.get("/api/project/userById/:userId", findUserById);
     app.post("/api/project/menu/:userId", createNewMenu)
     app.put("/api/project/menu/update/:userId", updateMenu);
     app.delete("/api/project/menu/delete/:userId/:menuId", deleteMenu);
@@ -14,15 +10,11 @@
         var newMenu = req.body;
         userModel.findUserById(userId)
             .then(function (user) {
-                //  console.log("USER---" + user);
                 var menu = user.seller.menu;
-                //                console.log(newMenu);
                 menu.push(newMenu);
                 user.seller.menu = menu;
-                //              console.log("AFTER ADDING" + user.seller.menu);
                 userModel.updateUser(userId, user)
                     .then(function (user) {
-                        //                        console.log("USER CREATED" + user.seller.menu);
                         res.json(user);
                     });
             })
@@ -42,7 +34,6 @@
                 user.seller.menu = menu;
                 userModel.updateUser(userId, user)
                     .then(function (user) {
-                        //                        console.log("USER UPDATED" + user.seller.menu);
                         res.json(user);
                     });
             })

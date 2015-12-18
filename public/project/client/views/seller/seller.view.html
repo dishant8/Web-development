@@ -32,6 +32,7 @@
                             <td width="33.33%" class="costColor">$ {{menu.costPerItem}}</td>
                             <td width="33.33%">
                                 <span ng-click="model.addToCart(menu.item,menu.costPerItem)"><a href="">Add To Cart</a></span>
+                                <span ng-if="model.added" class="glyphicon glyphicon-check"></span>
                             </td>
                         </tr>
                     </tbody>
@@ -98,24 +99,19 @@
                     <h2 align="center">{{model.seller.firstName}} has no reviews yet</h2>
                 </div>
                 <div class="addReview col-md-12">
-                    <h3 class="leaveReview">Leave a review for {{model.seller.firstName}}</h3>
-                    <div class="col-md-12 input_review">
-                        <div class="col-md-6 reviewPanel">
+                    <h3 class="leaveReview">Leave a review for {{model.seller.firstName}} : </h3>
+                    <div class="col-md-6 input_review">
+                        <div class="col-md-12 reviewPanel">
                             <textarea id="textareaEdit" class="form-control" maxlength="200" ng-model="model.reviewDescription"></textarea>
                         </div>
-                    </div>
-                    <div class="col-md-6 reviewPanel">
-                        <button ng-click="model.addToReview()" class="btn btn-primary">Add a review</button>
-                        <span maxLength>Max length 200 letters</span>
+                        <div class="col-md-12 reviewPanel">
+                            <button ng-click="model.addToReview()" class="btn btn-primary btn-group-justified">Add a review</button>
+                            <span maxLength>Max length 200 letters</span>
+                        </div>
                     </div>
                 </div>
-
-
             </div><!-- /row -->
         </div>
 
     </div>
 </div>
-<!--<div class="reviewHeaderEdit">
-    Your Review Awaits
-</div>-->

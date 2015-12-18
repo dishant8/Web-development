@@ -1,9 +1,5 @@
 ﻿module.exports = function (app, userModel) {
 
-    //    app.get("/api/project/user/:username/:password", findUser);
-    //    app.get("/api/project/user", findAllUsers);
-    //    app.get("/api/project/user/:username", findUserByUsername);
-    //    app.get("/api/project/userById/:userId", findUserById);
     app.post("/api/project/reciepe/:userId", createNewReciepe)
     app.put("/api/project/reciepe/update/:userId", updateReciepe);
     app.delete("/api/project/reciepe/delete/:userId/:reciepeId", deleteReciepe);
@@ -14,15 +10,11 @@
         var newReciepe = req.body;
         userModel.findUserById(userId)
             .then(function (user) {
-                //  console.log("USER---" + user);
                 var reciepes = user.seller.reciepes;
-                //                console.log(newMenu);
                 reciepes.push(newReciepe);
                 user.seller.reciepes = reciepes;
-                //              console.log("AFTER ADDING" + user.seller.menu);
                 userModel.updateUser(userId, user)
                     .then(function (user) {
-                        //                        console.log("USER CREATED" + user.seller.menu);
                         res.json(user);
                     });
             })
@@ -42,7 +34,6 @@
                 user.seller.reciepes = reciepes;
                 userModel.updateUser(userId, user)
                     .then(function (user) {
-                        //                        console.log("USER UPDATED" + user.seller.menu);
                         res.json(user);
                     });
             })

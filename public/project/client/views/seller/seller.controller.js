@@ -16,6 +16,12 @@
         model.reviewsSelected = reviewsSelected;
         model.menuSelect = true;
 
+        $rootScope.$on('auth', function (currentUser) {
+
+            user = model.user = $rootScope.user;
+
+        });
+
         function findSellerById() {
             var sellerId = $routeParams.sellerId;
             UserService.findUserById(sellerId)
@@ -63,33 +69,37 @@
         //findSellerById();
 
         function addToReview() {
-            var reviewMadeBy = user._id;
-            if (model.reviewDescription) {
-                var reviewDescription = model.reviewDescription;
-                var newReview = {
-                    "reviewMadeById": reviewMadeBy,
-                    "reviewMadeByName": user.userName,
-                    "reviewDescription": reviewDescription
-                }
+            if (user != undefined) {
+                var reviewMadeBy = user._id;
+                if (model.reviewDescription) {
+                    var reviewDescription = model.reviewDescription;
+                    var newReview = {
+                        "reviewMadeById": reviewMadeBy,
+                        "reviewMadeByName": user.userName,
+                        "reviewDescription": reviewDescription
+                    }
 
-                ReviewService.createNewReview(sellerId, newReview)
-                    .then(function (user) {
-                        model.reviews = user.seller.reviews;
-                        model.reviewDescription = "";
-                    })
-            } else {
-                alert("Provide a review");
+                    ReviewService.createNewReview(sellerId, newReview)
+                        .then(function (user) {
+                            model.reviews = user.seller.reviews;
+                            model.reviewDescription = "";
+                        })
+                } else {
+                    alert("Provide a review");
+                }
             }
         }
 
         function deleteReview(reviewId, reviewMadeById) {
-            if (user._id == reviewMadeById) {
-                ReviewService.deleteReview(sellerId, reviewId)
-                    .then(function (user) {
-                        model.reviews = user.seller.reviews
-                    })
-            } else {
-                alert("You have not created this review")
+            if (user != undefined) {
+                if (user._id == reviewMadeById) {
+                    ReviewService.deleteReview(sellerId, reviewId)
+                        .then(function (user) {
+                            model.reviews = user.seller.reviews
+                        })
+                } else {
+                    alert("You have not created this review")
+                }
             }
         }
 
@@ -116,52 +126,52 @@
 
         }
         function addToCart(itemName, costPerItem) {
-            var sellerId = $routeParams.sellerId;
-            console.log("SELLER" + sellerId)
-            var sellerName;
-            UserService.findUserById(sellerId)
-                .then(function (user) {
-                    sellerName = user.userName;
-                    console.log(sellerName);
-                })
+            if (user != undefined) {
+                model.added = true;
+                var sellerId = $routeParams.sellerId;
+                console.log("SELLER" + sellerId)
+                var sellerName;
+                UserService.findUserById(sellerId)
+                    .then(function (user) {
+                        sellerName = user.userName;
+                        console.log(sellerName);
+                    })
 
-            UserService.findUserById(user._id)
-                .then(function (user) {
-                    var orderMade = user.buyer;
-                    console.log("ORDER RET" + orderMade)
-                    var newOrder = {
-                        "item": itemName,
-                        "nameOfSeller": sellerName,
-                        "userProviding": $routeParams.sellerId,
-                        "total": costPerItem,
-                        "costPerItem": costPerItem,
-                        "quantity": 1
-                    }
-                    orderMade.push(newOrder);
-                    user.buyer = orderMade;
+                UserService.findUserById(user._id)
+                    .then(function (user) {
+                        var orderMade = user.buyer;
+                        console.log("ORDER RET" + orderMade)
+                        var newOrder = {
+                            "item": itemName,
+                            "nameOfSeller": sellerName,
+                            "userProviding": $routeParams.sellerId,
+                            "total": costPerItem,
+                            "costPerItem": costPerItem,
+                            "quantity": 1
+                        }
+                        orderMade.push(newOrder);
+                        user.buyer = orderMade;
 
-                    UserService.updateUser(user._id, user)
-                        .then(function (user) {
-                            findSellerById();
-                            console.log("USER RETURN" + user.buyer.length);
-                            UserService.findUserById(user._id)
-                                .then(function (user) {
-                                    var totalBill = 0;
-                                    for (var i = 0; i < user.buyer.length; i++) {
-                                        totalBill = totalBill + user.buyer[i].total;
-                                    }
-                                    console.log("TOTAL BILL" + totalBill);
-                                    user.totalBill = totalBill;
-                                    UserService.updateUser(user._id, user)
-                                        .then(function (user) {
-                                            console.log(user.totalBill);
-                                        })
-                                })
-
-
-                        })
-                })
-
+                        UserService.updateUser(user._id, user)
+                            .then(function (user) {
+                                findSellerById();
+                                console.log("USER RETURN" + user.buyer.length);
+                                UserService.findUserById(user._id)
+                                    .then(function (user) {
+                                        var totalBill = 0;
+                                        for (var i = 0; i < user.buyer.length; i++) {
+                                            totalBill = totalBill + user.buyer[i].total;
+                                        }
+                                        console.log("TOTAL BILL" + totalBill);
+                                        user.totalBill = totalBill;
+                                        UserService.updateUser(user._id, user)
+                                            .then(function (user) {
+                                                console.log(user.totalBill);
+                                            })
+                                    })
+                            })
+                    })
+            }
 
         }
     };

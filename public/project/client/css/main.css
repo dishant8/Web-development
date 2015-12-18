@@ -5,6 +5,14 @@
     font-size: 20px;
 }
 
+.screenSmallRecipe {
+    width: 100%;
+}
+
+.search_field input {
+    width: 100%;
+}
+
 .setNavMargin {
     margin-bottom: 2% !important;
     margin-top: 2% !important;
@@ -15,11 +23,11 @@
 }
 
 .sellerEdit {
-    padding-top: 3%;
+    padding-top: 1%;
 }
 
 .appTittle {
-    font-family: cursive !important;
+    /*font-family: cursive !important;*/
 }
 
 .cartWrap {
@@ -37,6 +45,7 @@
 
 .recipePadding {
     padding-left: 0% !important;
+    padding-right: 0% !important;
     margin-top: 2% !important;
 }
 
@@ -96,6 +105,7 @@
 .table_edit_borders {
     padding-top: 2%;
     padding-left: 0% !important;
+    padding-right: 0% !important;
 }
 
 .menuButton {
@@ -125,6 +135,7 @@
 .input_review {
     padding-top: 2%;
     padding-bottom: 2%;
+    padding-left: 0% !important;
 }
 
 .searchButtonLocation {
@@ -169,6 +180,7 @@
 
 .text_size {
     font-size: 20px;
+    padding-top: 2% !important;
 }
 
 .recipeTableWidth {
@@ -186,7 +198,8 @@
 .haveALook {
     padding-left: 2%;
     padding-bottom: 2%;
-    margin-top: 0% !important;
+    margin-top: 4% !important;
+    text-align: center;
 }
 
 .topCooks {
@@ -202,7 +215,7 @@
 }
 
 .bodyEdit {
-    padding-top: 4.9%;
+    padding-top: 8%;
 }
 
 .wrapper {
@@ -962,7 +975,6 @@ body > section {
     font-size: 36px;
     font-weight: 300;
     border-bottom: 2px solid darkgrey;
-    font-family: initial;
 }
 
 .center {
@@ -1533,8 +1545,16 @@ ul.faq {
     margin-bottom: 150px;
 }
 
+.searchEdit {
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 4%;
+    padding-top: 4%;
+}
+
 .map-edit {
-    padding-left: 0px;
+    padding-left: 3%;
+    padding-right: 3%;
     padding-bottom: 4%;
     padding-top: 4%;
 }
@@ -1584,9 +1604,18 @@ ul.faq {
     font-size: 15px;
 }
 
+.positionSeting {
+    margin-bottom: 4% !important;
+}
+
+.addMenuInput {
+    width: 100% !important;
+}
+
 .inputSearch {
     padding-right: 20px;
-    font-size: 16px;
+    font-size: 17px;
+    padding-bottom: 2%;
 }
 
 .headEdit {
@@ -1594,7 +1623,6 @@ ul.faq {
 }
 
 .searchButton {
-    width: 80px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 20px;
@@ -1605,7 +1633,10 @@ ul.faq {
 }
 
 .searchButtonEdit {
-    padding-right: 60px;
+    padding-right: 6%;
+    width: 100% !important;
+    padding-bottom: 3% !important;
+    margin-bottom: 2% !important;
 }
 
 .regiser-edit {
