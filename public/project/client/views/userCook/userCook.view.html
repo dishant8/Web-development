@@ -20,12 +20,6 @@
 
         </div>
     </div>
-    <!--<div class="navbar-form navbar-left sellersAround col-md-12">
-        <label for="search" class="inputSearch center registration-form">Add your location so users find you.</label>
-        <input id="search" type="text" ng-model="model.searchQuery" googleplace class="form-control" placeholder="Search...">
-        <a ng-click="model.addLocation()" class="btn btn-primary">Add a location</a>
-    </div>-->
-
 
     <div class=" col-md-12 menu_recipe_pills">
         <div class="col-md-8">
@@ -168,11 +162,13 @@
                     <h4 class="modal-title">Add New Recepie</h4>
                 </div>
                 <div class="modal-body">
-                    <h4>Provide a Recipe Name:</h4><input ng-model="model.reciepeName" class="form-control" />
+                    <h4>Provide a Recipe Name:</h4><input ng-model="model.reciepeName" class="form-control" placeholder="Pasta" />
                     <h4>Add a description:</h4>
-                    <textarea class="col-md-12 screenSmallRecipe" id="textareaEdit" maxlength="300" ng-model="model.reciepeDescription"></textarea>
+                    <textarea class="col-md-12 screenSmallRecipe" id="textareaEdit" maxlength="300" ng-model="model.reciepeDescription"
+                              placeholder="1) 8 ounces dry rigatoni pasta, uncooked, 2) 1/2 cup chopped onion, 3) 1 can (10-3/4 oz each) condensed cream of mushroom soup"></textarea>
                     <span>Max length 300 charachters</span>
                     <button ng-click="model.addToReciepe()" type="button" ng-show="model.isAddRecepieItem" data-dismiss="modal" class="btn btn-primary add_menu_button btn-group-justified">Add to Recipes</button>
+
                     <button ng-click="model.updateReciepe()" type="button" ng-show="!(model.isAddRecepieItem)" data-dismiss="modal" class="btn btn-primary">Update Recipe</button>  {{selectItemToEdit}}
                 </div>
                 <div class="modal-footer">
@@ -181,4 +177,5 @@
             </div>
         </div>
     </div>
+
 </div>

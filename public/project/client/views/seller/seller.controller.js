@@ -125,7 +125,27 @@
             model.menuSelect = false;
 
         }
-        function addToCart(itemName, costPerItem) {
+
+        //function updateMenuAfterAdding(index) {
+        //    var sellerId = $routeParams.sellerId;
+        //    UserService.findUserById(sellerId)
+        //        .then(function (user) {
+        //            var list = [];
+        //            if (user.seller.menu != null) {
+        //                for (var i = 0; i < user.seller.menu.length; i++) {
+        //                    if (i == index) {
+        //                        list.push(user)
+        //                    }
+        //                }
+        //                model.allMenu = user.seller.menu;
+        //            }
+
+
+        //        })
+        //}
+
+        function addToCart(itemName, costPerItem, index) {
+            console.log("INDEX" + index);
             if (user != undefined) {
                 model.added = true;
                 var sellerId = $routeParams.sellerId;

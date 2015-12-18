@@ -182,21 +182,26 @@
 
         function addToMenu() {
             if (user != undefined) {
-                $('#addMenu').modal('show');
-                var itemName = model.itemName;
-                var costPerItem = model.costPerItem;
-                var menu = {
-                    "item": itemName,
-                    "costPerItem": costPerItem
+                if (model.itemName && model.costPerItem) {
+                    $('#addMenu').modal('show');
+                    var itemName = model.itemName;
+                    var costPerItem = model.costPerItem;
+                    var menu = {
+                        "item": itemName,
+                        "costPerItem": costPerItem
+                    }
+                    MenuService.createNewMenu(user._id, menu)
+                        .then(function (user) {
+                            model.itemName = "";
+                            model.costPerItem = "";
+                            model.allMenu = user.seller.menu;
+                            model.itemName = "";
+                            model.costPerItem = "";
+                        })
+                } else {
+                    model.addDatatoMenu = true;
+                    alert("Provide a name for the menu and its cost")
                 }
-                MenuService.createNewMenu(user._id, menu)
-                    .then(function (user) {
-                        model.itemName = "";
-                        model.costPerItem = "";
-                        model.allMenu = user.seller.menu;
-                        model.itemName = "";
-                        model.costPerItem = "";
-                    })
             }
         }
 
@@ -311,6 +316,7 @@
         function selectReciepe(reciepeId, reciepeName, reciepeDescription) {
             reciepeForUpdate = reciepeId;
             model.reciepeName = reciepeName;
+            model.isAddRecepieItem = false;
             model.reciepeDescription = reciepeDescription;
             var reciepeAfterSelect = [];
         }

@@ -16,12 +16,12 @@
         </div>
         <!-- ----------------------------------------------------------------------------------------------------------------------- -->
         <div ng-if="model.menuSelect" class="col-md-12 text_size">
-
+            <h4 align="center" ng-if="model.added" class="costColor"><a class="costColor" href="#/foodCart">Added to your cart</a></h4>
             <div class="menuTable" ng-if="model.allMenu.length > 0">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th width="33.33%">FoodItem</th>
+                            <th width="33.33%">Dish</th>
                             <th width="33.33%">Cost</th>
                             <th width="33.33%">Action</th>
                         </tr>
@@ -31,8 +31,8 @@
                             <td width="33.33%">{{menu.item}}</td>
                             <td width="33.33%" class="costColor">$ {{menu.costPerItem}}</td>
                             <td width="33.33%">
-                                <span ng-click="model.addToCart(menu.item,menu.costPerItem)"><a href="">Add To Cart</a></span>
-                                <span ng-if="model.added" class="glyphicon glyphicon-check"></span>
+                                <span ng-click="model.addToCart(menu.item,menu.costPerItem,$index)"><a href="" class="addCartColor">Add To Cart</a></span>
+                                <!--<span ng-if="model.added" class="glyphicon glyphicon-check"></span>-->
                             </td>
                         </tr>
                     </tbody>
