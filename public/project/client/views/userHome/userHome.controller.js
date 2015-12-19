@@ -25,12 +25,10 @@
 
 
     function UserbuyController($scope, UserService, $rootScope, $location, $http, NgMap) {
-        console.log("AYA")
         var myLocationLat = $scope.lat;
         var myLocationLong = $scope.lng;
         var userInScope = $scope.user = $rootScope.user;
 
-        //PAGINATION//
         $scope.filteredTodos = [];
         $scope.currentPage = 1;
         $scope.numPerPage = 6;
@@ -38,7 +36,6 @@
         $rootScope.$on('auth', function (user) {
 
             userInScope = $scope.user = $rootScope.user;
-            console.log(userInScope);
 
         });
 
@@ -56,7 +53,6 @@
                 });
             }
         }
-        //findAllOrders();
 
         function init() {
             if (navigator.geolocation) {
@@ -91,7 +87,6 @@
             $scope.lat = position.coords.latitude;
             $scope.lng = position.coords.longitude;
             $scope.where = $scope.lat + "," + $scope.lng;
-            //            console.log("LOCATION USER" + model.where)
             findUsersUsingLocation();
         }
 
@@ -122,8 +117,6 @@
             if ($scope.searchQuery != "") {
                 $http.get('http://maps.google.com/maps/api/geocode/json?address=' + $scope.searchQuery).success(function (mapData) {
                     if (mapData.results.length != 0) {
-                        //                        console.log(mapData.results[0].geometry.location.lat, mapData.results[0].geometry.location.lng);
-                        // showPosition(mapData.results[0].geometry.location.lat, mapData.results[0].geometry.location.lng);
                         $scope.where = mapData.results[0].geometry.location.lat + "," + mapData.results[0].geometry.location.lng;
 
                         $scope.location = mapData.results[0].geometry.location.lat + "," + mapData.results[0].geometry.location.lng;
@@ -167,7 +160,6 @@
         findAllUsers();
 
         function findUsersUsingLocation() {
-            console.log("AYAYAYAYA");
             if (userInScope != undefined) {
                 UserService.findAllUsers()
                     .then(function (users) {
@@ -193,16 +185,12 @@
                         }
                         $scope.users = $scope.usersNearMe;
                         $scope.maxSize = $scope.usersNearMe.length;
-                        console.log($scope.maxSize);
-                        console.log("LENGTH" + $scope.usersNearMe.length);
+
                         $scope.$watch('currentPage + numPerPage', function () {
-                            console.log("AYA KYA")
+
                             var begin = (($scope.currentPage - 1) * $scope.numPerPage);
                             var end = begin + $scope.numPerPage;
-                            //    console.log("BEGIN" + begin);
-                            //   console.log("end" + end);
                             $scope.filteredTodos = $scope.usersNearMe.slice(begin, end);
-                            //   console.log("TODO" + $scope.filteredTodos)
                         });
                     })
             }
@@ -211,7 +199,6 @@
         $scope.controlIncrease = function () {
             if ($scope.currentPage * $scope.numPerPage < $scope.maxSize) {
                 $scope.currentPage += 1;
-                console.log("INCREASE" + $scope.currentPage);
             }
         }
 
@@ -219,7 +206,6 @@
             if ($scope.currentPage > 1) {
 
                 $scope.currentPage = $scope.currentPage - 1;
-                console.log("DECREASE" + $scope.currentPage);
             }
 
         }

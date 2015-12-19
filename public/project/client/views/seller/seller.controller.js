@@ -4,7 +4,6 @@
         .controller("SellerController", SellerController);
 
     function SellerController($rootScope, $routeParams, UserService, ReviewService, $location) {
-        //$scope.$location = $location;
         var user = $rootScope.user;
         var sellerId = $routeParams.sellerId;
         var model = this;
@@ -42,31 +41,11 @@
                     if (user.seller.reviews != null) {
 
                         model.reviews = user.seller.reviews;
-                        //console.log(user.seller.menu);
                     }
 
                 })
         }
         findSellerById();
-
-
-        //function findSellerById() {
-        //    //var userId = $routeParams.sellerId;
-        //    //console.log(sellerId);
-        //    UserService.findUserById(sellerId)
-        //        .then(function (user) {
-        //            console.log("SELLERNAME" + user.userName);
-        //            model.seller = user;
-        //            // console.log(user.seller.reviews);
-        //            model.allMenu = user.seller.menu;
-        //            console.log("MENU" + user.seller.menu);
-        //            if (user.seller.reviews != null) {
-        //                model.reviews = user.seller.reviews;
-        //                //console.log(user.seller.menu);
-        //            }
-        //        })
-        //}
-        //findSellerById();
 
         function addToReview() {
             if (user != undefined) {
@@ -104,63 +83,38 @@
         }
 
         function menuSelected() {
-            console.log("MENU TRUE");
             model.menuSelect = true;
             model.recipeSelect = false;
             model.reviewsSelect = false;
         }
 
         function recipesSelected() {
-
-            console.log("recipe aya");
             model.recipeSelect = true;
             model.menuSelect = false;
             model.reviewsSelect = false;
         }
 
         function reviewsSelected() {
-            console.log("review aya")
             model.reviewsSelect = true;
             model.recipeSelect = false;
             model.menuSelect = false;
 
         }
 
-        //function updateMenuAfterAdding(index) {
-        //    var sellerId = $routeParams.sellerId;
-        //    UserService.findUserById(sellerId)
-        //        .then(function (user) {
-        //            var list = [];
-        //            if (user.seller.menu != null) {
-        //                for (var i = 0; i < user.seller.menu.length; i++) {
-        //                    if (i == index) {
-        //                        list.push(user)
-        //                    }
-        //                }
-        //                model.allMenu = user.seller.menu;
-        //            }
-
-
-        //        })
-        //}
 
         function addToCart(itemName, costPerItem, index) {
-            console.log("INDEX" + index);
             if (user != undefined) {
                 model.added = true;
                 var sellerId = $routeParams.sellerId;
-                console.log("SELLER" + sellerId)
                 var sellerName;
                 UserService.findUserById(sellerId)
                     .then(function (user) {
                         sellerName = user.userName;
-                        console.log(sellerName);
                     })
 
                 UserService.findUserById(user._id)
                     .then(function (user) {
                         var orderMade = user.buyer;
-                        console.log("ORDER RET" + orderMade)
                         var newOrder = {
                             "item": itemName,
                             "nameOfSeller": sellerName,
@@ -175,18 +129,16 @@
                         UserService.updateUser(user._id, user)
                             .then(function (user) {
                                 findSellerById();
-                                console.log("USER RETURN" + user.buyer.length);
                                 UserService.findUserById(user._id)
                                     .then(function (user) {
                                         var totalBill = 0;
                                         for (var i = 0; i < user.buyer.length; i++) {
                                             totalBill = totalBill + user.buyer[i].total;
                                         }
-                                        console.log("TOTAL BILL" + totalBill);
                                         user.totalBill = totalBill;
                                         UserService.updateUser(user._id, user)
                                             .then(function (user) {
-                                                console.log(user.totalBill);
+
                                             })
                                     })
                             })

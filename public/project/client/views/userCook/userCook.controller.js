@@ -57,19 +57,15 @@
         $rootScope.$on('auth', function (currentUser) {
 
             user = model.user = $rootScope.user;
-            console.log("IN RELOAD" + user);
             displayMenu();
             displayReciepe();
         });
         var reciepeForUpdate;
 
         function displayMenu() {
-            console.log("HERE" + user);
             if (user != undefined) {
-                console.log("CALLED FROM TOP");
                 UserService.findUserById(user._id)
                     .then(function (user) {
-                        //                    console.log("PRINTTT" + user.seller.menu)
                         model.allMenu = user.seller.menu;
                     })
             }
@@ -112,7 +108,6 @@
         }
 
         function showPosition(position) {
-            //            console.log("position" + position)
             model.lat = position.coords.latitude;
             model.lng = position.coords.longitude;
 
@@ -211,7 +206,6 @@
                     .then(function (user) {
                         var check = user.seller.menu;
                         for (var i = 0; i < check.length; i++) {
-                            //                        console.log("DELETED" + check[i].item);
                         }
                         model.allMenu = user.seller.menu;
 
@@ -226,7 +220,6 @@
                 model.itemName = itemName;
                 model.costPerItem = costPerItem;
                 model.isAddMenuItem = false;
-                console.log("menu");
                 var menuAfterSelect = [];
                 var menu = user.seller.menu;
             }
@@ -257,12 +250,10 @@
 
         function openAddMenuPop() {
             model.isAddMenuItem = true;
-            console.log("true");
         }
 
         function menuSelected() {
             $rootScope.menuSelectstatus = true;
-            console.log("MENU TRUE");
             model.menuSelect = true;
             model.recipeSelect = false;
 
@@ -270,7 +261,6 @@
 
         function recipesSelected() {
             $rootScope.menuSelectstatus = false;
-            console.log("RECIPE SELECTED" + $rootScope.menuSelectstatus);
             model.recipeSelect = true;
             model.menuSelect = false;
         }
@@ -289,7 +279,6 @@
                         .then(function (user) {
                             model.reciepeName = "";
                             model.reciepeDescription = "";
-                            console.log("USER" + user.seller.reciepes);
                             model.allReciepes = user.seller.reciepes;
                         })
                 }
@@ -323,7 +312,6 @@
 
         function openAddRecipePop() {
             model.isAddRecepieItem = true;
-            console.log("true");
         }
 
         function updateReciepe() {

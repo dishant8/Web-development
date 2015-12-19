@@ -6,8 +6,8 @@
     </div>
 
     <div class="col-md-12 searchLocation">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
 
             <label for="search" class="inputSearch center registration-form">Add your location so users find you.</label>
             <div class="searchButtonLocation">
@@ -16,7 +16,7 @@
             <a ng-click="model.addLocation()" class="btn btn-primary btn-group-justified">Add a location</a>
             <span ng-if="model.locationAdded" class="glyphicon glyphicon-ok-sign okEdit"> New location added</span>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
 
         </div>
     </div>
@@ -169,7 +169,7 @@
                     <span>Max length 300 charachters</span>
                     <button ng-click="model.addToReciepe()" type="button" ng-show="model.isAddRecepieItem" data-dismiss="modal" class="btn btn-primary add_menu_button btn-group-justified">Add to Recipes</button>
 
-                    <button ng-click="model.updateReciepe()" type="button" ng-show="!(model.isAddRecepieItem)" data-dismiss="modal" class="btn btn-primary">Update Recipe</button>  {{selectItemToEdit}}
+                    <button ng-click="model.updateReciepe()" type="button" ng-show="!(model.isAddRecepieItem)" data-dismiss="modal" class="btn btn-primary add_menu_button btn-group-justified">Update Recipe</button>  {{selectItemToEdit}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

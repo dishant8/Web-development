@@ -40,8 +40,6 @@
         function updateOrder(order, quantity) {
             if (user != undefined) {
                 var total = quantity * order.costPerItem;
-                console.log("ORDER--" + order.userProviding);
-                console.log("QUANTITY" + quantity);
                 var newOrder = {
                     "_id": order._id,
                     "item": order.item,
