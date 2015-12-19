@@ -1649,6 +1649,7 @@ ul.faq {
 
 .usersList {
     padding-top: 47px !important;
+    padding-bottom: 47px !important;
 }
 
 .addMenuInput {
@@ -1656,7 +1657,8 @@ ul.faq {
 }
 
 .inputSearch {
-    padding-right: 20px;
+    padding-right: 0%;
+    padding-left: 0%;
     font-size: 18px;
     padding-bottom: 2%;
 }
