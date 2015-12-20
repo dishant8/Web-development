@@ -5,6 +5,29 @@
     font-size: 20px;
 }
 
+.image-home-page-1 {
+    background-image: url(../images/slider/chef4.jpg);
+    background-size: 1000px 600px !important;
+}
+
+.image-home-page-2 {
+    background-image: url(../images/slider/chef2.jpg);
+    background-size: 1000px 600px !important;
+}
+
+.image-home-page-3 {
+    background-image: url(../images/slider/chef3.jpeg);
+    background-size: 1000px 600px !important;
+}
+
+.home-page-color {
+    color: darkgrey;
+}
+
+.image-size-home {
+    width: 100%;
+    height: 600px;
+}
 
 .okEdit {
     font-size: 16px;

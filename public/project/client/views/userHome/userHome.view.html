@@ -75,14 +75,17 @@
             </div>
         </div>
     </div>
-    <span class="map-title">No one will be hungry around these pins.</span>
+    <span class="map-title">Click on the pins to check who's around you..</span>
     <div class="col-md-12 map_edit" map-lazy-load="https://maps.google.com/maps/api/js">
         <ng-map class="map-align" center="{{where}}" zoom="10">
 
-            <marker position="{{where}}"></marker>
+            <marker class="marker" position="{{where}}" icon="{{icon}}">
+       
+            </marker>
             <div>
                 <marker ng-repeat="user in users"
-                        position="{{user.location.lat}},{{user.location.lng}}">
+                        position="{{user.location.lat}},{{user.location.lng}}"
+                        on-click="clickEventInfo(event, user, user.location)">
                 </marker>
             </div>
         </ng-map>

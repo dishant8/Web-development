@@ -21,6 +21,15 @@
                         position="{{user.location.lat}},{{user.location.lng}}"
                         on-click="clickEventInfo(event,user)">
                 </marker>
+                <info-window id="map-event" position="{{mapEvent.location.lat}},{{mapEvent.location.lng}}">
+                    <div ng-non-bindable="" style="width: 100%;">
+                        <h4> <a href="#/seller/{{mapEvent._id}}">{{mapEvent.userName}} </a></h4>
+                        <!--<div><i class="fa fa-location-arrow"></i> &nbsp; {{ mapEvent.venue_name }} </div>
+                        <div><i class="fa fa-calendar"></i> &nbsp; {{ mapEvent.start_time  | dateInMillis | date: 'EEE, MMM dd yyyy, h:mm a'}} </div>
+                        <div class="label label-success"> {{mapEvent.price}} </div>-->
+                        <!--<div><span ng-repeat="cat in mapEvent.categories"><span class="label label-primary">{{cat.name | ampersand}}</span>   </span></div>-->
+                    </div>
+                </info-window>
             </div>
         </ng-map>
     </div>

@@ -64,8 +64,6 @@
         }
         init();
 
-
-
         function showError(error) {
             switch (error.code) {
                 case error.PERMISSION_DENIED:
@@ -87,6 +85,7 @@
             $scope.lat = position.coords.latitude;
             $scope.lng = position.coords.longitude;
             $scope.where = $scope.lat + "," + $scope.lng;
+            $scope.icon = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
             findUsersUsingLocation();
         }
 
@@ -95,9 +94,20 @@
             $scope.map = map;
         });
 
-        function clickEventInfo(event, e) {
-            $scope.mapEvent = e;
-            $scope.map.showInfoWindow('map-event');
+        $scope.$on('mapInitialized', function (event, map) {
+            $scope.objMapa = map;
+        });
+
+        $scope.clickEventInfo = function (event, user, location) {
+            var infowindow = new google.maps.InfoWindow();
+            var center = new google.maps.LatLng(location.lat, location.lng);
+            infowindow.setPosition(center);
+
+            var funcToCall = '<a href = "#/seller/' + user._id + '">' + user.firstName + '</a>';
+
+            infowindow.setContent(funcToCall);
+
+            infowindow.open($scope.objMapa);
         };
 
         $scope.hideDetail = function () {
