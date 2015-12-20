@@ -7,6 +7,8 @@
 
     function HomeViewController($scope, UserService) {
         var model = this;
+        model.clickEventInfo = clickEventInfo;
+
         function init() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -40,6 +42,16 @@
             model.where = model.lat + "," + model.lng;
             findUsersUsingLocation();
         }
+
+        function clickEventInfo(event, user, location) {
+            var infowindow = new google.maps.InfoWindow();
+            var center = new google.maps.LatLng(location.lat, location.lng);
+            infowindow.setPosition(center);
+
+            infowindow.setContent(user);
+
+            infowindow.open($scope.objMapa);
+        };
 
         function findUsersUsingLocation() {
 

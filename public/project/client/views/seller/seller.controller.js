@@ -4,9 +4,15 @@
         .controller("SellerController", SellerController);
 
     function SellerController($rootScope, $routeParams, UserService, ReviewService, $location) {
+        $rootScope.$on('auth', function (currentUser) {
+
+            user = model.user = $rootScope.user;
+
+        });
+        var model = this;
+        model.user = $rootScope.user;
         var user = $rootScope.user;
         var sellerId = $routeParams.sellerId;
-        var model = this;
         model.addToReview = addToReview;
         model.deleteReview = deleteReview;
         model.addToCart = addToCart;
@@ -15,11 +21,6 @@
         model.reviewsSelected = reviewsSelected;
         model.menuSelect = true;
 
-        $rootScope.$on('auth', function (currentUser) {
-
-            user = model.user = $rootScope.user;
-
-        });
 
         function findSellerById() {
             var sellerId = $routeParams.sellerId;

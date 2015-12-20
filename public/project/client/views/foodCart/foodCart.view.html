@@ -1,48 +1,52 @@
 ﻿<div class="container">
+    <div ng-if="model.user">
+        <h1 align="center" class="foodCartTitle">Your FoodCart</h1>
 
-    <h1 align="center" class="foodCartTitle">Your FoodCart</h1>
+        <div class="col-md-12 cartWrap">
+            <div ng-if="model.orderMade.length > 0">
 
-    <div class="col-md-12 cartWrap">
-        <div ng-if="model.orderMade.length > 0">
-
-            <table class="table table-condensed checkOutTable">
-                <thead>
-                    <tr>
-                        <th>ItemName</th>
-                        <th>Seller</th>
-                        <th>Price</th>
-                        <th>Total</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="order in model.orderMade">
-                        <td>{{order.item}}</td>
-                        <td>
-                            <a href="#/seller/{{order.userProviding}}">{{order.nameOfSeller}}</a>
-                        </td>
-                        <td class="costColor">${{order.costPerItem}}</td>
-                        <td>
-                            {{order.total}}
-                        </td>
-                        <td>
-                            <a ng-click="model.removeItem(order._id)" class="btn btn-primary">
-                                <scan class="glyphicon glyphicon-remove"></scan>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                <table class="table table-condensed checkOutTable">
+                    <thead>
+                        <tr>
+                            <th>ItemName</th>
+                            <th>Seller</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="order in model.orderMade">
+                            <td>{{order.item}}</td>
+                            <td>
+                                <a href="#/seller/{{order.userProviding}}">{{order.nameOfSeller}}</a>
+                            </td>
+                            <td class="costColor">${{order.costPerItem}}</td>
+                            <td>
+                                {{order.total}}
+                            </td>
+                            <td>
+                                <a ng-click="model.removeItem(order._id)" class="btn btn-primary">
+                                    <scan class="glyphicon glyphicon-remove"></scan>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div ng-if="model.orderMade.length < 1">
+            <h2>Your FoodCart is Empty </h2>
+        </div>
+        <div class="col-md-3">
+            <h3 class="checkOutTable">SubTotal : ${{model.totalBill}}</h3>
+            <div>
+                <button class="btn btn-primary">Proceed to Checkout </button>
+            </div>
         </div>
     </div>
-    <div ng-if="model.orderMade.length < 1">
-        <h2>Your FoodCart is Empty </h2>
-    </div>
-    <div class="col-md-3">
-        <h3 class="checkOutTable">SubTotal : ${{model.totalBill}}</h3>
-        <div>
-            <button class="btn btn-primary">Proceed to Checkout </button>
-        </div>
+    <div ng-if="!model.user">
+        <h2><a href="#/login">LOGIN</a> to continue!!!</h2>
     </div>
 </div>
 

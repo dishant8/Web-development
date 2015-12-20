@@ -81,7 +81,8 @@
                     <marker position="{{model.where}}"></marker>
                     <div>
                         <marker ng-repeat="user in model.users"
-                                position="{{user.location.lat}},{{user.location.lng}}">
+                                position="{{user.location.lat}},{{user.location.lng}}"
+                                ng-click="model.clickEventInfo(event, user, user.location)">
                         </marker>
                     </div>
                 </ng-map>

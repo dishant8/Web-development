@@ -6,15 +6,15 @@
 
     function FoodCartController($rootScope, UserService, FoodCartService) {
         var model = this;
-        var user = $rootScope.user;
-
-        model.removeItem = removeItem;
-        model.updateOrder = updateOrder;
-
         $rootScope.$on('auth', function (currentUser) {
             user = model.user = $rootScope.user;
             findAllOrders();
         });
+        var user = model.user = $rootScope.user;
+
+        model.removeItem = removeItem;
+        model.updateOrder = updateOrder;
+
 
         function findAllOrders() {
             if (user != undefined) {

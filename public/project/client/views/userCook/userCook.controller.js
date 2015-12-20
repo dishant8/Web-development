@@ -49,7 +49,7 @@
         var myLocationLat = model.lat;
         var myLocationLong = model.lng;
 
-        var user = $rootScope.user;
+        var user = model.user = $rootScope.user;
 
         displayMenu();
         displayReciepe();

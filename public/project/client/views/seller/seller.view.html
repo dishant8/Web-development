@@ -1,117 +1,122 @@
 ﻿<div class="container">
-    <div id="title" class="">
+    <div ng-if="model.user">
+        <div id="title" class="">
+            <div class="">
+                <h1 align="center" class="sellerEdit"> Have a Look at {{model.seller.firstName}}s' Profile</h1>
+            </div>
+        </div><!--/#title-->
+
+
         <div class="">
-            <h1 align="center" class="sellerEdit"> Have a Look at {{model.seller.firstName}}s' Profile</h1>
-        </div>
-    </div><!--/#title-->
+            <div class="menu_recipe_pills col-md-12">
+                <ul class="nav nav-pills">
+                    <li ng-click="model.menuSelected()" role="presentation" data-toggle="tab" class="active"><a href="">Menu</a></li>
+                    <li ng-click="model.recipesSelected()" role="presentation" data-toggle="tab"><a href="">Recipes</a></li>
+                    <li ng-click="model.reviewsSelected()" role="presentation" data-toggle="tab"><a href="">Reviews</a></li>
+                </ul>
+            </div>
+            <!-- ----------------------------------------------------------------------------------------------------------------------- -->
+            <div ng-if="model.menuSelect" class="col-md-12 text_size">
+                <h4 align="center" ng-if="model.added" class="costColor"><a class="costColor" href="#/foodCart">Added to your cart</a></h4>
+                <div class="menuTable" ng-if="model.allMenu.length > 0">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th width="33.33%">Dish</th>
+                                <th width="33.33%">Cost</th>
+                                <th width="33.33%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="menu in model.allMenu">
+                                <td width="33.33%">{{menu.item}}</td>
+                                <td width="33.33%" class="costColor">$ {{menu.costPerItem}}</td>
+                                <td width="33.33%">
+                                    <span ng-click="model.addToCart(menu.item,menu.costPerItem,$index)"><a href="" class="addCartColor">Add To Cart</a></span>
+                                    <!--<span ng-if="model.added" class="glyphicon glyphicon-check"></span>-->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
+                <div ng-if="model.allMenu.length < 1">
 
-    <div class="">
-        <div class="menu_recipe_pills col-md-12">
-            <ul class="nav nav-pills">
-                <li ng-click="model.menuSelected()" role="presentation" data-toggle="tab" class="active"><a href="">Menu</a></li>
-                <li ng-click="model.recipesSelected()" role="presentation" data-toggle="tab"><a href="">Recipes</a></li>
-                <li ng-click="model.reviewsSelected()" role="presentation" data-toggle="tab"><a href="">Reviews</a></li>
-            </ul>
-        </div>
-        <!-- ----------------------------------------------------------------------------------------------------------------------- -->
-        <div ng-if="model.menuSelect" class="col-md-12 text_size">
-            <h4 align="center" ng-if="model.added" class="costColor"><a class="costColor" href="#/foodCart">Added to your cart</a></h4>
-            <div class="menuTable" ng-if="model.allMenu.length > 0">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th width="33.33%">Dish</th>
-                            <th width="33.33%">Cost</th>
-                            <th width="33.33%">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="menu in model.allMenu">
-                            <td width="33.33%">{{menu.item}}</td>
-                            <td width="33.33%" class="costColor">$ {{menu.costPerItem}}</td>
-                            <td width="33.33%">
-                                <span ng-click="model.addToCart(menu.item,menu.costPerItem,$index)"><a href="" class="addCartColor">Add To Cart</a></span>
-                                <!--<span ng-if="model.added" class="glyphicon glyphicon-check"></span>-->
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <h2 align="center">
+                        {{model.seller.firstName}} has no Menu at present
+                    </h2>
+                </div>
+            </div>
+            <!-- ------------------------------------------------------------------------------------------------------------------ -->
+            <div ng-if="model.recipeSelect" class="col-md-12">
+                <div ng-if="model.allReciepes.length > 0">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th><h2>Recipes</h2></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="reciepe in model.allReciepes">
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <h4>Recipe Name:</h4> {{reciepe.reciepeName}}
+                                        </li>
+                                        <li>
+                                            <h4>Description:</h4> <p>{{reciepe.reciepeDescription}}</p>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <div ng-if="model.allReciepes.length < 1">
+                    <h2 align="center">{{model.seller.firstName}} have No Recipes Yet</h2>
+                </div>
+
             </div>
 
-            <div ng-if="model.allMenu.length < 1">
-
-                <h2 align="center">
-                    {{model.seller.firstName}} has no Menu at present
-                </h2>
-            </div>
-        </div>
-        <!-- ------------------------------------------------------------------------------------------------------------------ -->
-        <div ng-if="model.recipeSelect" class="col-md-12">
-            <div ng-if="model.allReciepes.length > 0">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th><h2>Recipes</h2></th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr ng-repeat="reciepe in model.allReciepes">
-                            <td>
-                                <ul>
-                                    <li>
-                                        <h4>Recipe Name:</h4> {{reciepe.reciepeName}}
-                                    </li>
-                                    <li>
-                                        <h4>Description:</h4> <p>{{reciepe.reciepeDescription}}</p>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </tbody>
-
-                </table>
-            </div>
-            <div ng-if="model.allReciepes.length < 1">
-                <h2 align="center">{{model.seller.firstName}} have No Recipes Yet</h2>
-            </div>
-
-        </div>
-
-        <!-- ----------------------------------------------------------------------------------------------------------------------- -->
-        <div class="row">
-            <div ng-if="model.reviewsSelect" class="reviewsEdit col-md-12">
-                <div ng-if="model.reviews.length > 0">
-                    <div ng-repeat="review in model.reviews">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <strong><a class="reviewName media-heading" href="#/seller/{{review.reviewMadeById}}">{{review.reviewMadeByName}}</a></strong>
-                                <a href="#" onclick="return false;" ng-click="model.deleteReview(review._id, review.reviewMadeById)" class="float-right">Delete</a>
+            <!-- ----------------------------------------------------------------------------------------------------------------------- -->
+            <div class="row">
+                <div ng-if="model.reviewsSelect" class="reviewsEdit col-md-12">
+                    <div ng-if="model.reviews.length > 0">
+                        <div ng-repeat="review in model.reviews">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <strong><a class="reviewName media-heading" href="#/seller/{{review.reviewMadeById}}">{{review.reviewMadeByName}}</a></strong>
+                                    <a href="#" onclick="return false;" ng-click="model.deleteReview(review._id, review.reviewMadeById)" class="float-right">Delete</a>
+                                </div>
+                                <div class="panel-body">
+                                    <p class="reviewDescription" target="{{review.reviewDescription}}">{{review.reviewDescription}}</p>
+                                </div><!-- /panel-body -->
+                            </div><!-- /panel panel-default -->
+                        </div>
+                    </div>
+                    <div ng-if="model.reviews.length < 1">
+                        <h2 align="center">{{model.seller.firstName}} has no reviews yet</h2>
+                    </div>
+                    <div class="addReview col-md-12">
+                        <h3 class="leaveReview">Leave a review for {{model.seller.firstName}} : </h3>
+                        <div class="col-md-6 input_review">
+                            <div class="col-md-12 reviewPanel">
+                                <textarea id="textareaEdit" class="form-control" maxlength="200" ng-model="model.reviewDescription"></textarea>
                             </div>
-                            <div class="panel-body">
-                                <p class="reviewDescription" target="{{review.reviewDescription}}">{{review.reviewDescription}}</p>
-                            </div><!-- /panel-body -->
-                        </div><!-- /panel panel-default -->
-                    </div>
-                </div>
-                <div ng-if="model.reviews.length < 1">
-                    <h2 align="center">{{model.seller.firstName}} has no reviews yet</h2>
-                </div>
-                <div class="addReview col-md-12">
-                    <h3 class="leaveReview">Leave a review for {{model.seller.firstName}} : </h3>
-                    <div class="col-md-6 input_review">
-                        <div class="col-md-12 reviewPanel">
-                            <textarea id="textareaEdit" class="form-control" maxlength="200" ng-model="model.reviewDescription"></textarea>
-                        </div>
-                        <div class="col-md-12 reviewPanel">
-                            <button ng-click="model.addToReview()" class="btn btn-primary btn-group-justified">Add a review</button>
-                            <span maxLength>Max length 200 letters</span>
+                            <div class="col-md-12 reviewPanel">
+                                <button ng-click="model.addToReview()" class="btn btn-primary btn-group-justified">Add a review</button>
+                                <span maxLength>Max length 200 letters</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div><!-- /row -->
-        </div>
+                </div><!-- /row -->
+            </div>
 
+        </div>
+    </div>
+    <div ng-if="!model.user">
+        <h2><a href="#/login">LOGIN</a> to continue!!!</h2>
     </div>
 </div>
