@@ -10,12 +10,12 @@ var mongoose = require('mongoose');
 
 var connectionString = 'mongodb://127.0.0.1:27017/cs5610fall2015exmpl1';
 
-if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
-    connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
-        process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
-        process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
-        process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
-        process.env.OPENSHIFT_APP_NAME;
+if (process.env.MLAB_USERNAME) {
+    connectionString = process.env.MLAB_USERNAME + ":" +
+        process.env.MLAB_PASSWORD + "@" +
+        process.env.MLAB_HOST + ':' +
+        process.env.MLAB_PORT + '/' +
+        process.env.MLAB_APP_NAME;
 }
 
 var db = mongoose.connect(connectionString);
