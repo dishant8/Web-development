@@ -8,7 +8,8 @@ var mongoose = require('mongoose');
 //mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/cs5610')
 //var db = mongoose.connection;
 
-var connectionString = 'mongodb://127.0.0.1:27017/cs5610fall2015exmpl1';
+ var connectionString = 'mongodb://127.0.0.1:27017/cs5610fall2015exmpl1';
+//var connectionString = 'mongodb://heroku_pccrdld6:nch7ja4rkpq6bd2csrntrmeefm@ds139949.mlab.com:39949/heroku_pccrdld6';
 
 if (process.env.MLAB_USERNAME) {
     connectionString = process.env.MLAB_USERNAME + ":" +
@@ -20,8 +21,8 @@ if (process.env.MLAB_USERNAME) {
 
 var db = mongoose.connect(connectionString);
 
-var ipaddress = process.env.MLAB_HOST || '127.0.0.1'
-var port = process.env.MLAB_PORT || 3000;
+//var ipaddress = process.env.MLAB_HOST || '127.0.0.1'
+var port = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
@@ -33,4 +34,4 @@ require("./public/assignment/server/app.js")(app, mongoose, db);
 require("./public/project/server/app.js")(app, mongoose, db);
 require("./public/practice/mongo/server/app.js")(app, mongoose, db);
 
-app.listen(port, ipaddress);
+app.listen(port);
