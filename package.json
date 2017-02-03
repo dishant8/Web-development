@@ -1,22 +1,17 @@
 {
-  "name": "OpenShift-Sample-App",
+  "name": "FoodCrave",
   "version": "1.0.0",
-  "description": "OpenShift Sample Application",
+  "description": "FoodCrave",
   "keywords": [
-    "OpenShift",
     "Node.js",
-    "application",
-    "openshift"
+    "application"
   ],
   "author": {
-    "name": "OpenShift",
-    "email": "ramr@example.org",
-    "url": "http://www.openshift.com/"
+    "name": "Dishant Shah"
   },
-  "homepage": "http://www.openshift.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/openshift/origin-server"
+    "url": "https://github.com/dishant8/cs5610fall2015"
   },
   "engines": {
     "node": ">= 0.6.0",
