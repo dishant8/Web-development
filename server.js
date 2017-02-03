@@ -20,8 +20,8 @@ if (process.env.MLAB_USERNAME) {
 
 var db = mongoose.connect(connectionString);
 
-var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
-var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+var ipaddress = process.env.MLAB_HOST || '127.0.0.1'
+var port = process.env.MLAB_PORT || 3000;
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
