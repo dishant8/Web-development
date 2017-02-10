@@ -1,7 +1,6 @@
-﻿
-<div class="container" ng-init="init()" ng-controller="UserbuyController">
+﻿<!--ng-controller="UserbuyController"-->
+<div class="container" ng-init="init()" >
     <div ng-if="user">
-
         <div id="title" class="">
             <h2 align="center">Welcome {{user.firstName}} {{user.lastName}}</h2>
         </div><!--/#title-->
@@ -11,12 +10,12 @@
                 <form class="navbar-form navbar-left sellersAround">
                     <div class="search_field">
                         <span class="inputSearch" for="search">Search Chefs around you.</span>
-                        <input id="search" class="searchButtonEdit form-control" type="text" ng-model="searchQuery" googleplace placeholder=" Using location...">
+                        <input id="search" class="searchButtonEdit form-control" type="text" ng-model="model.searchQuery" googleplace placeholder=" Using location...">
                         <a ng-click="findSeller()" class="btn btn-primary btn-group-justified searchButton">Search</a>
                     </div>
                     <div>
-                        <input id="distance" class="searchButtonEdit form-control" accepttype="text" ng-model="distance" placeholder=" Using Distance...">
-                        <a ng-click="findForDistance()" class="btn btn-primary btn-group-justified searchButton">Find</a>
+                        <input id="distance" class="searchButtonEdit form-control" accepttype="text" ng-model="model.distance" placeholder=" Using Distance...">
+                        <a ng-click="findForDistance()" class="btn btn-primary btn-group-justified searchButton">Find using distance</a>
                     </div>
                 </form>
             </div>

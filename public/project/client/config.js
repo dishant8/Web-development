@@ -35,6 +35,7 @@
          })
         .when("/userHome", {
             templateUrl: "views/userHome/userHome.view.html",
+            controller: "UserbuyController",
 
         })
         .when("/seller/:sellerId", {

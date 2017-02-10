@@ -28,11 +28,10 @@
         var myLocationLat = $scope.lat;
         var myLocationLong = $scope.lng;
         var userInScope = $scope.user = $rootScope.user;
-
         $scope.filteredTodos = [];
         $scope.currentPage = 1;
         $scope.numPerPage = 6;
-
+        $scope.model = {};
         $rootScope.$on('auth', function (user) {
 
             userInScope = $scope.user = $rootScope.user;
@@ -115,17 +114,18 @@
         };
 
         $scope.findForDistance = function () {
-            if ($scope.distance) {
+            if ($scope.model.distance) {
                 findUsersUsingLocation();
                 $scope.enterDistance = "";
-            } else {
+            }
+            else {
                 $scope.enterDistance = "Enter a distance for Search";
             }
         }
 
         $scope.findSeller = function () {
-            if ($scope.searchQuery != "") {
-                $http.get('https://maps.google.com/maps/api/geocode/json?address=' + $scope.searchQuery).success(function (mapData) {
+            if ($scope.model.searchQuery) {
+                $http.get('https://maps.google.com/maps/api/geocode/json?key=AIzaSyBhWqeljQO9pra5eOeYWjf9D3JGM1mttQ4&address=' + $scope.model.searchQuery).success(function (mapData) {
                     if (mapData.results.length != 0) {
                         $scope.where = mapData.results[0].geometry.location.lat + "," + mapData.results[0].geometry.location.lng;
 
@@ -182,10 +182,10 @@
                                     var distance = getDistanceFromLatLonInKm($scope.lat, $scope.lng, location.lat, location.lng);
 
                                     var distanceForSearch;
-                                    if ($scope.distance == undefined) {
+                                    if ($scope.model.distance == undefined) {
                                         distanceForSearch = 5;
                                     } else {
-                                        distanceForSearch = $scope.distance;
+                                        distanceForSearch = $scope.model.distance;
                                     }
                                     if (distance < distanceForSearch) {
                                         $scope.usersNearMe.push(users[i]);
