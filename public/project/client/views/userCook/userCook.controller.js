@@ -122,7 +122,7 @@
                 if (model.searchQuery != undefined) {
                     model.locationAdded = true;
                 }
-                $http.get('http://maps.google.com/maps/api/geocode/json?address=' + model.searchQuery).success(function (mapData) {
+                $http.get('https://maps.google.com/maps/api/geocode/json?address=' + model.searchQuery).success(function (mapData) {
                     if (mapData.results.length != 0) {
                         model.where = mapData.results[0].geometry.location.lat + "," + mapData.results[0].geometry.location.lng;
 
