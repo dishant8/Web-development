@@ -85,7 +85,7 @@
             $scope.lat = position.coords.latitude;
             $scope.lng = position.coords.longitude;
             $scope.where = $scope.lat + "," + $scope.lng;
-            $scope.icon = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+            $scope.icon = 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
             findUsersUsingLocation();
         }
 
@@ -125,7 +125,7 @@
 
         $scope.findSeller = function () {
             if ($scope.searchQuery != "") {
-                $http.get('http://maps.google.com/maps/api/geocode/json?address=' + $scope.searchQuery).success(function (mapData) {
+                $http.get('https://maps.google.com/maps/api/geocode/json?address=' + $scope.searchQuery).success(function (mapData) {
                     if (mapData.results.length != 0) {
                         $scope.where = mapData.results[0].geometry.location.lat + "," + mapData.results[0].geometry.location.lng;
 
