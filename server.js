@@ -24,7 +24,7 @@ var db = mongoose.connect(connectionString);
 //var ipaddress = process.env.MLAB_HOST || '127.0.0.1'
 var port = process.env.PORT || 3000;
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public/project/client/'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
